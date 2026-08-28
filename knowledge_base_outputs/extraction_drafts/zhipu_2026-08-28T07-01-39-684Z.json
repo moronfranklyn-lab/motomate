@@ -1,0 +1,92 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-01-39-684Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.5-air",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/uhr150_2026_handrail.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 35068,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 520,
+    "prompt_tokens": 552,
+    "prompt_tokens_details": {
+      "cached_tokens": 229
+    },
+    "total_tokens": 1072
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "UHR150",
+      "model_year": "2026",
+      "trim_name": "扶手版",
+      "sale_status": "current",
+      "official_msrp_cny": 13780,
+      "official_price_label": "官方建议零售价",
+      "displacement_cc": 149,
+      "seat_height_mm": 760,
+      "curb_weight_kg": 140,
+      "max_power_kw": 10.6,
+      "fuel_tank_l": 8,
+      "abs": "德国博世双通道",
+      "tcs": "配电装 TCS",
+      "vehicle_type": "踏板车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.haojue.com/2026UHR150/"
+        ],
+        "model_year": [
+          "https://www.haojue.com/2026UHR150/"
+        ],
+        "trim_name": [
+          "https://www.haojue.com/2026UHR150/canshu.html"
+        ],
+        "sale_status": [
+          "https://www.haojue.com/2026UHR150/"
+        ],
+        "official_msrp_cny": [
+          "https://www.haojue.com/2026UHR150/jiage.html"
+        ],
+        "official_price_label": [
+          "https://www.haojue.com/2026UHR150/jiage.html"
+        ],
+        "displacement_cc": [
+          "https://www.haojue.com/2026UHR150/canshu.html"
+        ],
+        "seat_height_mm": [
+          "https://www.haojue.com/2026UHR150/canshu.html"
+        ],
+        "curb_weight_kg": [
+          "https://www.haojue.com/2026UHR150/canshu.html"
+        ],
+        "max_power_kw": [
+          "https://www.haojue.com/2026UHR150/canshu.html"
+        ],
+        "fuel_tank_l": [
+          "https://www.haojue.com/2026UHR150/canshu.html"
+        ],
+        "abs": [
+          "https://www.haojue.com/2026UHR150/jiage.html"
+        ],
+        "tcs": [
+          "https://www.haojue.com/2026UHR150/jiage.html"
+        ],
+        "vehicle_type": [
+          "https://www.haojue.com/2026UHR150/"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

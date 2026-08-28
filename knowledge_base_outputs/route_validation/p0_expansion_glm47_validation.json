@@ -1,0 +1,265 @@
+{
+  "validation_type": "single_model_batch_route",
+  "validated_at": "2026-08-28T07:35:58.331Z",
+  "status": "extraction_draft",
+  "model": "glm-4.7",
+  "audits": [
+    {
+      "id": "cfmoto_450nk_2026_standard",
+      "http_status": 200,
+      "retry_count": 0,
+      "latency_ms": 10374,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 530,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 554,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1084
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-29-05-407Z.json",
+      "passed": true
+    },
+    {
+      "id": "cfmoto_450clc_2026_standard",
+      "http_status": 200,
+      "retry_count": 0,
+      "latency_ms": 12686,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 525,
+        "prompt_tokens": 527,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1052
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-29-25-631Z.json",
+      "passed": true
+    },
+    {
+      "id": "cfmoto_450clc_2025_amt",
+      "http_status": 200,
+      "retry_count": 2,
+      "latency_ms": 12056,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "13/14",
+      "field_completeness_rate": 0.9285714285714286,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": false,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 562,
+        "prompt_tokens": 499,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1061
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-34-45-484Z.json",
+      "passed": false
+    },
+    {
+      "id": "cfmoto_450clc_2024_bobber",
+      "http_status": 200,
+      "retry_count": 0,
+      "latency_ms": 16045,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "12/14",
+      "field_completeness_rate": 0.8571428571428571,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 596,
+        "prompt_tokens": 526,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1122
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-30-10-539Z.json",
+      "passed": true
+    },
+    {
+      "id": "benda_greystone250_2026_manual",
+      "http_status": 200,
+      "retry_count": 0,
+      "latency_ms": 14825,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "11/14",
+      "field_completeness_rate": 0.7857142857142857,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 538,
+        "prompt_tokens": 589,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1127
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-30-31-498Z.json",
+      "passed": true
+    },
+    {
+      "id": "benda_greystone250_2026_cvt",
+      "http_status": 200,
+      "retry_count": 2,
+      "latency_ms": 14076,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "10/14",
+      "field_completeness_rate": 0.7142857142857143,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": false,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 549,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 577,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "total_tokens": 1126
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-35-05-747Z.json",
+      "passed": false
+    },
+    {
+      "id": "qjmotor_sai250mini_2026_mini",
+      "http_status": 200,
+      "retry_count": 0,
+      "latency_ms": 14763,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "11/14",
+      "field_completeness_rate": 0.7857142857142857,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 521,
+        "prompt_tokens": 513,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1034
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-31-12-156Z.json",
+      "passed": true
+    },
+    {
+      "id": "wuyang_honda_cb190r_standard_pending_year",
+      "http_status": 200,
+      "retry_count": 0,
+      "latency_ms": 13738,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "12/14",
+      "field_completeness_rate": 0.8571428571428571,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 589,
+        "prompt_tokens": 609,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1198
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-31-33-417Z.json",
+      "passed": true
+    },
+    {
+      "id": "wuyang_honda_cb190r_2023_gp",
+      "http_status": 200,
+      "retry_count": 0,
+      "latency_ms": 9761,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "13/14",
+      "field_completeness_rate": 0.9285714285714286,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "unauthorized_source_completion": false,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 638,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 611,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "total_tokens": 1249
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-31-49-626Z.json",
+      "passed": true
+    }
+  ],
+  "total_usage": {
+    "prompt_tokens": 5005,
+    "completion_tokens": 5048,
+    "total_tokens": 10053
+  },
+  "latency": {
+    "measured_calls": 9,
+    "total_ms": 118324,
+    "average_ms": 13147.111111111111
+  },
+  "route_pass_rate": 0.7777777777777778,
+  "consecutive_structural_failures": 0,
+  "circuit_breaker_triggered": false,
+  "batch_route_approved": false
+}

@@ -1,0 +1,89 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-30-31-498Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/benda_greystone250_2026_manual_pending.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 14825,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 538,
+    "prompt_tokens": 589,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 1127
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "奔达 灰石250",
+      "model_year": "2026",
+      "trim_name": "手动版",
+      "sale_status": "current",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "displacement_cc": 249.5,
+      "seat_height_mm": 715,
+      "curb_weight_kg": 182,
+      "max_power_kw": 20.2,
+      "fuel_tank_l": 15.5,
+      "abs": "标配",
+      "tcs": null,
+      "vehicle_type": "巡航",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.bendamotor.cn/product?id=3"
+        ],
+        "model_year": [
+          "https://www.autohome.com.cn/motorbike/series/10210777?from=m"
+        ],
+        "trim_name": [
+          "https://www.autohome.com.cn/motorbike/series/10210777?from=m"
+        ],
+        "sale_status": [
+          "https://www.bendamotor.cn/product?id=3"
+        ],
+        "official_msrp_cny": null,
+        "official_price_label": null,
+        "displacement_cc": [
+          "https://car.autohome.com.cn/motorbike/params/10210777"
+        ],
+        "seat_height_mm": [
+          "https://car.autohome.com.cn/motorbike/params/10210777"
+        ],
+        "curb_weight_kg": [
+          "https://car.autohome.com.cn/motorbike/params/10210777"
+        ],
+        "max_power_kw": [
+          "https://car.autohome.com.cn/motorbike/params/10210777"
+        ],
+        "fuel_tank_l": [
+          "https://car.autohome.com.cn/motorbike/params/10210777"
+        ],
+        "abs": [
+          "https://car.autohome.com.cn/motorbike/params/10210777"
+        ],
+        "tcs": null,
+        "vehicle_type": [
+          "https://www.autohome.com.cn/motorbike/series/10210777?from=m"
+        ]
+      },
+      "warnings": [
+        "TCS显示“-”不能解释为明确无，因此tcs必须为null",
+        "官方价格不可核验，因此official_msrp_cny必须为null"
+      ]
+    }
+  }
+}

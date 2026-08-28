@@ -1,0 +1,12 @@
+{
+  "schema_version": "kb_eligible_pool_manifest_v0.2",
+  "active_pool_file": "knowledge_base_outputs/eligible_pool/first_batch_v1.json",
+  "pool_version": "first_batch_v1",
+  "model_count": 8,
+  "eligible_count": 8,
+  "blocked_count": 0,
+  "recommendation_approved_count": 0,
+  "rule_version": "kb_admission_v0.2",
+  "closed_at": "2026-08-28T16:30:00+08:00",
+  "mvp_usage": "May participate in deterministic MVP filtering; not independently authorized as a final approved recommendation set."
+}

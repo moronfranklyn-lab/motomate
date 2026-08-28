@@ -1,0 +1,96 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-29-05-407Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/cfmoto_450nk_2026_standard.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 10374,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 530,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 554,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 1084
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "450NK",
+      "model_year": "2026",
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "official_msrp_cny": 23880,
+      "official_price_label": "售价",
+      "displacement_cc": 449,
+      "seat_height_mm": 795,
+      "curb_weight_kg": 165,
+      "max_power_kw": 38,
+      "fuel_tank_l": 14,
+      "abs": "标配",
+      "tcs": "标配",
+      "vehicle_type": "街车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "model_year": [
+          "https://www.58moto.com/good/20536.html"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "sale_status": [
+          "https://www.58moto.com/good/20536/configuration.html"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/450NK",
+          "https://www.58moto.com/good/20536.html"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/450NK"
+        ],
+        "vehicle_type": [
+          "https://www.58moto.com/good/20536.html"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

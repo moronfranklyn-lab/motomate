@@ -1,0 +1,203 @@
+{
+  "validation_type": "uhr150_single_trim_route",
+  "validated_at": "2026-08-28T06:23:50.018Z",
+  "status": "extraction_draft",
+  "model": "glm-4.5-air",
+  "audits": [
+    {
+      "name": "handrail",
+      "http_status": 200,
+      "json_parseable": true,
+      "root_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "source_fields_complete": true,
+      "source_whitelist_valid": true,
+      "hallucination_detected": false,
+      "binding_valid": true,
+      "usage": {
+        "completion_tokens": 517,
+        "prompt_tokens": 552,
+        "prompt_tokens_details": {
+          "cached_tokens": 69
+        },
+        "total_tokens": 1069
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T06-21-27-957Z.json",
+      "passed": true
+    },
+    {
+      "name": "airshock_topbox",
+      "http_status": 200,
+      "json_parseable": true,
+      "root_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "source_fields_complete": true,
+      "source_whitelist_valid": true,
+      "hallucination_detected": false,
+      "binding_valid": true,
+      "usage": {
+        "completion_tokens": 524,
+        "prompt_tokens": 579,
+        "prompt_tokens_details": {
+          "cached_tokens": 235
+        },
+        "total_tokens": 1103
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T06-22-07-551Z.json",
+      "passed": true
+    },
+    {
+      "name": "handrail_repeat",
+      "http_status": 200,
+      "json_parseable": true,
+      "root_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "source_fields_complete": true,
+      "source_whitelist_valid": true,
+      "hallucination_detected": false,
+      "binding_valid": true,
+      "usage": {
+        "completion_tokens": 517,
+        "prompt_tokens": 552,
+        "prompt_tokens_details": {
+          "cached_tokens": 551
+        },
+        "total_tokens": 1069
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T06-22-54-534Z.json",
+      "passed": true
+    }
+  ],
+  "repeat_stable": true,
+  "merge_binding_valid": true,
+  "batch_route_approved": true,
+  "merged": {
+    "models": [
+      {
+        "model_search_name": "UHR150",
+        "model_year": "2026",
+        "trim_name": "扶手版",
+        "sale_status": "current",
+        "official_msrp_cny": 13780,
+        "official_price_label": "官方建议零售价",
+        "displacement_cc": 149,
+        "seat_height_mm": 760,
+        "curb_weight_kg": 140,
+        "max_power_kw": 10.6,
+        "fuel_tank_l": 8,
+        "abs": "德国博世双通道",
+        "tcs": "有",
+        "vehicle_type": "踏板车",
+        "field_sources": {
+          "model_search_name": [
+            "https://www.haojue.com/2026UHR150/"
+          ],
+          "model_year": [
+            "https://www.haojue.com/2026UHR150/"
+          ],
+          "trim_name": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "sale_status": [
+            "https://www.haojue.com/2026UHR150/"
+          ],
+          "official_msrp_cny": [
+            "https://www.haojue.com/2026UHR150/jiage.html"
+          ],
+          "official_price_label": [
+            "https://www.haojue.com/2026UHR150/jiage.html"
+          ],
+          "displacement_cc": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "seat_height_mm": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "curb_weight_kg": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "max_power_kw": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "fuel_tank_l": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "abs": [
+            "https://www.haojue.com/2026UHR150/jiage.html"
+          ],
+          "tcs": [
+            "https://www.haojue.com/2026UHR150/jiage.html"
+          ],
+          "vehicle_type": [
+            "https://www.haojue.com/2026UHR150/"
+          ]
+        },
+        "warnings": []
+      },
+      {
+        "model_search_name": "UHR150",
+        "model_year": "2026",
+        "trim_name": "气囊减振/尾箱版",
+        "sale_status": "current",
+        "official_msrp_cny": 14680,
+        "official_price_label": "官方建议零售价",
+        "displacement_cc": 149,
+        "seat_height_mm": 760,
+        "curb_weight_kg": 144,
+        "max_power_kw": 10.6,
+        "fuel_tank_l": 8,
+        "abs": "德国博世双通道",
+        "tcs": "配电装 TCS",
+        "vehicle_type": "踏板车",
+        "field_sources": {
+          "model_search_name": [
+            "https://www.haojue.com/2026UHR150/"
+          ],
+          "model_year": [
+            "https://www.haojue.com/2026UHR150/"
+          ],
+          "trim_name": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "sale_status": [
+            "https://www.haojue.com/2026UHR150/"
+          ],
+          "official_msrp_cny": [
+            "https://www.haojue.com/2026UHR150/jiage.html"
+          ],
+          "official_price_label": [
+            "https://www.haojue.com/2026UHR150/jiage.html"
+          ],
+          "displacement_cc": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "seat_height_mm": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "curb_weight_kg": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "max_power_kw": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "fuel_tank_l": [
+            "https://www.haojue.com/2026UHR150/canshu.html"
+          ],
+          "abs": [
+            "https://www.haojue.com/2026UHR150/jiage.html"
+          ],
+          "tcs": [
+            "https://www.haojue.com/2026UHR150/jiage.html"
+          ],
+          "vehicle_type": [
+            "https://www.haojue.com/2026UHR150/"
+          ]
+        },
+        "warnings": []
+      }
+    ]
+  }
+}

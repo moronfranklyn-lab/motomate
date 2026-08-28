@@ -1,0 +1,98 @@
+{
+  "validation_type": "single_model_batch_route",
+  "validated_at": "2026-08-28T07:05:06.394Z",
+  "status": "extraction_draft",
+  "model": "glm-4.6v",
+  "audits": [
+    {
+      "id": "sr250gt_play",
+      "http_status": 200,
+      "retry_count": 0,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 699,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 608,
+        "prompt_tokens_details": {
+          "cached_tokens": 58
+        },
+        "total_tokens": 1307
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-02-11-594Z.json",
+      "passed": true
+    },
+    {
+      "id": "sr250gt_pro",
+      "http_status": 200,
+      "retry_count": 0,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 715,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 624,
+        "prompt_tokens_details": {
+          "cached_tokens": 58
+        },
+        "total_tokens": 1339
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-02-37-615Z.json",
+      "passed": true
+    },
+    {
+      "id": "uhr150_handrail",
+      "http_status": 200,
+      "retry_count": 0,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 522,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 555,
+        "prompt_tokens_details": {
+          "cached_tokens": 58
+        },
+        "total_tokens": 1077
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T07-03-06-025Z.json",
+      "passed": true
+    }
+  ],
+  "total_usage": {
+    "prompt_tokens": 1787,
+    "completion_tokens": 1936,
+    "total_tokens": 3723
+  },
+  "route_pass_rate": 1,
+  "consecutive_structural_failures": 0,
+  "circuit_breaker_triggered": false,
+  "batch_route_approved": true
+}

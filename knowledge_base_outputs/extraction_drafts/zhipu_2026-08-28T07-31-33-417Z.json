@@ -1,0 +1,93 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-31-33-417Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/wuyang_honda_cb190r_2023_standard_pending.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 13738,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 589,
+    "prompt_tokens": 609,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 1198
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "CB190R",
+      "model_year": null,
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "official_msrp_cny": 12980,
+      "official_price_label": "建议零售价",
+      "displacement_cc": 184.4,
+      "seat_height_mm": 769,
+      "curb_weight_kg": 142,
+      "max_power_kw": 12.4,
+      "fuel_tank_l": 12,
+      "abs": "前轮单通道ABS",
+      "tcs": null,
+      "vehicle_type": "街车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "trim_name": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "sale_status": [
+          "https://www.wuyang-honda.com/home/sy/rysy/index.shtml"
+        ],
+        "official_msrp_cny": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "official_price_label": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "displacement_cc": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "seat_height_mm": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "curb_weight_kg": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "max_power_kw": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "fuel_tank_l": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "abs": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "tcs": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "vehicle_type": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ]
+      },
+      "warnings": [
+        "配置映射冲突：汽车之家列出2023款运动版11680元，与官网标准版12980元存在冲突，无法确认是否同一配置。",
+        "官网未标年款，动态参数组件无法可靠核验其余参数。",
+        "TCS仅平台记录未配置，官方未确认，因此tcs必须为null。"
+      ]
+    }
+  }
+}

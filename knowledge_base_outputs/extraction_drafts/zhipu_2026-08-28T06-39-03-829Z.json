@@ -1,0 +1,100 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T06-39-03-829Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.5-air",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/wuyang_honda_pcx160_2025_standard.md"
+  ],
+  "http_status": 200,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 701,
+    "prompt_tokens": 686,
+    "prompt_tokens_details": {
+      "cached_tokens": 229
+    },
+    "total_tokens": 1387
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "PCX160",
+      "model_year": "2025",
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "official_msrp_cny": 19990,
+      "official_price_label": "建议零售价",
+      "displacement_cc": 156.9,
+      "seat_height_mm": 764,
+      "curb_weight_kg": 136,
+      "max_power_kw": 11.8,
+      "fuel_tank_l": 8.2,
+      "abs": "标配",
+      "tcs": "标配可关闭",
+      "vehicle_type": "踏板",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.wuyang-honda.com/home/sy/rysy/index.shtml",
+          "https://www.58moto.com/good/17751.html"
+        ],
+        "model_year": [
+          "https://www.58moto.com/good/17751.html"
+        ],
+        "trim_name": [
+          "https://www.wuyang-honda.com/home/sy/rysy/index.shtml",
+          "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml"
+        ],
+        "sale_status": [
+          "https://www.wuyang-honda.com/home/sy/rysy/index.shtml",
+          "https://www.58moto.com/good/17751.html"
+        ],
+        "official_msrp_cny": [
+          "https://www.wuyang-honda.com/home/sy/rysy/index.shtml",
+          "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml",
+          "https://www.58moto.com/good/17751.html"
+        ],
+        "official_price_label": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml"
+        ],
+        "displacement_cc": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml",
+          "https://www.58moto.com/good/17751.html"
+        ],
+        "seat_height_mm": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml"
+        ],
+        "curb_weight_kg": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml"
+        ],
+        "max_power_kw": [
+          "https://www.58moto.com/good/17751/configuration.html"
+        ],
+        "fuel_tank_l": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml"
+        ],
+        "abs": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml",
+          "https://www.58moto.com/good/17751/configuration.html"
+        ],
+        "tcs": [
+          "https://www.58moto.com/good/17751/configuration.html"
+        ],
+        "vehicle_type": [
+          "https://www.58moto.com/good/17751.html"
+        ]
+      },
+      "warnings": [
+        "TCS细分状态缺少当前官方明确证据，保持待人工复核；不得与新大洲本田 PCX 合并。"
+      ]
+    }
+  }
+}

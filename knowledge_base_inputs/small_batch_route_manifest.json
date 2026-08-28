@@ -1,0 +1,52 @@
+{
+  "model": "glm-4.5-air",
+  "output_path": "knowledge_base_outputs/route_validation/sr250gt_pcx160_nmax155_validation.json",
+  "runs": [
+    {
+      "id": "voge_sr250gt_2026_play_retry1",
+      "expected_binding": {"model_year":"2026","trim_name":"Play版","official_msrp_cny":15980,"curb_weight_kg":168},
+      "source_url_whitelist": [
+        "https://www.vogemotor.com/motorbike-details?id=22",
+        "https://www.58moto.com/good/20509.html",
+        "https://www.58moto.com/good/20509/configuration.html"
+      ]
+    },
+    {
+      "id": "voge_sr250gt_2026_pro_retry1",
+      "expected_binding": {"model_year":"2026","trim_name":"Pro版","official_msrp_cny":17980,"curb_weight_kg":168},
+      "source_url_whitelist": [
+        "https://www.vogemotor.com/motorbike-details?id=26",
+        "https://www.58moto.com/good/20509.html",
+        "https://www.58moto.com/good/20509/configuration.html"
+      ]
+    },
+    {
+      "id": "wuyang_honda_pcx160_2025_standard",
+      "expected_binding": {"model_year":"2025","trim_name":"标准版","official_msrp_cny":19990,"curb_weight_kg":136},
+      "source_url_whitelist": [
+        "https://www.wuyang-honda.com/home/sy/rysy/index.shtml",
+        "https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml",
+        "https://www.58moto.com/good/17751.html",
+        "https://www.58moto.com/good/17751/configuration.html"
+      ]
+    },
+    {
+      "id": "yamaha_nmax155_2026_tech_max",
+      "expected_binding": {"model_year":"2026","trim_name":"Tech Max","official_msrp_cny":27800,"curb_weight_kg":132},
+      "source_url_whitelist": [
+        "https://www.yamaha-motor.com.cn/mc/products/",
+        "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/",
+        "https://www.58moto.com/good/6946.html"
+      ]
+    },
+    {
+      "id": "yamaha_nmax155_2026_25th",
+      "expected_binding": {"model_year":"2026","trim_name":"25周年纪念版","official_msrp_cny":28000,"curb_weight_kg":132},
+      "source_url_whitelist": [
+        "https://www.yamaha-motor.com.cn/mc/products/",
+        "https://www.yamaha-motor.com.cn/mc/products/nmax_25th/",
+        "https://www.58moto.com/good/6946.html"
+      ]
+    }
+  ]
+}

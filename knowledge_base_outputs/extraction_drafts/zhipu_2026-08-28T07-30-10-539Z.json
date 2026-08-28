@@ -1,0 +1,94 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-30-10-539Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/cfmoto_450clc_2024_bobber_pending.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 16045,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 596,
+    "prompt_tokens": 526,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 1122
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "450CL-C",
+      "model_year": "2024",
+      "trim_name": "单座版",
+      "sale_status": "current",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "displacement_cc": 449,
+      "seat_height_mm": 715,
+      "curb_weight_kg": 177,
+      "max_power_kw": 30,
+      "fuel_tank_l": 12,
+      "abs": "双通道ABS",
+      "tcs": "标配",
+      "vehicle_type": "巡航太子",
+      "field_sources": {
+        "model_search_name": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "model_year": [
+          "https://www.58moto.com/good/20571.html"
+        ],
+        "trim_name": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "sale_status": [
+          "https://www.58moto.com/good/20571.html"
+        ],
+        "official_msrp_cny": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "official_price_label": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "displacement_cc": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "seat_height_mm": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "curb_weight_kg": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "max_power_kw": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "fuel_tank_l": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "abs": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "tcs": [
+          "https://cn.cfmoto.com/motorcycles/450CL-C-BOBBER"
+        ],
+        "vehicle_type": [
+          "https://www.58moto.com/good/20571.html"
+        ]
+      },
+      "warnings": [
+        "官网内部价格冲突（24380元 vs 23980元），official_msrp_cny 设为 null"
+      ]
+    }
+  }
+}

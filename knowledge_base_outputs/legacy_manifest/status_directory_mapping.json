@@ -1,0 +1,21 @@
+{
+  "schema_version": "kb_status_v0.2",
+  "migration_mode": "non_destructive_manifest_only",
+  "legacy_files_preserved": true,
+  "directory_rules": {
+    "knowledge_base_outputs/extraction_drafts": "extraction_drafts",
+    "knowledge_base_outputs/verified": "legacy_mixed_semantics_do_not_infer_status",
+    "knowledge_base_outputs/verified_fields": "field_level_evidence_only",
+    "knowledge_base_outputs/eligible_pool": "deterministic_rule_eligible_only",
+    "knowledge_base_outputs/exceptions": "conflict_pending_excluded_or_decision_required"
+  },
+  "legacy_mappings": [
+    {"legacy_path":"knowledge_base_outputs/verified/uhr150_2026_verified.json","logical_target":"verified_fields","reason":"contains official field evidence; recommendation review incomplete"},
+    {"legacy_path":"knowledge_base_outputs/verified/yamaha_nmax155_2026_pending.json","logical_target":"verified_fields","reason":"mixed official and platform field evidence"},
+    {"legacy_path":"knowledge_base_outputs/verified/wuyang_honda_pcx160_2025_pending.json","logical_target":"exceptions","reason":"year, power and HSTC evidence gaps"},
+    {"legacy_path":"knowledge_base_outputs/verified/voge_sr250gt_2026_pending.json","logical_target":"exceptions","reason":"official price label and ABS/TCS gaps"},
+    {"legacy_path":"knowledge_base_outputs/verified/cfmoto_250sr_pending.json","logical_target":"exceptions","reason":"official current-sale evidence missing"},
+    {"legacy_path":"knowledge_base_outputs/verified/p0_expansion_verified_pending.json","logical_target":"split_by_record","reason":"contains field evidence, conflicts and pending records in one legacy file"},
+    {"legacy_path":"knowledge_base_outputs/verified/p0_expansion_excluded.json","logical_target":"exceptions","reason":"explicit exclusions"}
+  ]
+}

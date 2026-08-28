@@ -1,0 +1,96 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-31-49-626Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/wuyang_honda_cb190r_2023_gp_pending.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 9761,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 638,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 611,
+    "prompt_tokens_details": {
+      "cached_tokens": 128
+    },
+    "total_tokens": 1249
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "CB190R",
+      "model_year": "2023",
+      "trim_name": "GP版",
+      "sale_status": "current",
+      "official_msrp_cny": 13980,
+      "official_price_label": "建议零售价",
+      "displacement_cc": 184.4,
+      "seat_height_mm": 769,
+      "curb_weight_kg": 142,
+      "max_power_kw": 12.4,
+      "fuel_tank_l": 12,
+      "abs": "前轮单通道ABS",
+      "tcs": null,
+      "vehicle_type": "街车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "model_year": [
+          "https://m.autohome.com.cn/motorbike/series/10000081"
+        ],
+        "trim_name": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "sale_status": [
+          "https://www.wuyang-honda.com/home/sy/rysy/index.shtml"
+        ],
+        "official_msrp_cny": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "official_price_label": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "displacement_cc": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1313.shtml"
+        ],
+        "seat_height_mm": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "curb_weight_kg": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "max_power_kw": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "fuel_tank_l": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "abs": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ],
+        "tcs": null,
+        "vehicle_type": [
+          "https://car.autohome.com.cn/motorbike/params/10000081"
+        ]
+      },
+      "warnings": [
+        "汽车之家列出2023款GP版12680元，与官网建议零售价13980元相差1300元，价格冲突必须记录，不能视作同口径一致。",
+        "TCS仅平台记录未配置，官方未确认，因此tcs必须为null。"
+      ]
+    }
+  }
+}

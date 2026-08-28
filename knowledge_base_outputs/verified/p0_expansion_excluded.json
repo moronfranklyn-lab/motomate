@@ -1,0 +1,7 @@
+{
+  "batch": "p0_expansion_2026-08-28",
+  "excluded": [
+    {"candidate":"QJMOTOR 赛250 燃擎版","proposed_model_id":"qjmotor_sai250_2024_firing","platform_year":"2024","platform_price_cny":19999,"status":"excluded_sale_status_conflict","reasons":["QJMOTOR当前官网目录仅展示赛250MINI","官网未发现燃擎版当前在售信号","平台在产状态不能覆盖官网目录缺失","官方价格与当前配置未闭环"],"sources":["https://www.qjmotor.com/","https://car.autohome.com.cn/motorbike/series/10003725","https://car.autohome.com.cn/motorbike/params/10003725"]},
+    {"candidate":"新大洲本田 CBF190R","proposed_model_ids":["sundiro_honda_cbf190r_2023_standard","sundiro_honda_cbf190r_2023_special"],"status":"excluded_pending_official_relist","reasons":["原官方详情页明确返回产品不存在或下架","当前官网目录未找到该车型","平台在产状态不能覆盖官方下架信号","官方价格和现行配置未闭环","生产主体与官网运营主体仍需区分"],"sources":["https://www.honda-sundiro.com/index.html","https://www.honda-sundiro.com/index/product/product_fuel.html","https://www.honda-sundiro.com/enproduct_details/CBF190R_34.html","https://m.autohome.com.cn/motorbike/series/10000101","https://car.autohome.com.cn/motorbike/params/10000101"]}
+  ]
+}

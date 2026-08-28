@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MotoMate 新手选车顾问</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">M</div>
+          <div>
+            <strong>MotoMate</strong>
+            <span>选车顾问</span>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" type="button" data-view="advisor" title="智能咨询">
+            <span aria-hidden="true">●</span>
+            智能咨询
+          </button>
+          <button class="nav-item" type="button" data-view="garage" title="车型库">
+            <span aria-hidden="true">◆</span>
+            车型库
+          </button>
+          <button class="nav-item" type="button" data-view="compare" title="车型对比">
+            <span aria-hidden="true">◫</span>
+            车型对比
+          </button>
+          <button class="nav-item" type="button" data-view="used" title="二手判断">
+            <span aria-hidden="true">◇</span>
+            二手判断
+          </button>
+        </nav>
+
+        <div class="profile">
+          <div class="profile-avatar" aria-hidden="true">骑</div>
+          <div>
+            <strong>新手模式</strong>
+            <span>低打扰问诊</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">MVP Web Prototype</p>
+            <h1>你好，我是 MotoMate</h1>
+          </div>
+          <div class="status-pill" id="statusPill">演示数据</div>
+        </header>
+
+        <section class="advisor-grid">
+          <section class="workspace" aria-label="选车咨询">
+            <form class="prompt-panel" id="advisorForm">
+              <label class="prompt-label" for="advisorInput">把你的预算、用途或纠结车型告诉我</label>
+              <textarea
+                id="advisorInput"
+                rows="4"
+                placeholder="例如：预算3万，主要上下班，偶尔周末短途，新手想买踏板"
+              ></textarea>
+              <div class="prompt-actions">
+                <div class="segmented" role="group" aria-label="购车偏好">
+                  <button class="segment active" type="button" data-mode="new">新车优先</button>
+                  <button class="segment" type="button" data-mode="both">新车/二手都看</button>
+                  <button class="segment" type="button" data-mode="used">只看二手</button>
+                </div>
+                <button class="send-button" type="submit" title="开始分析">↑</button>
+              </div>
+            </form>
+
+            <div class="quick-prompts" aria-label="快捷问题">
+              <button type="button" data-prompt="预算2万以内，新手，主要城市通勤，想要省心一点">2万内通勤</button>
+              <button type="button" data-prompt="预算3万，想要踏板，平时上下班，偶尔周末出去玩">3万踏板</button>
+              <button type="button" data-prompt="预算4万，新手，想买ADV，周末短途和偶尔摩旅">入门 ADV</button>
+              <button type="button" data-prompt="我在看踏板150、踏板250、轻量街车250，怎么选">车型对比</button>
+            </div>
+
+            <section class="conversation" id="conversation" aria-live="polite">
+              <article class="message assistant-message">
+                <div class="message-avatar">M</div>
+                <div class="bubble">
+                  <strong>先从预算和用途开始。</strong>
+                  <p>我会尽量少问问题，信息够了就直接给你 1-3 个候选，并说明为什么适合、哪里要小心。</p>
+                </div>
+              </article>
+            </section>
+          </section>
+
+          <aside class="inspector" aria-label="需求摘要">
+            <section class="summary-panel">
+              <div class="panel-heading">
+                <h2>需求摘要</h2>
+                <button id="resetButton" type="button" title="重置">↻</button>
+              </div>
+              <dl class="need-list">
+                <div>
+                  <dt>预算</dt>
+                  <dd id="budgetValue">待确认</dd>
+                </div>
+                <div>
+                  <dt>用途</dt>
+                  <dd id="usageValue">待确认</dd>
+                </div>
+                <div>
+                  <dt>方向</dt>
+                  <dd id="typeValue">待判断</dd>
+                </div>
+                <div>
+                  <dt>偏好</dt>
+                  <dd id="modeValue">新车优先</dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="summary-panel">
+              <div class="panel-heading">
+                <h2>下一步</h2>
+              </div>
+              <ul class="action-list" id="actionList">
+                <li>输入一段真实购车需求</li>
+                <li>补充预算或主要用途</li>
+                <li>拿推荐车型去试坐/询价</li>
+              </ul>
+            </section>
+          </aside>
+        </section>
+
+        <section class="result-band">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Recommendation</p>
+              <h2>推荐结果</h2>
+            </div>
+            <span id="resultMeta">等待需求输入</span>
+          </div>
+          <div class="recommendation-grid" id="recommendationGrid">
+            <article class="empty-state">
+              <strong>还没有生成推荐</strong>
+              <p>输入预算和用途后，这里会出现首选、次选和备选。</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

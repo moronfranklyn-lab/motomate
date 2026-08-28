@@ -1,0 +1,40 @@
+{
+  "benchmark_at": "2026-08-28T15:10:00+08:00",
+  "status": "extraction_draft_benchmark",
+  "request_contract": {
+    "input_mode": "pure_text_single_configuration",
+    "output_mode": "single_model",
+    "thinking": "disabled",
+    "temperature": 0.1,
+    "max_tokens": 1000,
+    "same_prompt_and_schema": true
+  },
+  "samples": ["SR250GT Play版", "SR250GT Pro版", "UHR150 扶手版"],
+  "models": [
+    {
+      "model": "glm-4.5-air",
+      "first_pass": {"http_200":3,"json_parseable":3,"schema_and_binding_pass":2,"full_14_fields":2,"whitelist_pass":3,"unauthorized_source_completion":0,"tokens":3631,"latency_ms":76825,"average_latency_ms":25608},
+      "retry": {"sample":"SR250GT Pro版","http_status":200,"json_parseable":true,"field_completeness":"13/14","trim_name":null,"binding_pass":false,"tokens":1280,"latency_ms":14610},
+      "stability_note": "SR250GT Pro 首次及唯一重试均失败；历史同输入也多次出现 trim_name=null。Play 本次通过但历史曾失败。"
+    },
+    {
+      "model": "glm-4.6v",
+      "first_pass": {"http_200":3,"json_parseable":3,"schema_and_binding_pass":3,"full_14_fields":3,"whitelist_pass":3,"unauthorized_source_completion":0,"tokens":3723,"latency_ms":68420,"average_latency_ms":22807},
+      "retry": null,
+      "stability_note": "三个样本首次均通过；仅单次/样本，尚不足以证明长期稳定性。纯文本测试未使用视觉能力。"
+    },
+    {
+      "model": "glm-4.7",
+      "first_pass": {"http_200":3,"json_parseable":3,"schema_and_binding_pass":3,"full_14_fields":3,"whitelist_pass":3,"unauthorized_source_completion":0,"tokens":3367,"latency_ms":35424,"average_latency_ms":11808},
+      "retry": null,
+      "stability_note": "三个样本首次均通过；仅单次/样本，尚不足以证明长期稳定性。"
+    }
+  ],
+  "recommendation": {
+    "default_text_extraction_model": "glm-4.7",
+    "provisional_image_extraction_model": "glm-4.6v",
+    "text_fallback_order": ["glm-4.7", "glm-4.6v", "glm-4.5-air", "manual_review"],
+    "image_fallback_order": ["glm-4.6v", "local_ocr_then_glm-4.7_text", "manual_review"],
+    "permanent_switch_applied": false
+  }
+}

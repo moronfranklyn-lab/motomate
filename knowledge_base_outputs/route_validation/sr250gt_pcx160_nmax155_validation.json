@@ -1,0 +1,137 @@
+{
+  "validation_type": "single_model_batch_route",
+  "validated_at": "2026-08-28T06:41:34.897Z",
+  "status": "extraction_draft",
+  "model": "glm-4.5-air",
+  "audits": [
+    {
+      "id": "voge_sr250gt_2026_play_retry1",
+      "http_status": 200,
+      "retry_count": 1,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "13/14",
+      "field_completeness_rate": 0.9285714285714286,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "binding_valid": false,
+      "hallucination_detected": true,
+      "usage": {
+        "completion_tokens": 669,
+        "prompt_tokens": 605,
+        "prompt_tokens_details": {
+          "cached_tokens": 604
+        },
+        "total_tokens": 1274
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T06-40-24-367Z.json",
+      "passed": false
+    },
+    {
+      "id": "voge_sr250gt_2026_pro_retry1",
+      "http_status": 200,
+      "retry_count": 1,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "13/14",
+      "field_completeness_rate": 0.9285714285714286,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "binding_valid": false,
+      "hallucination_detected": true,
+      "usage": {
+        "completion_tokens": 659,
+        "prompt_tokens": 621,
+        "prompt_tokens_details": {
+          "cached_tokens": 620
+        },
+        "total_tokens": 1280
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T06-40-43-214Z.json",
+      "passed": false
+    },
+    {
+      "id": "wuyang_honda_pcx160_2025_standard",
+      "http_status": 200,
+      "retry_count": 0,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 701,
+        "prompt_tokens": 686,
+        "prompt_tokens_details": {
+          "cached_tokens": 229
+        },
+        "total_tokens": 1387
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T06-39-03-829Z.json",
+      "passed": true
+    },
+    {
+      "id": "yamaha_nmax155_2026_tech_max",
+      "http_status": 200,
+      "retry_count": 0,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 554,
+        "prompt_tokens": 565,
+        "prompt_tokens_details": {
+          "cached_tokens": 229
+        },
+        "total_tokens": 1119
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T06-39-20-772Z.json",
+      "passed": true
+    },
+    {
+      "id": "yamaha_nmax155_2026_25th",
+      "http_status": 200,
+      "retry_count": 0,
+      "json_parseable": true,
+      "root_valid": true,
+      "schema_valid": true,
+      "field_completeness": "14/14",
+      "field_completeness_rate": 1,
+      "non_null_fields_have_sources": true,
+      "source_whitelist_valid": true,
+      "binding_valid": true,
+      "hallucination_detected": false,
+      "usage": {
+        "completion_tokens": 569,
+        "prompt_tokens": 582,
+        "prompt_tokens_details": {
+          "cached_tokens": 237
+        },
+        "total_tokens": 1151
+      },
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-28T06-39-37-031Z.json",
+      "passed": true
+    }
+  ],
+  "total_usage": {
+    "prompt_tokens": 3059,
+    "completion_tokens": 3152,
+    "total_tokens": 6211
+  },
+  "route_pass_rate": 0.6,
+  "consecutive_structural_failures": 0,
+  "circuit_breaker_triggered": false,
+  "batch_route_approved": false
+}

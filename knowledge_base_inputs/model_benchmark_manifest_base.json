@@ -1,0 +1,19 @@
+{
+  "runs": [
+    {
+      "id": "sr250gt_play",
+      "expected_binding": {"model_year":"2026","trim_name":"Play版","official_msrp_cny":15980,"curb_weight_kg":168},
+      "source_url_whitelist": ["https://www.vogemotor.com/motorbike-details?id=22","https://www.58moto.com/good/20509.html","https://www.58moto.com/good/20509/configuration.html"]
+    },
+    {
+      "id": "sr250gt_pro",
+      "expected_binding": {"model_year":"2026","trim_name":"Pro版","official_msrp_cny":17980,"curb_weight_kg":168},
+      "source_url_whitelist": ["https://www.vogemotor.com/motorbike-details?id=26","https://www.58moto.com/good/20509.html","https://www.58moto.com/good/20509/configuration.html"]
+    },
+    {
+      "id": "uhr150_handrail",
+      "expected_binding": {"model_year":"2026","trim_name":"扶手版","official_msrp_cny":13780,"curb_weight_kg":140},
+      "source_url_whitelist": ["https://www.haojue.com/2026UHR150/","https://www.haojue.com/2026UHR150/canshu.html","https://www.haojue.com/2026UHR150/jiage.html","https://www.58moto.com/good/19828.html"]
+    }
+  ]
+}

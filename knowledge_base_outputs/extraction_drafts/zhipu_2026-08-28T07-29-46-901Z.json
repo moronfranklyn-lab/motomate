@@ -1,0 +1,92 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-29-46-901Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/cfmoto_450clc_2025_amt.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 13391,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 573,
+    "prompt_tokens": 499,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 1072
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "450CL-C AMT",
+      "model_year": "2025",
+      "trim_name": null,
+      "sale_status": "current",
+      "official_msrp_cny": 23980,
+      "official_price_label": "售价",
+      "displacement_cc": 449,
+      "seat_height_mm": 705,
+      "curb_weight_kg": 185,
+      "max_power_kw": 30,
+      "fuel_tank_l": 12,
+      "abs": "双通道ABS",
+      "tcs": "标配",
+      "vehicle_type": "巡航太子",
+      "field_sources": {
+        "model_search_name": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT",
+          "https://www.58moto.com/good/20571.html"
+        ],
+        "model_year": [
+          "https://www.58moto.com/good/20571.html"
+        ],
+        "sale_status": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT",
+          "https://www.58moto.com/good/20571.html"
+        ],
+        "official_msrp_cny": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT",
+          "https://www.58moto.com/good/20571.html"
+        ],
+        "official_price_label": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT"
+        ],
+        "displacement_cc": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT"
+        ],
+        "seat_height_mm": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT"
+        ],
+        "curb_weight_kg": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT"
+        ],
+        "max_power_kw": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT"
+        ],
+        "fuel_tank_l": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT"
+        ],
+        "abs": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT"
+        ],
+        "tcs": [
+          "https://cn.cfmoto.com/motorcycles/450CL-CAMT"
+        ],
+        "vehicle_type": [
+          "https://www.58moto.com/good/20571.html"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": "kb_status_v0.2",
+  "mapped_at": "2026-08-28T16:30:00+08:00",
+  "source_scope": "existing_local_evidence_only",
+  "automatic_recommendation_upgrade": false,
+  "ethan_decisions": [
+    {
+      "decision_id": "cb190r_price_policy_option_b",
+      "decided_by": "Ethan",
+      "decision": "official public price is authoritative; platform price is reference only and price difference alone is not a conflict",
+      "affected_model_ids": ["wuyang_honda_cb190r_standard_pending_year", "wuyang_honda_cb190r_2023_gp"],
+      "rule_pool_effect": "remain_blocked_for_non_price_blockers",
+      "recommendation_effect": "no_automatic_approval"
+    },
+    {
+      "decision_id": "global_price_strategy_a",
+      "decided_by": "Ethan",
+      "decision": "budget guard uses max of official public price and qualified platform reference price; unmatched platform prices are display-only",
+      "qualification": "same year/current version, same trim, same scope, verified within 24 hours",
+      "conflict_classes": ["explainable_market_difference", "configuration_or_scope_unclear", "true_same_scope_conflict"],
+      "blocking_class": "true_same_scope_conflict"
+    }
+  ],
+  "review_population_model_ids": [
+    "haojue_uhr150_2026_handrail", "haojue_uhr150_2026_airshock_topbox",
+    "yamaha_nmax155_2026_tech_max", "yamaha_nmax155_2026_25th",
+    "cfmoto_450nk_2026_standard", "cfmoto_450clc_2026_standard", "cfmoto_450clc_2025_amt", "cfmoto_450clc_2024_bobber",
+    "wuyang_honda_pcx160_2025_standard", "voge_sr250gt_2026_play", "voge_sr250gt_2026_pro",
+    "benda_greystone250_2026_manual", "benda_greystone250_2026_cvt", "qjmotor_sai250mini_2026_mini",
+    "wuyang_honda_cb190r_standard_pending_year", "wuyang_honda_cb190r_2023_gp",
+    "qjmotor_sai250_2024_firing", "sundiro_honda_cbf190r_2023_standard", "sundiro_honda_cbf190r_2023_special",
+    "cfmoto_250sr_observed_versions"
+  ],
+  "closest_to_eligible": [
+    {
+      "model_id": "haojue_uhr150_2026_handrail",
+      "display_name": "豪爵 UHR150 扶手版",
+      "normalized_version": "current_version",
+      "fact_verification_status": {"overall":"sufficient_for_rules","fields_summary":"sale and price official_verified; core specs official_verified"},
+      "rule_pool_eligibility": {"status":"eligible","blockers":[]},
+      "recommendation_review_status": {"status":"codex_reviewed","review_notes":["Codex operational review completed; not human review; recommendation approval not granted"]}
+    },
+    {
+      "model_id": "haojue_uhr150_2026_airshock_topbox",
+      "display_name": "豪爵 UHR150 气囊减振/尾箱版",
+      "normalized_version": "current_version",
+      "fact_verification_status": {"overall":"sufficient_for_rules","fields_summary":"sale and price official_verified; core specs official_verified"},
+      "rule_pool_eligibility": {"status":"eligible","blockers":[]},
+      "recommendation_review_status": {"status":"codex_reviewed","review_notes":["Codex operational review completed; not human review; recommendation approval not granted"]}
+    },
+    {
+      "model_id": "yamaha_nmax155_2026_tech_max",
+      "display_name": "雅马哈 NMAX155 Tech Max",
+      "normalized_version": "current_version",
+      "fact_verification_status": {"overall":"sufficient_for_rules","fields_summary":"sale, official public price and core specs official_verified; vehicle type platform-supported"},
+      "rule_pool_eligibility": {"status":"eligible","blockers":[]},
+      "recommendation_review_status": {"status":"codex_reviewed","review_notes":["车型类型已状态化为platform_observed_non_hard；recommendation approval not granted"]}
+    },
+    {
+      "model_id": "yamaha_nmax155_2026_25th",
+      "display_name": "雅马哈 NMAX155 25周年纪念版",
+      "normalized_version": "current_version",
+      "fact_verification_status": {"overall":"sufficient_for_rules","fields_summary":"sale, official public price and core specs official_verified; vehicle type platform-supported"},
+      "rule_pool_eligibility": {"status":"eligible","blockers":[]},
+      "recommendation_review_status": {"status":"codex_reviewed","review_notes":["车型类型已状态化为platform_observed_non_hard；recommendation approval not granted"]}
+    },
+    {
+      "model_id": "cfmoto_450nk_2026_standard",
+      "display_name": "春风 450NK 标准版",
+      "normalized_version": "current_version",
+      "fact_verification_status": {"overall":"sufficient_for_rules","fields_summary":"official current sale, official public price and core specs available"},
+      "rule_pool_eligibility": {"status":"eligible","blockers":[]},
+      "recommendation_review_status": {"status":"codex_reviewed","review_notes":["V0.2字段迁移及主体绑定已复核；recommendation approval not granted"]}
+    },
+    {
+      "model_id": "cfmoto_450clc_2026_standard",
+      "display_name": "春风 450CL-C 标准版",
+      "normalized_version": "current_version",
+      "fact_verification_status": {"overall":"sufficient_for_rules","fields_summary":"official current sale, official public price and core specs available"},
+      "rule_pool_eligibility": {"status":"eligible","blockers":[]},
+      "recommendation_review_status": {"status":"codex_reviewed","review_notes":["V0.2字段迁移已复核；recommendation approval not granted"]}
+    },
+    {
+      "model_id": "wuyang_honda_pcx160_2025_standard",
+      "display_name": "五羊本田 PCX160 标准版",
+      "normalized_version": "current_version",
+      "fact_verification_status": {"overall":"sufficient_for_rules","fields_summary":"sale, price and hard specs sufficient; power=null as unverified non-hard; HSTC detail excluded from hard rules"},
+      "rule_pool_eligibility": {"status":"eligible","blockers":[]},
+      "recommendation_review_status": {"status":"codex_reviewed","review_notes":["功率置null，HSTC细分不参与硬规则；recommendation approval not granted"]}
+    },
+    {
+      "model_id": "cfmoto_450clc_2025_amt",
+      "display_name": "春风 450CL-C AMT版",
+      "normalized_version": "current_version",
+      "fact_verification_status": {"overall":"sufficient_for_rules","fields_summary":"official current sale, public price and core specs available"},
+      "rule_pool_eligibility": {"status":"eligible","blockers":[]},
+      "recommendation_review_status": {"status":"codex_reviewed","review_notes":["trim_name已从官方单配置证据确定性重建，失败模型输出未使用；recommendation approval not granted"]}
+    }
+  ],
+  "other_record_mappings": [
+    {"records":["voge_sr250gt_2026_play","voge_sr250gt_2026_pro"],"fact_overall":"in_progress","rule_status":"blocked","reason":"官方价格口径、整备质量语义、ABS/TCS或配置绑定未闭环"},
+    {"records":["cfmoto_450clc_2024_bobber"],"fact_overall":"conflict","rule_status":"blocked","reason":"官网同页价格冲突"},
+    {"records":["benda_greystone250_2026_manual","benda_greystone250_2026_cvt","qjmotor_sai250mini_2026_mini"],"fact_overall":"in_progress","rule_status":"blocked","reason":"缺官方公开价格；参数未达两独立平台一致门槛"},
+    {"records":["wuyang_honda_cb190r_standard_pending_year","wuyang_honda_cb190r_2023_gp"],"fact_overall":"in_progress","rule_status":"blocked","official_public_prices":{"standard":12980,"gp":13980},"qualified_platform_reference_prices":{"standard":null,"gp":null},"budget_guard_prices":{"standard":12980,"gp":13980},"platform_price_classification":"configuration_or_scope_unclear","price_policy":"platform prices are display-only possible discounts and do not participate in budget filtering","reason":"标准版配置映射、官方年款和多数参数证据仍不足"},
+    {"records":["qjmotor_sai250_2024_firing","sundiro_honda_cbf190r_2023_standard","sundiro_honda_cbf190r_2023_special"],"fact_overall":"insufficient","rule_status":"excluded","reason":"无官方当前在售信号或官方页面下架"},
+    {"records":["cfmoto_250sr_observed_versions"],"fact_overall":"insufficient","rule_status":"blocked","reason":"中国市场官方在售和价格证据不足"}
+  ]
+}

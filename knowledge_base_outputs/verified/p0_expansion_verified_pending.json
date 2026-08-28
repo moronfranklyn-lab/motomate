@@ -1,0 +1,331 @@
+{
+  "batch": "p0_expansion_2026-08-28",
+  "verified_at": "2026-08-28T15:40:00+08:00",
+  "verified_by": "codex_source_and_rule_review",
+  "recommendation_ready_count": 0,
+  "models": [
+    {
+      "model_id": "cfmoto_450nk_2026_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "450NK",
+      "model_year": "2026",
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "official_msrp_cny": 23880,
+      "official_price_label": "官网售价",
+      "displacement_cc": 449,
+      "seat_height_mm": 795,
+      "curb_weight_kg": 165,
+      "max_power_kw": 38,
+      "fuel_tank_l": 14,
+      "abs": "前后ABS标配",
+      "tcs": "标配",
+      "vehicle_type": "街车",
+      "verification_level": "field_verified",
+      "kb_status": "pending_verification",
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官网未显式标年款",
+        "官网价格口径仅为售价",
+        "独立销售主体待核验",
+        "未完成完整推荐准入checklist"
+      ]
+    },
+    {
+      "model_id": "cfmoto_450clc_2026_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "450CL-C",
+      "search_aliases": [
+        "450CLC"
+      ],
+      "model_year": "2026",
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "official_msrp_cny": 21980,
+      "official_price_label": "官网售价",
+      "displacement_cc": 449,
+      "seat_height_mm": 705,
+      "curb_weight_kg": 181,
+      "max_power_kw": 30,
+      "fuel_tank_l": 12,
+      "abs": "双通道ABS",
+      "tcs": "标配",
+      "vehicle_type": "巡航太子",
+      "verification_level": "field_verified",
+      "kb_status": "pending_verification",
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官网未显式标年款",
+        "官网价格口径仅为售价",
+        "未完成完整推荐准入checklist"
+      ]
+    },
+    {
+      "model_id": "cfmoto_450clc_2025_amt",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "450CL-C",
+      "model_year": "2025",
+      "trim_name": "AMT版",
+      "sale_status": "current",
+      "official_msrp_cny": 23980,
+      "official_price_label": "官网售价",
+      "displacement_cc": 449,
+      "seat_height_mm": 705,
+      "curb_weight_kg": 185,
+      "max_power_kw": 30,
+      "fuel_tank_l": 12,
+      "abs": "双通道ABS",
+      "tcs": "标配",
+      "vehicle_type": "巡航太子",
+      "verification_level": "field_verified",
+      "kb_status": "pending_verification",
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官网未显式标年款",
+        "官网价格口径仅为售价",
+        "glm-4.7首次及两次重试均未通过trim_name绑定",
+        "未完成完整推荐准入checklist"
+      ]
+    },
+    {
+      "model_id": "cfmoto_450clc_2024_bobber",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "450CL-C",
+      "model_year": "2024",
+      "trim_name": "单座版",
+      "sale_status": "current",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "platform_reference_price_cny": 24380,
+      "displacement_cc": 449,
+      "seat_height_mm": 715,
+      "curb_weight_kg": 177,
+      "max_power_kw": 30,
+      "fuel_tank_l": 12,
+      "abs": "双通道ABS",
+      "tcs": "标配",
+      "vehicle_type": "巡航太子",
+      "verification_level": "manual_review_required",
+      "kb_status": "price_conflict",
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官网同页显示24380元与23980元",
+        "官网未显式标年款",
+        "价格冲突未解决"
+      ]
+    },
+    {
+      "model_id": "benda_greystone250_2026_manual",
+      "brand": "奔达",
+      "manufacturer": "杭州土星动力科技有限公司（平台厂家字段，法律角色待复核）",
+      "model_name": "新一代灰石250",
+      "model_year": "2026",
+      "trim_name": "手动版",
+      "sale_status": "current",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "platform_reference_price_cny": 16980,
+      "displacement_cc": 249.5,
+      "seat_height_mm": 715,
+      "curb_weight_kg": 182,
+      "max_power_kw": 20.2,
+      "fuel_tank_l": 15.5,
+      "abs": "前后标配（平台）",
+      "tcs": null,
+      "vehicle_type": "巡航",
+      "verification_level": "manual_review_required",
+      "kb_status": "pending_verification",
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官方价格与完整参数未闭环",
+        "官网未显式标年款",
+        "TCS待核验",
+        "主体法律角色待复核"
+      ]
+    },
+    {
+      "model_id": "benda_greystone250_2026_cvt",
+      "brand": "奔达",
+      "manufacturer": "杭州土星动力科技有限公司（平台厂家字段，法律角色待复核）",
+      "model_name": "灰石250",
+      "model_year": "2026",
+      "trim_name": "CVT版",
+      "sale_status": "current",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "platform_reference_price_cny": 18980,
+      "displacement_cc": 249,
+      "seat_height_mm": 718,
+      "curb_weight_kg": 206,
+      "max_power_kw": 19,
+      "fuel_tank_l": 15.5,
+      "abs": "标配，通道待核验",
+      "tcs": null,
+      "vehicle_type": "巡航",
+      "verification_level": "manual_review_required",
+      "kb_status": "pending_verification",
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官方价格与完整参数未闭环",
+        "官网未显式标年款",
+        "ABS/TCS待核验",
+        "主体法律角色待复核",
+        "glm-4.7首次及两次重试均未通过trim_name绑定"
+      ]
+    },
+    {
+      "model_id": "qjmotor_sai250mini_2026_mini",
+      "brand": "QJMOTOR",
+      "manufacturer": "浙江钱江摩托股份有限公司",
+      "model_name": "赛250MINI",
+      "model_year": "2026",
+      "trim_name": "Mini版",
+      "sale_status": "current",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "platform_reference_price_cny": 15999,
+      "displacement_cc": 249,
+      "seat_height_mm": 760,
+      "curb_weight_kg": 159,
+      "max_power_kw": 20.5,
+      "fuel_tank_l": 12.5,
+      "abs": "标配，通道待核验",
+      "tcs": null,
+      "vehicle_type": "跑车/仿赛",
+      "verification_level": "manual_review_required",
+      "kb_status": "pending_verification",
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官方价格和核心参数未闭环",
+        "官网未显式标年款",
+        "ABS/TCS待核验"
+      ]
+    },
+    {
+      "model_id": "wuyang_honda_cb190r_standard_pending_year",
+      "brand": "本田系合资",
+      "manufacturer": "五羊-本田摩托（广州）有限公司",
+      "model_name": "CB190R",
+      "model_year": null,
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "official_public_price_cny": 12980,
+      "official_public_price_label": "官网建议零售价",
+      "official_msrp_cny": 12980,
+      "official_price_label": "建议零售价（旧兼容字段）",
+      "platform_reference_price_cny": 11680,
+      "qualified_platform_reference_price_cny": null,
+      "budget_guard_price_cny": 12980,
+      "platform_price_classification": "configuration_or_scope_unclear",
+      "platform_price_source": "汽车之家",
+      "platform_price_verified_at": "2026-08-28T15:26:00+08:00",
+      "platform_price_note": "可能优惠/市场参考；标准版与运动版映射及年款不明，不参与预算筛选；不是成交价，需向门店确认",
+      "displacement_cc": 184.4,
+      "seat_height_mm": 769,
+      "curb_weight_kg": 142,
+      "max_power_kw": 12.4,
+      "fuel_tank_l": 12,
+      "abs": "前轮单通道ABS（平台）",
+      "tcs": null,
+      "vehicle_type": "街车",
+      "verification_level": "legacy_manual_review_required",
+      "kb_status": "legacy_pending_verification",
+      "price_conflict_status": "no_conflict_by_policy_v0.2",
+      "fact_verification_status": {
+        "overall": "in_progress",
+        "fields": {
+          "sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "model_year": "unverified",
+          "trim_name": "conflict",
+          "specs": "unverified"
+        }
+      },
+      "rule_pool_eligibility": {
+        "status": "blocked",
+        "blockers": [
+          "官网标准版与平台运动版无法确认映射",
+          "年款无法绑定到官方配置",
+          "多数参数未达到官方或两个独立平台一致门槛"
+        ],
+        "rule_version": "kb_admission_v0.2"
+      },
+      "recommendation_review_status": {
+        "status": "codex_review_pending",
+        "review_notes": [
+          "Ethan选择方案B；平台价格仅作参考"
+        ]
+      },
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官网标准版与平台运动版无法确认映射",
+        "年款无法绑定到官方配置",
+        "多数参数证据不足"
+      ]
+    },
+    {
+      "model_id": "wuyang_honda_cb190r_2023_gp",
+      "brand": "本田系合资",
+      "manufacturer": "五羊-本田摩托（广州）有限公司",
+      "model_name": "CB190R",
+      "model_year": "2023",
+      "trim_name": "GP版",
+      "sale_status": "current",
+      "official_public_price_cny": 13980,
+      "official_public_price_label": "官网建议零售价",
+      "official_msrp_cny": 13980,
+      "official_price_label": "建议零售价（旧兼容字段）",
+      "platform_reference_price_cny": 12680,
+      "qualified_platform_reference_price_cny": null,
+      "budget_guard_price_cny": 13980,
+      "platform_price_classification": "configuration_or_scope_unclear",
+      "platform_price_source": "汽车之家",
+      "platform_price_verified_at": "2026-08-28T15:26:00+08:00",
+      "platform_price_note": "可能优惠/市场参考；官网未显式年款，无法证明同年款/当前版本，不参与预算筛选；不是成交价，需向门店确认",
+      "displacement_cc": 184.4,
+      "seat_height_mm": 769,
+      "curb_weight_kg": 142,
+      "max_power_kw": 12.4,
+      "fuel_tank_l": 12,
+      "abs": "前轮单通道ABS（平台）",
+      "tcs": null,
+      "vehicle_type": "街车",
+      "verification_level": "legacy_manual_review_required",
+      "kb_status": "legacy_pending_verification",
+      "price_conflict_status": "no_conflict_by_policy_v0.2",
+      "fact_verification_status": {
+        "overall": "in_progress",
+        "fields": {
+          "sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "model_year": "unverified",
+          "trim_name": "official_verified",
+          "specs": "unverified"
+        }
+      },
+      "rule_pool_eligibility": {
+        "status": "blocked",
+        "blockers": [
+          "官网未显式标年款",
+          "多数参数未达到官方或两个独立平台一致门槛"
+        ],
+        "rule_version": "kb_admission_v0.2"
+      },
+      "recommendation_review_status": {
+        "status": "codex_review_pending",
+        "review_notes": [
+          "Ethan选择方案B；平台价格仅作参考"
+        ]
+      },
+      "recommendation_ready": false,
+      "admission_blockers": [
+        "官网未显式标年款",
+        "多数参数证据不足"
+      ]
+    }
+  ]
+}

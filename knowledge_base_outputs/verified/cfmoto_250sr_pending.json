@@ -1,0 +1,35 @@
+{
+  "model_search_name": "春风 250SR",
+  "verified_at": "2026-08-28T14:20:00+08:00",
+  "official_fields": {
+    "model_year": null,
+    "trim_name": null,
+    "sale_status": null,
+    "official_msrp_cny": null,
+    "displacement_cc": null,
+    "seat_height_mm": null,
+    "curb_weight_kg": null,
+    "max_power_kw": null,
+    "fuel_tank_l": null,
+    "abs": "待核验",
+    "tcs": "待核验",
+    "vehicle_type": null
+  },
+  "platform_observations": [
+    {"model_year":"2026","trim_name":"250SR-FUN","platform_reference_price_cny":15980,"displacement_label":"250cc","engine_label":"单缸水冷","vehicle_type":"跑车"},
+    {"model_year":"2025","trim_name":"250SR 单摇臂版","platform_reference_price_cny":18580,"displacement_label":"250cc","engine_label":"单缸水冷","vehicle_type":"跑车"}
+  ],
+  "platform_observation_status": "manual_review_required",
+  "source_url": "https://www.58moto.com/good/12315.html",
+  "source_type": "platform",
+  "source_status": "accessible",
+  "official_source_url": "http://www.cfmoto.com/",
+  "official_resolved_url": "https://www.cfmoto.com/global",
+  "official_source_status": "accessible_but_not_applicable",
+  "price_conflict_status": "待核验",
+  "kb_status": "pending_verification",
+  "admission_status": "不可准入",
+  "verification_level": "manual_review_required",
+  "recommendation_ready": false,
+  "admission_blockers": ["缺少中国市场官方在售状态证据", "缺少官方价格口径", "核心参数未完成官方核验", "具体配置与年款仅有平台证据"]
+}

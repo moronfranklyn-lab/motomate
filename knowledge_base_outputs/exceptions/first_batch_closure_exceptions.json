@@ -1,0 +1,13 @@
+{
+  "batch": "first_batch_v1",
+  "blocking_exceptions": [],
+  "non_blocking_degradations": [
+    {"model_ids":["yamaha_nmax155_2026_tech_max","yamaha_nmax155_2026_25th"],"issue":"vehicle_type is platform-observed","handling":"state as platform_observed_non_hard"},
+    {"model_ids":["cfmoto_450nk_2026_standard","cfmoto_450clc_2026_standard","cfmoto_450clc_2025_amt"],"issue":"official page has no explicit model year","handling":"normalize to current_version"},
+    {"model_ids":["cfmoto_450clc_2025_amt"],"issue":"model extraction trim_name failed repeatedly","handling":"deterministic reconstruction from official single-configuration source; model trim output rejected"},
+    {"model_ids":["wuyang_honda_pcx160_2025_standard"],"issue":"max power supported by only one platform and HSTC detail unresolved","handling":"max_power_kw=null; HSTC detail excluded from hard rules"},
+    {"model_ids":["haojue_uhr150_2026_handrail","haojue_uhr150_2026_airshock_topbox","yamaha_nmax155_2026_tech_max","yamaha_nmax155_2026_25th","cfmoto_450nk_2026_standard","cfmoto_450clc_2026_standard","cfmoto_450clc_2025_amt","wuyang_honda_pcx160_2025_standard"],"issue":"platform price scope label does not exactly match official price label","handling":"qualified_platform_reference_price_cny=null; budget_guard_price_cny uses official_public_price_cny"}
+  ],
+  "codex_review": {"status":"completed","scope":"all 8 records and all listed anomalies","human_review_claimed":false},
+  "erroneous_release_count": 0
+}

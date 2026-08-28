@@ -1,0 +1,28 @@
+{
+  "batch_id": "status_refactor_2026-08-28",
+  "seed": "kb_v02_status_refactor_seed",
+  "sampled_at": "2026-08-28T08:01:18.479Z",
+  "population_size": 20,
+  "sample_rate": 0.1,
+  "sample_size": 2,
+  "sample_model_ids": [
+    "cfmoto_450clc_2024_bobber",
+    "voge_sr250gt_2026_play"
+  ],
+  "method": "sha256(seed:model_id), ascending, first ceil(N*0.1)",
+  "review_status": {
+    "codex_operational_review": "completed",
+    "ethan_business_sample": "not_performed",
+    "human_review_claimed": false
+  },
+  "sample_results": [
+    {"model_id":"cfmoto_450clc_2024_bobber","codex_operational_review":"completed","ethan_business_sample":"not_performed","erroneously_released":false,"suspicious_data":true,"ethan_decision_required":true,"note":"官网同页公开价格不一致，blocked状态正确"},
+    {"model_id":"voge_sr250gt_2026_play","codex_operational_review":"completed","ethan_business_sample":"not_performed","erroneously_released":false,"suspicious_data":true,"ethan_decision_required":false,"note":"官方价格口径及ABS/TCS证据不足，blocked状态正确"}
+  ],
+  "four_line_summary": {
+    "抽查数": 2,
+    "错误放行数": 0,
+    "可疑数据数": 2,
+    "需Ethan决策数": 1
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-03-23-776Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/voge_sr250gt_2026_play.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 11804,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 569,
+    "prompt_tokens": 600,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 1169
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "SR250GT II代 Play版",
+      "model_year": "2026",
+      "trim_name": "Play版",
+      "sale_status": "current",
+      "official_msrp_cny": 15980,
+      "official_price_label": "厂商指导价",
+      "displacement_cc": 244,
+      "seat_height_mm": 770,
+      "curb_weight_kg": 168,
+      "max_power_kw": 20.5,
+      "fuel_tank_l": 15,
+      "abs": "标配",
+      "tcs": "标配",
+      "vehicle_type": "踏板",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "model_year": [
+          "https://www.58moto.com/good/20509.html"
+        ],
+        "trim_name": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "sale_status": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "official_msrp_cny": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "official_price_label": [
+          "https://www.58moto.com/good/20509.html"
+        ],
+        "displacement_cc": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "seat_height_mm": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "curb_weight_kg": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "max_power_kw": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "fuel_tank_l": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ],
+        "abs": [
+          "https://www.58moto.com/good/20509/configuration.html"
+        ],
+        "tcs": [
+          "https://www.58moto.com/good/20509/configuration.html"
+        ],
+        "vehicle_type": [
+          "https://www.vogemotor.com/motorbike-details?id=22"
+        ]
+      },
+      "warnings": [
+        "年款、整备质量字段名及 ABS/TCS 目前只由平台明确，保持待人工复核"
+      ]
+    }
+  }
+}

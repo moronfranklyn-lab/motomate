@@ -1,0 +1,93 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T06-39-20-772Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.5-air",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/yamaha_nmax155_2026_tech_max.md"
+  ],
+  "http_status": 200,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 554,
+    "prompt_tokens": 565,
+    "prompt_tokens_details": {
+      "cached_tokens": 229
+    },
+    "total_tokens": 1119
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "NMAX155",
+      "model_year": "2026",
+      "trim_name": "Tech Max",
+      "sale_status": "current",
+      "official_msrp_cny": 27800,
+      "official_price_label": "官方建议零售价",
+      "displacement_cc": 155,
+      "seat_height_mm": 770,
+      "curb_weight_kg": 132,
+      "max_power_kw": 11.3,
+      "fuel_tank_l": 7.1,
+      "abs": "双通道",
+      "tcs": "可启闭",
+      "vehicle_type": "踏板",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "model_year": [
+          "https://www.58moto.com/good/6946.html"
+        ],
+        "trim_name": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "sale_status": [
+          "https://www.yamaha-motor.com.cn/mc/products/"
+        ],
+        "official_msrp_cny": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/",
+          "https://www.58moto.com/good/6946.html"
+        ],
+        "official_price_label": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "displacement_cc": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/",
+          "https://www.58moto.com/good/6946.html"
+        ],
+        "seat_height_mm": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "curb_weight_kg": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "max_power_kw": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "fuel_tank_l": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "abs": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "tcs": [
+          "https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/"
+        ],
+        "vehicle_type": [
+          "https://www.58moto.com/good/6946.html"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

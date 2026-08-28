@@ -1,0 +1,95 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T07-31-12-156Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/qjmotor_sai250mini_2026_pending.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 14763,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 521,
+    "prompt_tokens": 513,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 1034
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "QJMOTOR 赛250MINI",
+      "model_year": "2026",
+      "trim_name": "Mini版",
+      "sale_status": "current",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "displacement_cc": 249,
+      "seat_height_mm": 760,
+      "curb_weight_kg": 159,
+      "max_power_kw": 20.5,
+      "fuel_tank_l": 12.5,
+      "abs": "标配",
+      "tcs": null,
+      "vehicle_type": "跑车/仿赛",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.qjmotor.com/"
+        ],
+        "model_year": [
+          "https://car.autohome.com.cn/motorbike/series/10003725"
+        ],
+        "trim_name": [
+          "https://car.autohome.com.cn/motorbike/series/10003725"
+        ],
+        "sale_status": [
+          "https://car.autohome.com.cn/motorbike/series/10003725"
+        ],
+        "official_msrp_cny": [
+          "https://www.qjmotor.com/"
+        ],
+        "official_price_label": [
+          "https://www.qjmotor.com/"
+        ],
+        "displacement_cc": [
+          "https://car.autohome.com.cn/motorbike/params/10003725"
+        ],
+        "seat_height_mm": [
+          "https://car.autohome.com.cn/motorbike/params/10003725"
+        ],
+        "curb_weight_kg": [
+          "https://car.autohome.com.cn/motorbike/params/10003725"
+        ],
+        "max_power_kw": [
+          "https://car.autohome.com.cn/motorbike/params/10003725"
+        ],
+        "fuel_tank_l": [
+          "https://car.autohome.com.cn/motorbike/params/10003725"
+        ],
+        "abs": [
+          "https://car.autohome.com.cn/motorbike/params/10003725"
+        ],
+        "tcs": [
+          "https://car.autohome.com.cn/motorbike/params/10003725"
+        ],
+        "vehicle_type": [
+          "https://car.autohome.com.cn/motorbike/series/10003725"
+        ]
+      },
+      "warnings": [
+        "官方价格不可核验，因此official_msrp_cny为null",
+        "TCS未取得证据，必须为null"
+      ]
+    }
+  }
+}

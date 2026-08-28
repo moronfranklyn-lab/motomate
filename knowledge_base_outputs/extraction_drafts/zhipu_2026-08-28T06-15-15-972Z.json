@@ -1,0 +1,62 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T06-15-15-972Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.5-air",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1600,
+    "temperature": 0.1
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/uhr150_2026_sources.md"
+  ],
+  "http_status": 200,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 483,
+    "prompt_tokens": 759,
+    "prompt_tokens_details": {
+      "cached_tokens": 56
+    },
+    "total_tokens": 1242
+  },
+  "parseable": true,
+  "extracted": {
+    "answer": {
+      "model_search_name": "UHR150",
+      "model_year": "2026",
+      "trim_name": "26'升级款",
+      "sale_status": "current",
+      "official_msrp_cny": 13780,
+      "official_price_label": "扶手版 13780 元，气囊减振/尾箱版 14680 元",
+      "displacement_cc": 149,
+      "seat_height_mm": 760,
+      "curb_weight_kg": 140,
+      "max_power_kw": 10.6,
+      "fuel_tank_l": 8,
+      "abs": "德国博世双通道 ABS",
+      "tcs": "电装 TCS",
+      "vehicle_type": "踏板车",
+      "field_sources": {
+        "model_search_name": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "model_year": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "trim_name": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "sale_status": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "official_msrp_cny": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "official_price_label": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "displacement_cc": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "seat_height_mm": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "curb_weight_kg": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "max_power_kw": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "fuel_tank_l": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "abs": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "tcs": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md",
+        "vehicle_type": "knowledge_base_inputs/public_sources/uhr150_2026_sources.md"
+      },
+      "warnings": []
+    }
+  }
+}

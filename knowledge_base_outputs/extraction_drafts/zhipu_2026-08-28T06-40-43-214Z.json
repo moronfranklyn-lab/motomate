@@ -1,0 +1,100 @@
+{
+  "extraction_run_id": "zhipu_2026-08-28T06-40-43-214Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.5-air",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1000,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/voge_sr250gt_2026_pro.md"
+  ],
+  "http_status": 200,
+  "retry_count": 1,
+  "usage": {
+    "completion_tokens": 659,
+    "prompt_tokens": 621,
+    "prompt_tokens_details": {
+      "cached_tokens": 620
+    },
+    "total_tokens": 1280
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "无极 SR250GT II代 Pro版",
+      "model_year": "2026",
+      "trim_name": null,
+      "sale_status": "current",
+      "official_msrp_cny": 17980,
+      "official_price_label": "厂商指导价",
+      "displacement_cc": 244.3,
+      "seat_height_mm": 770,
+      "curb_weight_kg": 168,
+      "max_power_kw": 20.5,
+      "fuel_tank_l": 15,
+      "abs": "标配",
+      "tcs": "标配",
+      "vehicle_type": "踏板",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.vogemotor.com/motorbike-details?id=26",
+          "https://www.58moto.com/good/20509.html"
+        ],
+        "model_year": [
+          "https://www.58moto.com/good/20509.html"
+        ],
+        "sale_status": [
+          "https://www.vogemotor.com/motorbike-details?id=26",
+          "https://www.58moto.com/good/20509.html"
+        ],
+        "official_msrp_cny": [
+          "https://www.vogemotor.com/motorbike-details?id=26",
+          "https://www.58moto.com/good/20509.html"
+        ],
+        "official_price_label": [
+          "https://www.58moto.com/good/20509.html"
+        ],
+        "displacement_cc": [
+          "https://www.vogemotor.com/motorbike-details?id=26"
+        ],
+        "seat_height_mm": [
+          "https://www.vogemotor.com/motorbike-details?id=26",
+          "https://www.58moto.com/good/20509/configuration.html"
+        ],
+        "curb_weight_kg": [
+          "https://www.vogemotor.com/motorbike-details?id=26",
+          "https://www.58moto.com/good/20509/configuration.html"
+        ],
+        "max_power_kw": [
+          "https://www.vogemotor.com/motorbike-details?id=26",
+          "https://www.58moto.com/good/20509/configuration.html"
+        ],
+        "fuel_tank_l": [
+          "https://www.vogemotor.com/motorbike-details?id=26",
+          "https://www.58moto.com/good/20509/configuration.html"
+        ],
+        "abs": [
+          "https://www.58moto.com/good/20509/configuration.html"
+        ],
+        "tcs": [
+          "https://www.58moto.com/good/20509/configuration.html"
+        ],
+        "vehicle_type": [
+          "https://www.vogemotor.com/motorbike-details?id=26",
+          "https://www.58moto.com/good/20509.html"
+        ]
+      },
+      "warnings": [
+        "参数摘要组件曾出现错位数值，采用完整参数弹窗值",
+        "官网未明确标注具体年款、价格口径和'整备质量'字样",
+        "年款、整备质量字段名及 ABS/TCS 目前只由平台明确，保持待人工复核"
+      ]
+    }
+  }
+}

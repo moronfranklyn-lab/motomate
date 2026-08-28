@@ -1,0 +1,32 @@
+{
+  "verification_scope": "small_batch_extension",
+  "verified_at": "2026-08-28T14:45:00+08:00",
+  "verified_by": "codex_rule_review",
+  "status": "field_verified_with_pending_items",
+  "models": [{
+    "model_id": "wuyang_honda_pcx160_2025_standard",
+    "brand": "本田系合资",
+    "manufacturer": "五羊-本田摩托（广州）有限公司",
+    "model_name": "PCX160",
+    "model_year": "2025",
+    "trim_name": "标准版",
+    "sale_status": "current",
+    "official_msrp_cny": 19990,
+    "official_price_label": "建议零售价",
+    "displacement_cc": 156.9,
+    "seat_height_mm": 764,
+    "curb_weight_kg": 136,
+    "max_power_kw": 11.8,
+    "fuel_tank_l": 8.2,
+    "abs": "前轮 ABS",
+    "tcs": "Honda HSTC，细分状态待核验",
+    "vehicle_type": "踏板",
+    "field_statuses": {"model_year":"manual_review_required","official_msrp_cny":"verified","displacement_cc":"verified","seat_height_mm":"verified","curb_weight_kg":"verified","max_power_kw":"manual_review_required","fuel_tank_l":"verified","abs":"verified","tcs":"manual_review_required","vehicle_type":"verified"},
+    "price_conflict_status": "无冲突",
+    "kb_status": "pending_verification",
+    "admission_status": "待人工复核",
+    "recommendation_ready": false,
+    "admission_blockers": ["官网正文未显式标注 2025款", "最大功率仅有平台证据", "HSTC 的可选语义及是否可关闭待官方明确", "未完成完整推荐准入 checklist"]
+  }],
+  "source_status_note": "五羊本田产品目录、详情页及摩托范页面均可访问；已与新大洲本田 PCX 分离。"
+}
