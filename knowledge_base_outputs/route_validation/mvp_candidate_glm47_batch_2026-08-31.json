@@ -1,0 +1,223 @@
+{
+  "schema_version": "zhipu_candidate_batch_v0.1",
+  "batch_id": "mvp_candidates_2026-08-31",
+  "model": "glm-4.7",
+  "input_count": 11,
+  "attempted_input_count": 11,
+  "passed_input_count": 11,
+  "circuit_breaker_triggered": false,
+  "safeguards": {
+    "single_model": true,
+    "max_tokens": 1400,
+    "max_retries": 2,
+    "consecutive_failure_breaker": 3
+  },
+  "totals": {
+    "prompt_tokens": 4801,
+    "completion_tokens": 4481,
+    "total_tokens": 9282
+  },
+  "runs": [
+    {
+      "input": "knowledge_base_inputs/public_sources/voge_cu250_current_manual_pending.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-57-44-163Z.json",
+      "latency_ms": 8055,
+      "usage": {
+        "completion_tokens": 425,
+        "prompt_tokens": 461,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 886
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/voge_cu250_current_automatic_pending.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-57-53-220Z.json",
+      "latency_ms": 8977,
+      "usage": {
+        "completion_tokens": 405,
+        "prompt_tokens": 462,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 867
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/voge_300ac_observed_pending.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-17-689Z.json",
+      "latency_ms": 24390,
+      "usage": {
+        "completion_tokens": 374,
+        "prompt_tokens": 453,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 827
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/voge_300ds_standard_observed_pending.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-24-607Z.json",
+      "latency_ms": 6831,
+      "usage": {
+        "completion_tokens": 452,
+        "prompt_tokens": 438,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 890
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/voge_300ds_luggage_observed_pending.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-39-872Z.json",
+      "latency_ms": 15187,
+      "usage": {
+        "completion_tokens": 467,
+        "prompt_tokens": 440,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 907
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/zontes_350d_delisted.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-45-827Z.json",
+      "latency_ms": 5885,
+      "usage": {
+        "completion_tokens": 248,
+        "prompt_tokens": 394,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 642
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/zontes_350e_delisted.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-59-376Z.json",
+      "latency_ms": 13468,
+      "usage": {
+        "completion_tokens": 311,
+        "prompt_tokens": 390,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 701
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/zontes_350gk_delisted.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-59-08-437Z.json",
+      "latency_ms": 8980,
+      "usage": {
+        "completion_tokens": 313,
+        "prompt_tokens": 401,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 714
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/wuyang_honda_cgx150_current_standard_pending.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-59-13-556Z.json",
+      "latency_ms": 5038,
+      "usage": {
+        "completion_tokens": 499,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 455,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 954
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/wuyang_honda_cgx150_current_sidebag_pending.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-59-23-061Z.json",
+      "latency_ms": 9439,
+      "usage": {
+        "completion_tokens": 489,
+        "prompt_tokens": 456,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 945
+      },
+      "parseable": true,
+      "structural_pass": true
+    },
+    {
+      "input": "knowledge_base_inputs/public_sources/wuyang_honda_cgx150_current_special_pending.md",
+      "retry": 0,
+      "exit_status": 0,
+      "http_status": 200,
+      "output_path": "/Users/mixingtumima0000/资料合集/项目合集/摩托车咨询agent/knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-59-31-311Z.json",
+      "latency_ms": 8181,
+      "usage": {
+        "completion_tokens": 498,
+        "prompt_tokens": 451,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 949
+      },
+      "parseable": true,
+      "structural_pass": true
+    }
+  ]
+}

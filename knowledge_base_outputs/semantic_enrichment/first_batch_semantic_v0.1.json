@@ -1,0 +1,83 @@
+{
+  "schema_version": "kb_semantic_enrichment_v0.1",
+  "enrichment_version": "first_batch_semantic_v0.1",
+  "created_at": "2026-08-29T10:00:00+08:00",
+  "source_pool": "knowledge_base_outputs/eligible_pool/first_batch_v1.json",
+  "source_pool_version": "first_batch_v1",
+  "recommendation_approved_count": 0,
+  "model_output_used": false,
+  "models": [
+    {
+      "model_id": "haojue_uhr150_2026_handrail", "model_year": "current_version", "trim_name": "扶手版",
+      "usage_tags": {"value": [{"tag":"urban_commute","intensity":"high"},{"tag":"daily_transport","intensity":"high"},{"tag":"weekend_leisure","intensity":"medium"}], "basis_type":"product_hypothesis", "derivation_rule":"usage_by_vehicle_type", "derivation_version":"v0.1", "inputs":{"vehicle_type":"踏板"}, "availability":"rule_sorting"},
+      "operation_pressure_level": {"value":"low", "basis_type":"product_hypothesis", "derivation_rule":"measurable_operation_pressure", "derivation_version":"v0.1", "inputs":{"max_power_kw":10.6,"curb_weight_kg":140,"seat_height_mm":760}, "component_points":{"power":0,"weight":0,"seat_height":0,"total":0}, "unknown_components":["throttle_response","low_speed_handling","experience_requirement"], "availability":"rule_sorting"},
+      "beginner_friendliness": {"value":"high", "basis_type":"product_hypothesis", "derivation_rule":"beginner_safety_candidate", "derivation_version":"v0.1", "inputs":{"operation_pressure":"low","abs":"双通道","tcs":"有"}, "limitations":["不是安全保证","需用户测试校准"], "availability":"rule_sorting"},
+      "maintenance_convenience": {"value":null,"status":"unknown","missing_evidence":["service_network","parts_availability","maintenance_cost"],"availability":"unavailable"},
+      "style_and_power_tags": {"style_tag":"scooter","power_band":"entry","basis_type":"deterministic_derived","derivation_rule":"style_and_power","derivation_version":"v0.1","inputs":{"vehicle_type":"踏板","max_power_kw":10.6},"availability":"rule_sorting"},
+      "evidence_refs": [{"url":"https://www.haojue.com/2026UHR150/","source_type":"official","captured_at":"2026-08-28T14:10:00+08:00","supports":["vehicle_type"]},{"url":"https://www.haojue.com/2026UHR150/canshu.html","source_type":"official","captured_at":"2026-08-28T14:10:00+08:00","supports":["max_power_kw","curb_weight_kg","seat_height_mm"]},{"url":"https://www.haojue.com/2026UHR150/jiage.html","source_type":"official","captured_at":"2026-08-28T14:10:00+08:00","supports":["abs","tcs"]}]
+    },
+    {
+      "model_id": "haojue_uhr150_2026_airshock_topbox", "model_year": "current_version", "trim_name": "气囊减振/尾箱版",
+      "usage_tags": {"value": [{"tag":"urban_commute","intensity":"high"},{"tag":"daily_transport","intensity":"high"},{"tag":"weekend_leisure","intensity":"medium"}], "basis_type":"product_hypothesis", "derivation_rule":"usage_by_vehicle_type", "derivation_version":"v0.1", "inputs":{"vehicle_type":"踏板"}, "availability":"rule_sorting"},
+      "operation_pressure_level": {"value":"low", "basis_type":"product_hypothesis", "derivation_rule":"measurable_operation_pressure", "derivation_version":"v0.1", "inputs":{"max_power_kw":10.6,"curb_weight_kg":144,"seat_height_mm":760}, "component_points":{"power":0,"weight":0,"seat_height":0,"total":0}, "unknown_components":["throttle_response","low_speed_handling","experience_requirement"], "availability":"rule_sorting"},
+      "beginner_friendliness": {"value":"high", "basis_type":"product_hypothesis", "derivation_rule":"beginner_safety_candidate", "derivation_version":"v0.1", "inputs":{"operation_pressure":"low","abs":"双通道","tcs":"有"}, "limitations":["不是安全保证","需用户测试校准"], "availability":"rule_sorting"},
+      "maintenance_convenience": {"value":null,"status":"unknown","missing_evidence":["service_network","parts_availability","maintenance_cost"],"availability":"unavailable"},
+      "style_and_power_tags": {"style_tag":"scooter","power_band":"entry","basis_type":"deterministic_derived","derivation_rule":"style_and_power","derivation_version":"v0.1","inputs":{"vehicle_type":"踏板","max_power_kw":10.6},"availability":"rule_sorting"},
+      "evidence_refs": [{"url":"https://www.haojue.com/2026UHR150/","source_type":"official","captured_at":"2026-08-28T14:10:00+08:00","supports":["vehicle_type"]},{"url":"https://www.haojue.com/2026UHR150/canshu.html","source_type":"official","captured_at":"2026-08-28T14:10:00+08:00","supports":["max_power_kw","curb_weight_kg","seat_height_mm"]},{"url":"https://www.haojue.com/2026UHR150/jiage.html","source_type":"official","captured_at":"2026-08-28T14:10:00+08:00","supports":["abs","tcs"]}]
+    },
+    {
+      "model_id": "yamaha_nmax155_2026_tech_max", "model_year": "current_version", "trim_name": "Tech Max",
+      "usage_tags": {"value":[{"tag":"urban_commute","intensity":"high"},{"tag":"daily_transport","intensity":"high"},{"tag":"weekend_leisure","intensity":"medium"}],"basis_type":"product_hypothesis","derivation_rule":"usage_by_vehicle_type","derivation_version":"v0.1","inputs":{"vehicle_type":"踏板","vehicle_type_status":"platform_observed_non_hard"},"availability":"rule_sorting"},
+      "operation_pressure_level": {"value":"low","basis_type":"product_hypothesis","derivation_rule":"measurable_operation_pressure","derivation_version":"v0.1","inputs":{"max_power_kw":11.3,"curb_weight_kg":132,"seat_height_mm":770},"component_points":{"power":0,"weight":0,"seat_height":0,"total":0},"unknown_components":["throttle_response","low_speed_handling","experience_requirement"],"availability":"rule_sorting"},
+      "beginner_friendliness": {"value":"high","basis_type":"product_hypothesis","derivation_rule":"beginner_safety_candidate","derivation_version":"v0.1","inputs":{"operation_pressure":"low","abs":"双通道","tcs":"有，可启闭"},"limitations":["不是安全保证","需用户测试校准"],"availability":"rule_sorting"},
+      "maintenance_convenience": {"value":null,"status":"unknown","missing_evidence":["service_network","parts_availability","maintenance_cost"],"availability":"unavailable"},
+      "style_and_power_tags": {"style_tag":"scooter","power_band":"entry","basis_type":"deterministic_derived","derivation_rule":"style_and_power","derivation_version":"v0.1","inputs":{"vehicle_type":"踏板","max_power_kw":11.3},"availability":"rule_sorting"},
+      "evidence_refs": [{"url":"https://www.yamaha-motor.com.cn/mc/products/nmax_tech_max/","source_type":"official","captured_at":"2026-08-28T14:30:00+08:00","supports":["max_power_kw","curb_weight_kg","seat_height_mm","abs","tcs"]},{"url":"https://www.58moto.com/good/6946.html","source_type":"platform","captured_at":"2026-08-28T14:30:00+08:00","supports":["vehicle_type"]}]
+    },
+    {
+      "model_id": "yamaha_nmax155_2026_25th", "model_year": "current_version", "trim_name": "25周年纪念版",
+      "usage_tags": {"value":[{"tag":"urban_commute","intensity":"high"},{"tag":"daily_transport","intensity":"high"},{"tag":"weekend_leisure","intensity":"medium"}],"basis_type":"product_hypothesis","derivation_rule":"usage_by_vehicle_type","derivation_version":"v0.1","inputs":{"vehicle_type":"踏板","vehicle_type_status":"platform_observed_non_hard"},"availability":"rule_sorting"},
+      "operation_pressure_level": {"value":"low","basis_type":"product_hypothesis","derivation_rule":"measurable_operation_pressure","derivation_version":"v0.1","inputs":{"max_power_kw":11.3,"curb_weight_kg":132,"seat_height_mm":770},"component_points":{"power":0,"weight":0,"seat_height":0,"total":0},"unknown_components":["throttle_response","low_speed_handling","experience_requirement"],"availability":"rule_sorting"},
+      "beginner_friendliness": {"value":"high","basis_type":"product_hypothesis","derivation_rule":"beginner_safety_candidate","derivation_version":"v0.1","inputs":{"operation_pressure":"low","abs":"双通道","tcs":"有，可启闭"},"limitations":["不是安全保证","需用户测试校准"],"availability":"rule_sorting"},
+      "maintenance_convenience": {"value":null,"status":"unknown","missing_evidence":["service_network","parts_availability","maintenance_cost"],"availability":"unavailable"},
+      "style_and_power_tags": {"style_tag":"scooter","power_band":"entry","basis_type":"deterministic_derived","derivation_rule":"style_and_power","derivation_version":"v0.1","inputs":{"vehicle_type":"踏板","max_power_kw":11.3},"availability":"rule_sorting"},
+      "evidence_refs": [{"url":"https://www.yamaha-motor.com.cn/mc/products/nmax_25th/","source_type":"official","captured_at":"2026-08-28T14:30:00+08:00","supports":["max_power_kw","curb_weight_kg","seat_height_mm","abs","tcs"]},{"url":"https://www.58moto.com/good/6946.html","source_type":"platform","captured_at":"2026-08-28T14:30:00+08:00","supports":["vehicle_type"]}]
+    },
+    {
+      "model_id":"cfmoto_450nk_2026_standard","model_year":"current_version","trim_name":"标准版",
+      "usage_tags":{"value":[{"tag":"urban_commute","intensity":"medium"},{"tag":"weekend_leisure","intensity":"high"}],"basis_type":"product_hypothesis","derivation_rule":"usage_by_vehicle_type","derivation_version":"v0.1","inputs":{"vehicle_type":"街车","vehicle_type_status":"platform_observed_non_hard"},"availability":"rule_sorting"},
+      "operation_pressure_level":{"value":"high","basis_type":"product_hypothesis","derivation_rule":"measurable_operation_pressure","derivation_version":"v0.1","inputs":{"max_power_kw":38,"curb_weight_kg":165,"seat_height_mm":795},"component_points":{"power":2,"weight":1,"seat_height":2,"total":5},"unknown_components":["throttle_response","low_speed_handling","experience_requirement"],"availability":"rule_sorting"},
+      "beginner_friendliness":{"value":"low","basis_type":"product_hypothesis","derivation_rule":"beginner_safety_candidate","derivation_version":"v0.1","inputs":{"operation_pressure":"high","abs":"前后ABS标配","tcs":"标配"},"limitations":["不是安全保证","需用户测试校准"],"availability":"rule_sorting"},
+      "maintenance_convenience":{"value":null,"status":"unknown","missing_evidence":["service_network","parts_availability","maintenance_cost"],"availability":"unavailable"},
+      "style_and_power_tags":{"style_tag":"street_naked","power_band":"strong","basis_type":"deterministic_derived","derivation_rule":"style_and_power","derivation_version":"v0.1","inputs":{"vehicle_type":"街车","max_power_kw":38},"availability":"rule_sorting"},
+      "evidence_refs":[{"url":"https://www.cfmoto.com/motorcycles/450NK","source_type":"official","captured_at":"2026-08-28T15:25:00+08:00","supports":["max_power_kw","curb_weight_kg","seat_height_mm","abs","tcs"]},{"url":"https://www.58moto.com/good/20536.html","source_type":"platform","captured_at":"2026-08-28T15:25:00+08:00","supports":["vehicle_type"]}]
+    },
+    {
+      "model_id":"cfmoto_450clc_2026_standard","model_year":"current_version","trim_name":"标准版",
+      "usage_tags":{"value":[{"tag":"urban_commute","intensity":"low"},{"tag":"weekend_leisure","intensity":"high"}],"basis_type":"product_hypothesis","derivation_rule":"usage_by_vehicle_type","derivation_version":"v0.1","inputs":{"vehicle_type":"巡航太子","vehicle_type_status":"platform_observed_non_hard"},"availability":"rule_sorting"},
+      "operation_pressure_level":{"value":"high","basis_type":"product_hypothesis","derivation_rule":"measurable_operation_pressure","derivation_version":"v0.1","inputs":{"max_power_kw":30,"curb_weight_kg":181,"seat_height_mm":705},"component_points":{"power":2,"weight":2,"seat_height":0,"total":4},"unknown_components":["throttle_response","low_speed_handling","experience_requirement"],"availability":"rule_sorting"},
+      "beginner_friendliness":{"value":"low","basis_type":"product_hypothesis","derivation_rule":"beginner_safety_candidate","derivation_version":"v0.1","inputs":{"operation_pressure":"high","abs":"双通道ABS","tcs":"标配"},"limitations":["不是安全保证","需用户测试校准"],"availability":"rule_sorting"},
+      "maintenance_convenience":{"value":null,"status":"unknown","missing_evidence":["service_network","parts_availability","maintenance_cost"],"availability":"unavailable"},
+      "style_and_power_tags":{"style_tag":"cruiser","power_band":"strong","basis_type":"deterministic_derived","derivation_rule":"style_and_power","derivation_version":"v0.1","inputs":{"vehicle_type":"巡航太子","max_power_kw":30},"availability":"rule_sorting"},
+      "evidence_refs":[{"url":"https://cn.cfmoto.com/motorcycles/450CL-C","source_type":"official","captured_at":"2026-08-28T15:24:00+08:00","supports":["max_power_kw","curb_weight_kg","seat_height_mm","abs","tcs"]},{"url":"https://www.58moto.com/good/20571.html","source_type":"platform","captured_at":"2026-08-28T15:24:00+08:00","supports":["vehicle_type"]}]
+    },
+    {
+      "model_id":"cfmoto_450clc_2025_amt","model_year":"current_version","trim_name":"AMT版",
+      "usage_tags":{"value":[{"tag":"urban_commute","intensity":"low"},{"tag":"weekend_leisure","intensity":"high"}],"basis_type":"product_hypothesis","derivation_rule":"usage_by_vehicle_type","derivation_version":"v0.1","inputs":{"vehicle_type":"巡航太子","vehicle_type_status":"platform_observed_non_hard"},"availability":"rule_sorting"},
+      "operation_pressure_level":{"value":"high","basis_type":"product_hypothesis","derivation_rule":"measurable_operation_pressure","derivation_version":"v0.1","inputs":{"max_power_kw":30,"curb_weight_kg":185,"seat_height_mm":705},"component_points":{"power":2,"weight":2,"seat_height":0,"total":4},"unknown_components":["throttle_response","low_speed_handling","experience_requirement","amt_low_speed_behavior"],"availability":"rule_sorting"},
+      "beginner_friendliness":{"value":"low","basis_type":"product_hypothesis","derivation_rule":"beginner_safety_candidate","derivation_version":"v0.1","inputs":{"operation_pressure":"high","abs":"双通道ABS","tcs":"标配"},"limitations":["AMT操作方式不得在无证据时视为更适合新手","需用户测试校准"],"availability":"rule_sorting"},
+      "maintenance_convenience":{"value":null,"status":"unknown","missing_evidence":["service_network","parts_availability","maintenance_cost","amt_maintenance_evidence"],"availability":"unavailable"},
+      "style_and_power_tags":{"style_tag":"cruiser","power_band":"strong","basis_type":"deterministic_derived","derivation_rule":"style_and_power","derivation_version":"v0.1","inputs":{"vehicle_type":"巡航太子","max_power_kw":30},"availability":"rule_sorting"},
+      "evidence_refs":[{"url":"https://cn.cfmoto.com/motorcycles/450CL-CAMT","source_type":"official","captured_at":"2026-08-28T15:24:00+08:00","supports":["trim_name","max_power_kw","curb_weight_kg","seat_height_mm","abs","tcs"]},{"url":"https://www.58moto.com/good/20571.html","source_type":"platform","captured_at":"2026-08-28T15:24:00+08:00","supports":["vehicle_type"]}]
+    },
+    {
+      "model_id":"wuyang_honda_pcx160_2025_standard","model_year":"current_version","trim_name":"标准版",
+      "usage_tags":{"value":[{"tag":"urban_commute","intensity":"high"},{"tag":"daily_transport","intensity":"high"},{"tag":"weekend_leisure","intensity":"medium"}],"basis_type":"product_hypothesis","derivation_rule":"usage_by_vehicle_type","derivation_version":"v0.1","inputs":{"vehicle_type":"踏板"},"availability":"rule_sorting"},
+      "operation_pressure_level":{"value":null,"status":"unknown","basis_type":"product_hypothesis","derivation_rule":"measurable_operation_pressure","derivation_version":"v0.1","inputs":{"max_power_kw":null,"curb_weight_kg":136,"seat_height_mm":764},"component_points":{"power":null,"weight":0,"seat_height":0,"total":null},"unknown_components":["max_power_kw","throttle_response","low_speed_handling","experience_requirement"],"availability":"unavailable"},
+      "beginner_friendliness":{"value":null,"status":"unknown","basis_type":"product_hypothesis","derivation_rule":"beginner_safety_candidate","derivation_version":"v0.1","inputs":{"operation_pressure":null,"abs":"前轮ABS","tcs":"HSTC存在，细分状态不参与硬规则"},"missing_evidence":["max_power_kw","complete_operation_pressure"],"availability":"unavailable"},
+      "maintenance_convenience":{"value":null,"status":"unknown","missing_evidence":["service_network","parts_availability","maintenance_cost"],"availability":"unavailable"},
+      "style_and_power_tags":{"style_tag":"scooter","power_band":"unknown","basis_type":"deterministic_derived","derivation_rule":"style_and_power","derivation_version":"v0.1","inputs":{"vehicle_type":"踏板","max_power_kw":null},"availability":"rule_sorting","limitations":["power_band不参与排序"]},
+      "evidence_refs":[{"url":"https://www.wuyang-honda.com/home/cpzs/ryj/tbj/detail-1551.shtml","source_type":"official","captured_at":"2026-08-28T14:30:00+08:00","supports":["vehicle_type","curb_weight_kg","seat_height_mm","abs","tcs"]},{"url":"https://www.58moto.com/good/17751/configuration.html","source_type":"platform_observation_only","captured_at":"2026-08-28T14:30:00+08:00","supports":[]}]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "motomate_internal_alpha_readiness_v0.1",
+  "updated_at": "2026-08-31T00:00:00+08:00",
+  "stages": {
+    "supervised_usability": {
+      "target_user_count": 5,
+      "purpose": "Validate comprehension, interaction friction, evidence visibility, and feedback completion without treating development previews as purchase advice.",
+      "required_checks": [
+        "engineering_smoke_20_passed",
+        "alpha_api_13_passed",
+        "development_preview_disclaimer_visible",
+        "feedback_review_available",
+        "no_original_consultation_text_persisted",
+        "moderator_present"
+      ]
+    },
+    "external_invited_alpha": {
+      "target_user_count_min": 10,
+      "target_user_count_max": 20,
+      "required_checks": [
+        "recommendation_batch_approved",
+        "golden_eval_50_passed",
+        "authentication_available",
+        "cloud_database_and_backup_available",
+        "user_data_deletion_available",
+        "invitation_and_capacity_control_available",
+        "daily_usage_limit_available",
+        "paid_model_cost_metering_available",
+        "admin_endpoint_protected"
+      ]
+    }
+  }
+}

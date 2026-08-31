@@ -1,0 +1,66 @@
+{
+  "extraction_run_id": "zhipu_2026-08-31T03-58-59-376Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1400,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/zontes_350e_delisted.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 13468,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 311,
+    "prompt_tokens": 390,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 701
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "Zontes 350E",
+      "model_year": "2022",
+      "trim_name": "Pearl White National IV",
+      "sale_status": "unknown",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "displacement_cc": null,
+      "seat_height_mm": null,
+      "curb_weight_kg": null,
+      "max_power_kw": null,
+      "fuel_tank_l": null,
+      "abs": null,
+      "tcs": null,
+      "vehicle_type": null,
+      "field_sources": {
+        "model_search_name": [
+          "https://www.zontes.com/CH/Products/ProductsList.aspx",
+          "https://www.58moto.com/good/20187/configuration.html"
+        ],
+        "model_year": [
+          "https://www.58moto.com/good/20187/configuration.html"
+        ],
+        "trim_name": [
+          "https://www.zontes.com/CH/Products/ProductsList.aspx"
+        ],
+        "sale_status": [
+          "https://www.zontes.com/CH/Products/ProductsList.aspx",
+          "https://www.58moto.com/good/20187/configuration.html"
+        ]
+      },
+      "warnings": [
+        "Model is marked as delisted on official site and discontinued on platform site."
+      ]
+    }
+  }
+}

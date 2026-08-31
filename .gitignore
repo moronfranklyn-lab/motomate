@@ -3,5 +3,9 @@
 !.env.example
 node_modules/
 .DS_Store
+portrait_anime_subtle.png
 _doc_content.xml
 _eval_doc.xml
+runtime/*.sqlite
+runtime/*.sqlite-shm
+runtime/*.sqlite-wal

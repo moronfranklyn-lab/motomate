@@ -1,0 +1,14 @@
+{
+  "schema_version": "kb_eligible_pool_manifest_v0.2",
+  "active_pool_file": "knowledge_base_outputs/eligible_pool/mvp_eligible_pool_v0.1.json",
+  "pool_version": "mvp_eligible_pool_v0.1",
+  "base_pool_file": "knowledge_base_outputs/eligible_pool/alpha_pool_v0.1.json",
+  "additions_file": "knowledge_base_outputs/verified_fields/cu250_closure_additions_v0.1.json",
+  "model_count": 17,
+  "eligible_count": 17,
+  "blocked_count": 0,
+  "recommendation_approved_count": 0,
+  "rule_version": "kb_admission_v0.2",
+  "usage_scope": "internal_development_preview_not_recommendation_approved",
+  "closed_at": "2026-08-31T13:10:00+08:00"
+}

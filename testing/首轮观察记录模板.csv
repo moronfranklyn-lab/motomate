@@ -1,0 +1,6 @@
+tester_code,sample_source,consent,session_date,device,task_a_status,task_b_status,task_c_status,task_d_status,task_e_status,moderator_help_count,preview_misunderstood,evidence_found,price_scope_understood,serious_comprehension_issue,data_concern_category,helpful_example,reuse_intent,priority_issue,notes_without_personal_data
+T01,,pending,,,,,,,,0,false,false,false,false,,,,,
+T02,,pending,,,,,,,,0,false,false,false,false,,,,,
+T03,,pending,,,,,,,,0,false,false,false,false,,,,,
+T04,,pending,,,,,,,,0,false,false,false,false,,,,,
+T05,,pending,,,,,,,,0,false,false,false,false,,,,,

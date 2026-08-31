@@ -1,0 +1,124 @@
+{
+  "schema_version": "kb_mvp_additions_v0.1",
+  "batch_id": "cu250_closure_2026-08-31",
+  "created_at": "2026-08-31T13:10:00+08:00",
+  "recommendation_approved_count": 0,
+  "models": [
+    {
+      "model_id": "voge_cu250_current_manual",
+      "brand": "无极",
+      "manufacturer": "隆鑫通用动力股份有限公司",
+      "model_name": "CU250Ⅱ代",
+      "model_year": "current_version",
+      "trim_name": "手动挡",
+      "sale_status": "current",
+      "vehicle_type": "巡航",
+      "official_public_price_cny": 16480,
+      "official_public_price_label": "官网公开API price字段",
+      "qualified_platform_reference_price_cny": null,
+      "platform_reference_price_cny": 16480,
+      "platform_reference_note": "汽车之家同配置参考价；未按24小时合格平台价格历史流程入账，仅作交叉参考",
+      "budget_guard_price_cny": 16480,
+      "displacement_cc": 250,
+      "seat_height_mm": 710,
+      "curb_weight_kg": 178,
+      "max_power_kw": 20,
+      "fuel_tank_l": 15,
+      "abs": null,
+      "tcs": null,
+      "transmission": "国际6挡",
+      "fact_verification_status": {
+        "overall": "sufficient_for_rules",
+        "fields": {
+          "sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "trim_name": "official_verified",
+          "displacement_cc": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "max_power_kw": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "unverified_non_hard_null",
+          "tcs": "unverified_non_hard_null",
+          "vehicle_type": "official_verified"
+        }
+      },
+      "rule_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_admission_v0.2",
+        "evaluated_at": "2026-08-31T13:10:00+08:00"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official directory/detail API and Autohome trim binding reviewed; ABS/TCS remain null; recommendation approval not granted"
+        ],
+        "reviewed_at": "2026-08-31T13:10:00+08:00"
+      },
+      "source_urls": [
+        "https://api.vogemotor.com/?m=Mobile&c=MajorProduct&a=production_class_list&lang=1",
+        "https://api.vogemotor.com/?m=Mobile&c=MajorProduct&a=get_product_info&id=31&store_id=21&lang=1&types=",
+        "https://car.autohome.com.cn/motorbike/params/10210810"
+      ]
+    },
+    {
+      "model_id": "voge_cu250_current_automatic",
+      "brand": "无极",
+      "manufacturer": "隆鑫通用动力股份有限公司",
+      "model_name": "CU250Ⅱ代",
+      "model_year": "current_version",
+      "trim_name": "自动挡",
+      "sale_status": "current",
+      "vehicle_type": "巡航",
+      "official_public_price_cny": 18980,
+      "official_public_price_label": "官网公开API price字段",
+      "qualified_platform_reference_price_cny": null,
+      "platform_reference_price_cny": 18980,
+      "platform_reference_note": "汽车之家同配置参考价；未按24小时合格平台价格历史流程入账，仅作交叉参考",
+      "budget_guard_price_cny": 18980,
+      "displacement_cc": 250,
+      "seat_height_mm": 710,
+      "curb_weight_kg": 182,
+      "max_power_kw": 20,
+      "fuel_tank_l": 15,
+      "abs": null,
+      "tcs": null,
+      "transmission": "AMT6速自动挡",
+      "fact_verification_status": {
+        "overall": "sufficient_for_rules",
+        "fields": {
+          "sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "trim_name": "official_verified",
+          "displacement_cc": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "max_power_kw": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "unverified_non_hard_null",
+          "tcs": "unverified_non_hard_null",
+          "vehicle_type": "official_verified"
+        }
+      },
+      "rule_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_admission_v0.2",
+        "evaluated_at": "2026-08-31T13:10:00+08:00"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official directory/detail API and Autohome trim binding reviewed; ABS/TCS remain null; recommendation approval not granted"
+        ],
+        "reviewed_at": "2026-08-31T13:10:00+08:00"
+      },
+      "source_urls": [
+        "https://api.vogemotor.com/?m=Mobile&c=MajorProduct&a=production_class_list&lang=1",
+        "https://api.vogemotor.com/?m=Mobile&c=MajorProduct&a=get_product_info&id=37&store_id=21&lang=1&types=",
+        "https://car.autohome.com.cn/motorbike/params/10210810"
+      ]
+    }
+  ]
+}

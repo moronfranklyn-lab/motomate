@@ -1,0 +1,133 @@
+{
+  "schema_version": "mvp_candidate_exceptions_v0.1",
+  "generated_at": "2026-08-31T04:27:15.459Z",
+  "exception_count": 18,
+  "exceptions": [
+    {
+      "model_id": "voge_sr250gt_2026_play",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "官方价格口径、整备质量语义及安全配置证据未闭环",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/voge_sr250gt_2026_play.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "voge_sr250gt_2026_pro",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "官方价格口径、整备质量语义及安全配置证据未闭环",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/voge_sr250gt_2026_pro.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "cfmoto_450clc_2024_bobber",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "官网同页存在真正待解释的价格冲突",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/cfmoto_450clc_2024_bobber_pending.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "benda_greystone250_2026_manual",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "缺官方公开价格且参数未达降级核验门槛",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/benda_greystone250_2026_manual_pending.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "benda_greystone250_2026_cvt",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "缺官方公开价格且参数未达降级核验门槛",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/benda_greystone250_2026_cvt_pending.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "qjmotor_sai250mini_2026_mini",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "缺官方公开价格且参数未达降级核验门槛",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/qjmotor_sai250mini_2026_pending.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "wuyang_honda_cb190r_standard_pending_year",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "配置映射、当前版本及多数参数证据不足",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/wuyang_honda_cb190r_2023_standard_pending.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "wuyang_honda_cb190r_2023_gp",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "配置映射、当前版本及多数参数证据不足",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/wuyang_honda_cb190r_2023_gp_pending.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "qjmotor_sai250_2024_firing",
+      "rule_pool_eligibility": "excluded",
+      "blocker": "未取得官方当前在售信号",
+      "public_evidence_path": null,
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "sundiro_honda_cbf190r_2023_standard",
+      "rule_pool_eligibility": "excluded",
+      "blocker": "原官方页面下架且当前目录未找到",
+      "public_evidence_path": null,
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "sundiro_honda_cbf190r_2023_special",
+      "rule_pool_eligibility": "excluded",
+      "blocker": "原官方页面下架且当前目录未找到",
+      "public_evidence_path": null,
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "cfmoto_250sr_observed_versions",
+      "rule_pool_eligibility": "blocked",
+      "blocker": "中国市场官方当前在售和官方价格证据不足",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/cfmoto_250sr_sources.md",
+      "extraction_draft_path": null
+    },
+    {
+      "model_id": "voge_300ac_2022_observed",
+      "rule_pool_eligibility": "excluded",
+      "blocker": "当前官网目录未找到；仅有2022款历史平台记录",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/voge_300ac_observed_pending.md",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-17-689Z.json"
+    },
+    {
+      "model_id": "voge_300ds_2022_standard",
+      "rule_pool_eligibility": "excluded",
+      "blocker": "当前官网目录未找到；仅有2022款历史平台记录",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/voge_300ds_standard_observed_pending.md",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-24-607Z.json"
+    },
+    {
+      "model_id": "voge_300ds_2022_luggage",
+      "rule_pool_eligibility": "excluded",
+      "blocker": "当前官网目录未找到；仅有2022款历史平台记录",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/voge_300ds_luggage_observed_pending.md",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-39-872Z.json"
+    },
+    {
+      "model_id": "zontes_350d_delisted",
+      "rule_pool_eligibility": "ineligible",
+      "blocker": "官网明确已下架且平台标停产",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/zontes_350d_delisted.md",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-45-827Z.json"
+    },
+    {
+      "model_id": "zontes_350e_delisted",
+      "rule_pool_eligibility": "ineligible",
+      "blocker": "官网明确已下架且平台标停产",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/zontes_350e_delisted.md",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-58-59-376Z.json"
+    },
+    {
+      "model_id": "zontes_350gk_delisted",
+      "rule_pool_eligibility": "ineligible",
+      "blocker": "官网明确已下架且平台标停产",
+      "public_evidence_path": "knowledge_base_inputs/public_sources/zontes_350gk_delisted.md",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-08-31T03-59-08-437Z.json"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "motomate:first_batch_semantic_v0.1",
+  "type": "object",
+  "required": ["schema_version", "source_pool", "recommendation_approved_count", "models"],
+  "properties": {
+    "schema_version": {"const": "kb_semantic_enrichment_v0.1"},
+    "source_pool": {"const": "knowledge_base_outputs/eligible_pool/first_batch_v1.json"},
+    "recommendation_approved_count": {"const": 0},
+    "models": {"type": "array", "minItems": 8, "maxItems": 8, "items": {"$ref": "#/$defs/model"}}
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "availability": {"enum": ["rule_sorting", "ai_explanation_only", "unavailable"]},
+    "level": {"enum": ["low", "medium", "high", "unknown"]},
+    "model": {
+      "type": "object",
+      "required": ["model_id", "model_year", "trim_name", "usage_tags", "operation_pressure_level", "beginner_friendliness", "maintenance_convenience", "style_and_power_tags"],
+      "properties": {
+        "model_id": {"type": "string"}, "model_year": {"const": "current_version"}, "trim_name": {"type": "string"},
+        "usage_tags": {"type": "object"}, "operation_pressure_level": {"type": "object"}, "beginner_friendliness": {"type": "object"},
+        "maintenance_convenience": {"type": "object"}, "style_and_power_tags": {"type": "object"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

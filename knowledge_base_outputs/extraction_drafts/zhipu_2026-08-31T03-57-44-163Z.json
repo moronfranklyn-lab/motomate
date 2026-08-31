@@ -1,0 +1,84 @@
+{
+  "extraction_run_id": "zhipu_2026-08-31T03-57-44-163Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1400,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/voge_cu250_current_manual_pending.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 8055,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 425,
+    "prompt_tokens": 461,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 886
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "无极 CU250Ⅱ代",
+      "model_year": null,
+      "trim_name": "手动挡",
+      "sale_status": "current",
+      "official_msrp_cny": null,
+      "official_price_label": null,
+      "displacement_cc": 249.9,
+      "seat_height_mm": 710,
+      "curb_weight_kg": 178,
+      "max_power_kw": 20,
+      "fuel_tank_l": 15,
+      "abs": "标配",
+      "tcs": null,
+      "vehicle_type": "巡航",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.vogemotor.com/"
+        ],
+        "trim_name": [
+          "https://car.autohome.com.cn/motorbike/params/10210810"
+        ],
+        "sale_status": [
+          "https://www.vogemotor.com/"
+        ],
+        "displacement_cc": [
+          "https://car.autohome.com.cn/motorbike/params/10210810"
+        ],
+        "seat_height_mm": [
+          "https://car.autohome.com.cn/motorbike/params/10210810"
+        ],
+        "curb_weight_kg": [
+          "https://car.autohome.com.cn/motorbike/params/10210810"
+        ],
+        "max_power_kw": [
+          "https://car.autohome.com.cn/motorbike/params/10210810"
+        ],
+        "fuel_tank_l": [
+          "https://car.autohome.com.cn/motorbike/params/10210810"
+        ],
+        "abs": [
+          "https://car.autohome.com.cn/motorbike/params/10210810"
+        ],
+        "vehicle_type": [
+          "https://www.vogemotor.com/"
+        ]
+      },
+      "warnings": [
+        "TCS信息不明确，汽车之家显示为“-”，不能解释为明确无。",
+        "未取得可复现官网公开价。",
+        "摩托范车系页未完成所有参数独立一致核验。"
+      ]
+    }
+  }
+}

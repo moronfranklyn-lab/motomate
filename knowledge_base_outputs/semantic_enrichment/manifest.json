@@ -1,0 +1,34 @@
+{
+  "schema_version": "kb_semantic_manifest_v0.1",
+  "active_file": "knowledge_base_outputs/semantic_enrichment/first_batch_semantic_v0.1.json",
+  "schema_file": "knowledge_base_outputs/semantic_enrichment/first_batch_semantic_v0.1.schema.json",
+  "source_pool": "knowledge_base_outputs/eligible_pool/first_batch_v1.json",
+  "model_count": 8,
+  "usage_tags_rule_sorting_count": 8,
+  "operation_pressure_rule_sorting_count": 7,
+  "beginner_friendliness_rule_sorting_count": 7,
+  "style_rule_sorting_count": 8,
+  "power_band_rule_sorting_count": 7,
+  "maintenance_convenience_rule_sorting_count": 0,
+  "product_strategy_review": {
+    "status": "approved_for_low_weight_internal_testing",
+    "decision": "option_a",
+    "decided_by": "Ethan",
+    "decided_at": "2026-08-29",
+    "approved_fields": ["usage_tags", "known_operation_pressure_level", "beginner_friendliness", "style_tag", "known_power_band"],
+    "ranking_weight_policy": "low_weight",
+    "purpose": "first_round_user_testing_calibration",
+    "external_score_display_allowed": false,
+    "objective_fact_claim_allowed": false,
+    "safety_guarantee_allowed": false,
+    "field_by_field_fact_human_verification": false,
+    "recommendation_approval_granted": false
+  },
+  "neutral_missing_policy": {
+    "maintenance_convenience": "unknown_no_ranking_effect",
+    "wuyang_honda_pcx160_2025_standard": ["max_power_kw", "operation_pressure_level", "beginner_friendliness", "power_band"]
+  },
+  "recommendation_approved_count": 0,
+  "model_api_calls": 0,
+  "closed_at": "2026-08-29T10:00:00+08:00"
+}

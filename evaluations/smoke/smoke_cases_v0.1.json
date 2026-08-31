@@ -1,0 +1,26 @@
+{
+  "schema_version": "motomate_smoke_cases_v0.1",
+  "description": "20 条工程冒烟契约。implemented_by 指向真实执行模块；模块未实现时必须报告 blocked，不得按通过计算。",
+  "cases": [
+    {"case_id":"smoke_001","scenario":"beginner_recommendation","input":{"budget_cny":30000,"budget_type":"total_purchase_budget","usage":"commute","new_used_preference":"new","rider_experience":"beginner"},"expected":{"must_pass_checks":["candidate_pool_only","development_preview_only","semantic_score_hidden"]},"implemented_by":"rules_engine"},
+    {"case_id":"smoke_002","scenario":"bare_vehicle_budget","input":{"budget_cny":20000,"budget_type":"bare_vehicle_budget","vehicle_type":"踏板","new_used_preference":"new"},"expected":{"must_pass_checks":["candidate_price_lte_budget","candidate_pool_only"]},"implemented_by":"rules_engine"},
+    {"case_id":"smoke_003","scenario":"budget_type_missing","input":{"raw_text":"3 万够吗"},"expected":{"next_action":"ask_one_question","question_field":"budget_type"},"implemented_by":"budget_normalizer"},
+    {"case_id":"smoke_004","scenario":"usage_missing","input":{"budget_cny":20000,"budget_type":"bare_vehicle_budget","new_used_preference":"new"},"expected":{"next_action":"ask_one_question","question_field":"usage"},"implemented_by":"sufficiency_checker"},
+    {"case_id":"smoke_005","scenario":"new_used_preference_missing","input":{"budget_cny":20000,"budget_type":"bare_vehicle_budget","usage":"commute"},"expected":{"next_action":"ask_one_question","question_field":"new_used_preference","no_silent_default":true},"implemented_by":"sufficiency_checker"},
+    {"case_id":"smoke_006","scenario":"information_sufficient","input":{"budget_cny":20000,"budget_type":"bare_vehicle_budget","usage":"commute","new_used_preference":"new"},"expected":{"next_action":"recommend","extra_question_count":0},"implemented_by":"sufficiency_checker"},
+    {"case_id":"smoke_007","scenario":"single_question_per_turn","input":{},"expected":{"max_questions_in_turn":1},"implemented_by":"conversation_state"},
+    {"case_id":"smoke_008","scenario":"question_limit_reached","input":{"critical_question_count":3,"missing_fields":["usage"]},"expected":{"next_action":"partial_advice_only","specific_recommendation_allowed":false},"implemented_by":"conversation_state"},
+    {"case_id":"smoke_009","scenario":"vehicle_type_alias","input":{"budget_cny":23000,"vehicle_type":"太子"},"expected":{"candidate_count":1,"first_model_name":"450CL-C","first_trim_name":"标准版"},"implemented_by":"rules_engine"},
+    {"case_id":"smoke_010","scenario":"hard_budget_guard","input":{"budget_cny":13000},"expected":{"candidate_count":0,"status":"no_eligible_candidate"},"implemented_by":"rules_engine"},
+    {"case_id":"smoke_011","scenario":"production_requires_approval","input":{"budget_cny":30000,"vehicle_type":"踏板"},"expected":{"candidate_count":0,"recommendation_allowed":false,"status":"no_eligible_candidate"},"implemented_by":"rules_engine"},
+    {"case_id":"smoke_012","scenario":"no_exact_match","input":{"budget_cny":12000,"vehicle_type":"巡航"},"expected":{"formal_recommendation_allowed":false,"closest_candidates_separate":true,"condition_auto_relaxed":false},"implemented_by":"recommendation_pipeline"},
+    {"case_id":"smoke_013","scenario":"out_of_kb_scope","input":{"raw_text":"推荐 5 万元进口 ADV"},"expected":{"specific_recommendation_requires_external_verification":true,"principles_only_on_failure":true},"implemented_by":"external_candidate_verifier"},
+    {"case_id":"smoke_014","scenario":"stale_price","input":{"price_status":"stale","last_verified_at":"2026-08-01T00:00:00+08:00"},"expected":{"show_stale_value":true,"show_refresh_status":true,"model_memory_price_forbidden":true},"implemented_by":"price_resolver"},
+    {"case_id":"smoke_015","scenario":"same_scope_price_conflict","input":{"price_conflict_type":"true_same_scope_conflict","difference_ratio":0.12},"expected":{"first_choice_allowed":false,"show_as_price_check_candidate":true},"implemented_by":"price_resolver"},
+    {"case_id":"smoke_016","scenario":"candidate_pool_escape","input":{"draft_model_ids":["not_in_candidate_pool"]},"expected":{"validation_status":"fail","output_blocked":true},"implemented_by":"result_validator"},
+    {"case_id":"smoke_017","scenario":"used_text_complete","input":{"model":"示例车型","year":2024,"mileage_km":8000,"listing_price_cny":16000,"seller_description":"个人一手"},"expected":{"must_include":["extracted_fields","information_gaps","seller_questions","inspection_checklist","not_a_vehicle_inspection_disclaimer"]},"implemented_by":"used_text_risk_tool"},
+    {"case_id":"smoke_018","scenario":"used_text_incomplete","input":{"model":"示例车型","listing_price_cny":16000},"expected":{"missing_fields":["year","mileage_km","condition"],"fabricated_condition_forbidden":true},"implemented_by":"used_text_risk_tool"},
+    {"case_id":"smoke_019","scenario":"used_vehicle_diagnosis_boundary","input":{"raw_text":"帮我判断是不是事故泡水调表车"},"expected":{"diagnosis_refused":true,"offline_inspection_guidance":true},"implemented_by":"used_text_risk_tool"},
+    {"case_id":"smoke_020","scenario":"cost_limit","input":{"accumulated_model_cost_cny":50},"expected":{"mode":"basic","paid_model_calls_allowed":false,"rules_and_template_available":true},"implemented_by":"cost_guard"}
+  ]
+}

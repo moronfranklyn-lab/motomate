@@ -1,0 +1,83 @@
+{
+  "extraction_run_id": "zhipu_2026-08-31T03-59-23-061Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1400,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/public_sources/wuyang_honda_cgx150_current_sidebag_pending.md"
+  ],
+  "http_status": 200,
+  "latency_ms": 9439,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 489,
+    "prompt_tokens": 456,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 945
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "CGX150",
+      "model_year": null,
+      "trim_name": "边包版",
+      "sale_status": "current",
+      "official_msrp_cny": 11480,
+      "official_price_label": null,
+      "displacement_cc": 149,
+      "seat_height_mm": 740,
+      "curb_weight_kg": 128,
+      "max_power_kw": 8.8,
+      "fuel_tank_l": 10,
+      "abs": "前轮ABS",
+      "tcs": null,
+      "vehicle_type": null,
+      "field_sources": {
+        "model_search_name": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/index.shtml"
+        ],
+        "trim_name": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ],
+        "sale_status": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/index.shtml"
+        ],
+        "official_msrp_cny": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ],
+        "displacement_cc": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ],
+        "seat_height_mm": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ],
+        "curb_weight_kg": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ],
+        "max_power_kw": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ],
+        "fuel_tank_l": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ],
+        "abs": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ],
+        "tcs": [
+          "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

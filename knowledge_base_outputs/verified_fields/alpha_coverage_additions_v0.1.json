@@ -1,0 +1,32 @@
+{
+  "schema_version": "kb_alpha_additions_v0.1",
+  "batch_id": "alpha_coverage_2026-08-31",
+  "created_at": "2026-08-31T11:45:00+08:00",
+  "recommendation_approved_count": 0,
+  "models": [
+    {
+      "model_id":"haojue_tr300_current_urban","brand":"豪爵","manufacturer":"江门市大长江集团有限公司","model_name":"TR300","model_year":"current_version","trim_name":"都市版","sale_status":"current","vehicle_type":"巡航","official_public_price_cny":21980,"official_public_price_label":"官方建议零售价","qualified_platform_reference_price_cny":null,"budget_guard_price_cny":21980,"displacement_cc":298,"seat_height_mm":730,"curb_weight_kg":189,"max_power_kw":21.5,"fuel_tank_l":16,"abs":"博世双通道ABS","tcs":null,
+      "fact_verification_status":{"overall":"sufficient_for_rules","fields":{"sale_status":"official_verified","official_public_price_cny":"official_verified","trim_name":"official_verified","displacement_cc":"official_verified","seat_height_mm":"official_verified","curb_weight_kg":"official_verified","max_power_kw":"official_verified","fuel_tank_l":"official_verified","abs":"official_verified","tcs":"unverified_non_hard_null","vehicle_type":"official_verified"}},
+      "rule_pool_eligibility":{"status":"eligible","blockers":[],"rule_version":"kb_admission_v0.2","evaluated_at":"2026-08-31T11:45:00+08:00"},"recommendation_review_status":{"status":"codex_reviewed","review_notes":["Codex operational review completed; TCS remains null; recommendation approval not granted"],"reviewed_at":"2026-08-31T11:45:00+08:00"},
+      "source_urls":["https://www.haojue.com/TR300/","https://www.haojue.com/TR300/jiage.html","https://www.haojue.com/TR300/canshu.html","https://car.autohome.com.cn/motorbike/series/10002521"]
+    },
+    {
+      "model_id":"haojue_tr300_current_touring","brand":"豪爵","manufacturer":"江门市大长江集团有限公司","model_name":"TR300","model_year":"current_version","trim_name":"旅行版","sale_status":"current","vehicle_type":"巡航","official_public_price_cny":23280,"official_public_price_label":"官方建议零售价","qualified_platform_reference_price_cny":null,"budget_guard_price_cny":23280,"displacement_cc":298,"seat_height_mm":730,"curb_weight_kg":200,"max_power_kw":21.5,"fuel_tank_l":16,"abs":"博世双通道ABS","tcs":null,
+      "fact_verification_status":{"overall":"sufficient_for_rules","fields":{"sale_status":"official_verified","official_public_price_cny":"official_verified","trim_name":"official_verified","displacement_cc":"official_verified","seat_height_mm":"official_verified","curb_weight_kg":"official_verified","max_power_kw":"official_verified","fuel_tank_l":"official_verified","abs":"official_verified","tcs":"unverified_non_hard_null","vehicle_type":"official_verified"}},
+      "rule_pool_eligibility":{"status":"eligible","blockers":[],"rule_version":"kb_admission_v0.2","evaluated_at":"2026-08-31T11:45:00+08:00"},"recommendation_review_status":{"status":"codex_reviewed","review_notes":["Codex operational review completed; TCS remains null; recommendation approval not granted"],"reviewed_at":"2026-08-31T11:45:00+08:00"},
+      "source_urls":["https://www.haojue.com/TR300/","https://www.haojue.com/TR300/jiage.html","https://www.haojue.com/TR300/canshu.html","https://car.autohome.com.cn/motorbike/series/10002521"]
+    },
+    {
+      "model_id":"haojue_xcr300_current_standard","brand":"豪爵","manufacturer":"江门市大长江集团有限公司","model_name":"XCR300","model_year":"current_version","trim_name":"标准机械配置","appearance_options":["黑尾","银尾"],"sale_status":"current","vehicle_type":"街车","official_public_price_cny":24980,"official_public_price_label":"官方建议零售价","qualified_platform_reference_price_cny":null,"budget_guard_price_cny":24980,"displacement_cc":298,"seat_height_mm":785,"curb_weight_kg":179,"max_power_kw":21.5,"fuel_tank_l":16,"abs":"博世双通道ABS","tcs":null,
+      "fact_verification_status":{"overall":"sufficient_for_rules","fields":{"sale_status":"official_verified","official_public_price_cny":"official_verified","trim_name":"official_verified","displacement_cc":"official_verified","seat_height_mm":"official_verified","curb_weight_kg":"official_verified","max_power_kw":"official_verified","fuel_tank_l":"official_verified","abs":"official_verified","tcs":"unverified_non_hard_null","vehicle_type":"platform_observed_non_hard"}},
+      "rule_pool_eligibility":{"status":"eligible","blockers":[],"rule_version":"kb_admission_v0.2","evaluated_at":"2026-08-31T11:45:00+08:00"},"recommendation_review_status":{"status":"codex_reviewed","review_notes":["Black-tail and silver-tail are appearance options, not duplicate mechanical trims; TCS remains null; recommendation approval not granted"],"reviewed_at":"2026-08-31T11:45:00+08:00"},
+      "source_urls":["https://www.haojue.com/XCR300/","https://www.haojue.com/XCR300/jiage.html","https://www.haojue.com/XCR300/canshu.html","https://car.autohome.com.cn/motorbike/series/10002555"]
+    },
+    {
+      "model_id":"wuyang_honda_cb190ss_current_spoke","brand":"本田系合资","manufacturer":"五羊-本田摩托（广州）有限公司","model_name":"CB190SS","model_year":"current_version","legacy_year_observation":"2023","trim_name":"辐条轮版","sale_status":"current","vehicle_type":"复古","official_public_price_cny":14680,"official_public_price_label":"官网建议零售价","qualified_platform_reference_price_cny":null,"budget_guard_price_cny":14680,"displacement_cc":184.4,"seat_height_mm":null,"curb_weight_kg":145,"max_power_kw":12.4,"fuel_tank_l":15.3,"abs":null,"tcs":null,
+      "fact_verification_status":{"overall":"sufficient_for_rules","fields":{"sale_status":"official_verified","official_public_price_cny":"official_verified","trim_name":"official_verified","displacement_cc":"official_verified","seat_height_mm":"unverified_non_hard_null","curb_weight_kg":"official_verified","max_power_kw":"official_verified","fuel_tank_l":"official_verified","abs":"unverified_non_hard_null","tcs":"unverified_non_hard_null","vehicle_type":"official_supported_style"}},
+      "rule_pool_eligibility":{"status":"eligible","blockers":[],"rule_version":"kb_admission_v0.2","evaluated_at":"2026-08-31T11:45:00+08:00"},"recommendation_review_status":{"status":"codex_reviewed","review_notes":["Official spoke-wheel configuration uniquely cross-checked by platform; seat height, ABS and TCS remain null; recommendation approval not granted"],"reviewed_at":"2026-08-31T11:45:00+08:00"},
+      "source_urls":["https://www.wuyang-honda.com/home/cpzs/ryj/index.shtml","https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1352.shtml","https://car.autohome.com.cn/motorbike/params/83"]
+    }
+  ]
+}

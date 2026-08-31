@@ -1,0 +1,16 @@
+{
+  "schema_version": "mvp_candidate_registry_manifest_v0.1",
+  "registry_path": "knowledge_base_outputs/candidate_registry/mvp_candidates_v0.1.json",
+  "source_alpha_pool": "knowledge_base_outputs/eligible_pool/mvp_eligible_pool_v0.1.json",
+  "route_report": "knowledge_base_outputs/route_validation/mvp_candidate_glm47_batch_2026-08-31.json",
+  "public_evidence_directory": "knowledge_base_inputs/public_sources",
+  "candidate_count": 35,
+  "counts": {
+    "eligible": 17,
+    "blocked": 9,
+    "excluded": 6,
+    "ineligible": 3
+  },
+  "recommendation_approved_count": 0,
+  "deterministic_validator": "scripts/validate-mvp-candidate-registry.mjs"
+}

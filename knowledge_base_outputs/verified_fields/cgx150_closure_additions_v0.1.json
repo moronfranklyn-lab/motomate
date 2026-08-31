@@ -1,0 +1,182 @@
+{
+  "schema_version": "kb_alpha_additions_v0.1",
+  "batch_id": "cgx150_closure_2026-08-31",
+  "created_at": "2026-08-31T12:15:00+08:00",
+  "recommendation_approved_count": 0,
+  "models": [
+    {
+      "model_id": "wuyang_honda_cgx150_current_standard",
+      "brand": "本田系合资",
+      "manufacturer": "五羊-本田摩托（广州）有限公司",
+      "model_name": "CGX150",
+      "model_year": "current_version",
+      "legacy_year_observation": "2025",
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "vehicle_type": "复古",
+      "official_public_price_cny": 10080,
+      "official_public_price_label": "官网建议零售价",
+      "qualified_platform_reference_price_cny": null,
+      "platform_reference_price_cny": 10080,
+      "platform_reference_note": "汽车之家2025款同配置参考价，spec_id=10274005；因官网current_version未声明具体年份，不参与budget_guard计算",
+      "budget_guard_price_cny": 10080,
+      "displacement_cc": 149,
+      "seat_height_mm": 740,
+      "curb_weight_kg": 125,
+      "max_power_kw": 8.8,
+      "fuel_tank_l": 10,
+      "abs": "前轮ABS",
+      "tcs": null,
+      "fact_verification_status": {
+        "overall": "sufficient_for_rules",
+        "fields": {
+          "sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "trim_name": "official_verified",
+          "displacement_cc": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "max_power_kw": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "unverified_non_hard_null",
+          "vehicle_type": "official_supported_style"
+        }
+      },
+      "rule_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_admission_v0.2",
+        "evaluated_at": "2026-08-31T12:15:00+08:00"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official trim/price/spec evidence cross-checked against the matching 2025 Autohome trim; TCS remains null; recommendation approval not granted"
+        ],
+        "reviewed_at": "2026-08-31T12:15:00+08:00"
+      },
+      "source_urls": [
+        "https://www.wuyang-honda.com/home/cpzs/ryj/index.shtml",
+        "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml",
+        "https://car.autohome.com.cn/motorbike/series/10211222"
+      ]
+    },
+    {
+      "model_id": "wuyang_honda_cgx150_current_sidebag",
+      "brand": "本田系合资",
+      "manufacturer": "五羊-本田摩托（广州）有限公司",
+      "model_name": "CGX150",
+      "model_year": "current_version",
+      "legacy_year_observation": "2025",
+      "trim_name": "边包版",
+      "sale_status": "current",
+      "vehicle_type": "复古",
+      "official_public_price_cny": 11480,
+      "official_public_price_label": "官网建议零售价",
+      "qualified_platform_reference_price_cny": null,
+      "platform_reference_price_cny": 11480,
+      "platform_reference_note": "汽车之家2025款同配置参考价，spec_id=10274007；因官网current_version未声明具体年份，不参与budget_guard计算",
+      "budget_guard_price_cny": 11480,
+      "displacement_cc": 149,
+      "seat_height_mm": 740,
+      "curb_weight_kg": 128,
+      "max_power_kw": 8.8,
+      "fuel_tank_l": 10,
+      "abs": "前轮ABS",
+      "tcs": null,
+      "fact_verification_status": {
+        "overall": "sufficient_for_rules",
+        "fields": {
+          "sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "trim_name": "official_verified",
+          "displacement_cc": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "max_power_kw": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "unverified_non_hard_null",
+          "vehicle_type": "official_supported_style"
+        }
+      },
+      "rule_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_admission_v0.2",
+        "evaluated_at": "2026-08-31T12:15:00+08:00"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official trim/price/spec evidence cross-checked against the matching 2025 Autohome trim; TCS remains null; recommendation approval not granted"
+        ],
+        "reviewed_at": "2026-08-31T12:15:00+08:00"
+      },
+      "source_urls": [
+        "https://www.wuyang-honda.com/home/cpzs/ryj/index.shtml",
+        "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml",
+        "https://car.autohome.com.cn/motorbike/series/10211222"
+      ]
+    },
+    {
+      "model_id": "wuyang_honda_cgx150_current_special",
+      "brand": "本田系合资",
+      "manufacturer": "五羊-本田摩托（广州）有限公司",
+      "model_name": "CGX150",
+      "model_year": "current_version",
+      "legacy_year_observation": "2025",
+      "trim_name": "特别版",
+      "sale_status": "current",
+      "vehicle_type": "复古",
+      "official_public_price_cny": 11680,
+      "official_public_price_label": "官网建议零售价",
+      "qualified_platform_reference_price_cny": null,
+      "platform_reference_price_cny": 11680,
+      "platform_reference_note": "汽车之家2025款同配置参考价，spec_id=10274006；因官网current_version未声明具体年份，不参与budget_guard计算",
+      "budget_guard_price_cny": 11680,
+      "displacement_cc": 149,
+      "seat_height_mm": 740,
+      "curb_weight_kg": 126,
+      "max_power_kw": 8.8,
+      "fuel_tank_l": 10,
+      "abs": "前轮ABS",
+      "tcs": null,
+      "fact_verification_status": {
+        "overall": "sufficient_for_rules",
+        "fields": {
+          "sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "trim_name": "official_verified",
+          "displacement_cc": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "max_power_kw": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "unverified_non_hard_null",
+          "vehicle_type": "official_supported_style"
+        }
+      },
+      "rule_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_admission_v0.2",
+        "evaluated_at": "2026-08-31T12:15:00+08:00"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official trim/price/spec evidence cross-checked against the matching 2025 Autohome trim; TCS remains null; recommendation approval not granted"
+        ],
+        "reviewed_at": "2026-08-31T12:15:00+08:00"
+      },
+      "source_urls": [
+        "https://www.wuyang-honda.com/home/cpzs/ryj/index.shtml",
+        "https://www.wuyang-honda.com/home/cpzs/ryj/qsj/detail-1651.shtml",
+        "https://car.autohome.com.cn/motorbike/series/10211222"
+      ]
+    }
+  ]
+}

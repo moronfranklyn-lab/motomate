@@ -1,0 +1,31 @@
+{
+  "schema_version": "kb_alpha_coverage_audit_v0.1",
+  "batch_id": "alpha_coverage_2026-08-31",
+  "strategy": "coverage_first_option_a",
+  "audited_at": "2026-08-31",
+  "added_eligible_model_ids": [
+    "haojue_tr300_current_urban",
+    "haojue_tr300_current_touring",
+    "haojue_xcr300_current_standard",
+    "wuyang_honda_cb190ss_current_spoke"
+  ],
+  "blocked_candidates": [
+    {"model_ids":["voge_sr250gt_2026_play","voge_sr250gt_2026_pro"],"reason":"specific manufacturer/sales entity not uniquely bound; TCS platform conflict","resolved_old_blockers":["model_year normalized to current_version","official page display price accepted as official_public_price","trim binding established by official single-trim pages"]},
+    {"model_ids":["benda_greystone250_2026_manual","benda_greystone250_2026_cvt","qjmotor_sai250mini_2026_mini"],"reason":"official public price missing; most specs single-platform only; entity/config bindings incomplete"},
+    {"model_ids":["wuyang_honda_cb190r_standard_pending_year"],"reason":"official current standard trim cannot be mapped to platform 2023 sport trim parameters"},
+    {"model_ids":["wuyang_honda_cb190r_2023_gp"],"reason":"official current directory does not independently show GP trim"},
+    {"model_ids":["voge_cu250_current_manual","voge_cu250_current_automatic"],"reason":"official public price missing; entity binding and parameter evidence incomplete"},
+    {"model_ids":["voge_300ac_observed","voge_300ds_standard_observed","voge_300ds_luggage_observed"],"reason":"not found in current official catalog; platform state cannot replace official sale evidence"},
+    {"model_ids":["wuyang_honda_cb150s_mc_current"],"reason":"official public price missing"}
+  ],
+  "ineligible_candidates": [
+    {"model_ids":["zontes_350d_observed","zontes_350e_observed","zontes_350gk_observed"],"reason":"official store marks configurations delisted; 350E historical price also exceeds range"}
+  ],
+  "non_blocking_nulls_in_additions": [
+    {"model_ids":["haojue_tr300_current_urban","haojue_tr300_current_touring","haojue_xcr300_current_standard"],"fields":["tcs"],"handling":"unverified_non_hard_null"},
+    {"model_ids":["wuyang_honda_cb190ss_current_spoke"],"fields":["seat_height_mm","abs","tcs"],"handling":"unverified_non_hard_null"}
+  ],
+  "codex_review":{"status":"completed","reviewed_added_count":4,"human_fact_verification_claimed":false},
+  "recommendation_approved_count":0,
+  "model_api_usage":{"used":false,"calls":0,"tokens":0}
+}

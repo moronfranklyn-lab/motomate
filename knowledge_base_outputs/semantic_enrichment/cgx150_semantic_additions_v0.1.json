@@ -1,0 +1,265 @@
+{
+  "schema_version": "kb_semantic_additions_v0.1",
+  "created_at": "2026-08-31T12:15:00+08:00",
+  "recommendation_approved_count": 0,
+  "models": [
+    {
+      "model_id": "wuyang_honda_cgx150_current_standard",
+      "model_year": "current_version",
+      "trim_name": "标准版",
+      "usage_tags": {
+        "value": [
+          {
+            "tag": "urban_commute",
+            "intensity": "medium"
+          },
+          {
+            "tag": "weekend_leisure",
+            "intensity": "high"
+          }
+        ],
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "usage_by_vehicle_type",
+        "derivation_version": "v0.2",
+        "inputs": {
+          "vehicle_type": "复古"
+        },
+        "availability": "rule_sorting"
+      },
+      "operation_pressure_level": {
+        "value": "low",
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "measurable_operation_pressure",
+        "derivation_version": "v0.1",
+        "inputs": {
+          "max_power_kw": 8.8,
+          "curb_weight_kg": 125,
+          "seat_height_mm": 740
+        },
+        "component_points": {
+          "power": 0,
+          "weight": 0,
+          "seat_height": 0,
+          "total": 0
+        },
+        "unknown_components": [
+          "throttle_response",
+          "low_speed_handling",
+          "experience_requirement"
+        ],
+        "availability": "rule_sorting"
+      },
+      "beginner_friendliness": {
+        "value": "high",
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "beginner_safety_candidate",
+        "derivation_version": "v0.1",
+        "inputs": {
+          "operation_pressure": "low",
+          "abs": "前轮ABS",
+          "tcs": null
+        },
+        "limitations": [
+          "仅前轮ABS",
+          "TCS未核验",
+          "仅低权重内部测试，不构成安全保证"
+        ],
+        "availability": "rule_sorting"
+      },
+      "maintenance_convenience": {
+        "value": null,
+        "status": "unknown",
+        "missing_evidence": [
+          "service_network",
+          "parts_availability",
+          "maintenance_cost"
+        ],
+        "availability": "unavailable"
+      },
+      "style_and_power_tags": {
+        "style_tag": "retro",
+        "power_band": "entry",
+        "basis_type": "deterministic_derived",
+        "derivation_rule": "style_and_power",
+        "derivation_version": "v0.2",
+        "inputs": {
+          "vehicle_type": "复古",
+          "max_power_kw": 8.8
+        },
+        "availability": "rule_sorting"
+      }
+    },
+    {
+      "model_id": "wuyang_honda_cgx150_current_sidebag",
+      "model_year": "current_version",
+      "trim_name": "边包版",
+      "usage_tags": {
+        "value": [
+          {
+            "tag": "urban_commute",
+            "intensity": "medium"
+          },
+          {
+            "tag": "weekend_leisure",
+            "intensity": "high"
+          }
+        ],
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "usage_by_vehicle_type",
+        "derivation_version": "v0.2",
+        "inputs": {
+          "vehicle_type": "复古"
+        },
+        "availability": "rule_sorting"
+      },
+      "operation_pressure_level": {
+        "value": "low",
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "measurable_operation_pressure",
+        "derivation_version": "v0.1",
+        "inputs": {
+          "max_power_kw": 8.8,
+          "curb_weight_kg": 128,
+          "seat_height_mm": 740
+        },
+        "component_points": {
+          "power": 0,
+          "weight": 0,
+          "seat_height": 0,
+          "total": 0
+        },
+        "unknown_components": [
+          "throttle_response",
+          "low_speed_handling",
+          "experience_requirement"
+        ],
+        "availability": "rule_sorting"
+      },
+      "beginner_friendliness": {
+        "value": "high",
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "beginner_safety_candidate",
+        "derivation_version": "v0.1",
+        "inputs": {
+          "operation_pressure": "low",
+          "abs": "前轮ABS",
+          "tcs": null
+        },
+        "limitations": [
+          "仅前轮ABS",
+          "TCS未核验",
+          "仅低权重内部测试，不构成安全保证"
+        ],
+        "availability": "rule_sorting"
+      },
+      "maintenance_convenience": {
+        "value": null,
+        "status": "unknown",
+        "missing_evidence": [
+          "service_network",
+          "parts_availability",
+          "maintenance_cost"
+        ],
+        "availability": "unavailable"
+      },
+      "style_and_power_tags": {
+        "style_tag": "retro",
+        "power_band": "entry",
+        "basis_type": "deterministic_derived",
+        "derivation_rule": "style_and_power",
+        "derivation_version": "v0.2",
+        "inputs": {
+          "vehicle_type": "复古",
+          "max_power_kw": 8.8
+        },
+        "availability": "rule_sorting"
+      }
+    },
+    {
+      "model_id": "wuyang_honda_cgx150_current_special",
+      "model_year": "current_version",
+      "trim_name": "特别版",
+      "usage_tags": {
+        "value": [
+          {
+            "tag": "urban_commute",
+            "intensity": "medium"
+          },
+          {
+            "tag": "weekend_leisure",
+            "intensity": "high"
+          }
+        ],
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "usage_by_vehicle_type",
+        "derivation_version": "v0.2",
+        "inputs": {
+          "vehicle_type": "复古"
+        },
+        "availability": "rule_sorting"
+      },
+      "operation_pressure_level": {
+        "value": "low",
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "measurable_operation_pressure",
+        "derivation_version": "v0.1",
+        "inputs": {
+          "max_power_kw": 8.8,
+          "curb_weight_kg": 126,
+          "seat_height_mm": 740
+        },
+        "component_points": {
+          "power": 0,
+          "weight": 0,
+          "seat_height": 0,
+          "total": 0
+        },
+        "unknown_components": [
+          "throttle_response",
+          "low_speed_handling",
+          "experience_requirement"
+        ],
+        "availability": "rule_sorting"
+      },
+      "beginner_friendliness": {
+        "value": "high",
+        "basis_type": "product_hypothesis",
+        "derivation_rule": "beginner_safety_candidate",
+        "derivation_version": "v0.1",
+        "inputs": {
+          "operation_pressure": "low",
+          "abs": "前轮ABS",
+          "tcs": null
+        },
+        "limitations": [
+          "仅前轮ABS",
+          "TCS未核验",
+          "仅低权重内部测试，不构成安全保证"
+        ],
+        "availability": "rule_sorting"
+      },
+      "maintenance_convenience": {
+        "value": null,
+        "status": "unknown",
+        "missing_evidence": [
+          "service_network",
+          "parts_availability",
+          "maintenance_cost"
+        ],
+        "availability": "unavailable"
+      },
+      "style_and_power_tags": {
+        "style_tag": "retro",
+        "power_band": "entry",
+        "basis_type": "deterministic_derived",
+        "derivation_rule": "style_and_power",
+        "derivation_version": "v0.2",
+        "inputs": {
+          "vehicle_type": "复古",
+          "max_power_kw": 8.8
+        },
+        "availability": "rule_sorting"
+      }
+    }
+  ]
+}

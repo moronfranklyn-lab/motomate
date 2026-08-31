@@ -1,0 +1,34 @@
+{
+  "schema_version": "kb_semantic_exceptions_v0.1",
+  "batch": "first_batch_semantic_v0.1",
+  "blocking_exceptions": [],
+  "sorting_gaps": [
+    {
+      "model_ids": ["wuyang_honda_pcx160_2025_standard"],
+      "fields": ["operation_pressure_level", "beginner_friendliness", "style_and_power_tags.power_band"],
+      "reason": "max_power_kw lacks the required evidence and remains null",
+      "handling": "explicit unknown; exclude these dimensions for this model instead of imputing"
+    },
+    {
+      "model_ids": ["haojue_uhr150_2026_handrail", "haojue_uhr150_2026_airshock_topbox", "yamaha_nmax155_2026_tech_max", "yamaha_nmax155_2026_25th", "cfmoto_450nk_2026_standard", "cfmoto_450clc_2026_standard", "cfmoto_450clc_2025_amt", "wuyang_honda_pcx160_2025_standard"],
+      "fields": ["maintenance_convenience"],
+      "reason": "no verified service-network, parts-availability or maintenance-cost evidence",
+      "handling": "unknown for all records; do not award or deduct ranking points"
+    }
+  ],
+  "interpretation_limits": [
+    "operation pressure omits unverified throttle response, low-speed handling and experience requirements",
+    "beginner friendliness is a versioned product hypothesis, not a safety guarantee",
+    "usage strength is a vehicle-type product mapping and does not prove comfort, passenger or touring capability",
+    "no owner-reputation conclusion was created because the 1 professional review plus 3 independent owner discussions threshold was not met"
+  ],
+  "model_api_usage": {"used": false, "calls": 0, "tokens": 0, "reason": "existing evidence and deterministic rules were sufficient for the scoped draft"},
+  "product_strategy_decision": {
+    "decision": "option_a",
+    "status": "approved_for_low_weight_internal_testing",
+    "scope": ["usage_tags", "known_operation_pressure_level", "beginner_friendliness", "style_tag", "known_power_band"],
+    "not_fact_human_verification": true,
+    "not_recommendation_approval": true
+  },
+  "recommendation_approval_changed": false
+}
