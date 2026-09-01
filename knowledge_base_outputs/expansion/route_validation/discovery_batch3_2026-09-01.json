@@ -1,0 +1,629 @@
+{
+  "schema_version": "expansion_discovery_batch3_v0.1",
+  "captured_at": "2026-09-01T08:04:39.348Z",
+  "provider": "bocha_web_search",
+  "evidence_verified": false,
+  "candidate_use_allowed": false,
+  "runs": [
+    {
+      "candidate_key": "qjmotor_xiao600",
+      "query": "QJMOTOR 骁600 中国 官网 售价 参数 site:qjmotor.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "QJMOTOR 骁600 中国 官网 售价 参数 site:qjmotor.com",
+        "results": [
+          {
+            "title": "QJMOTOR骁600报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20992",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥29,999-33,999*实际售价以当地经销商价格为准口碑榜NO.14 QJMOTOR 长途摩旅 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的",
+            "published_at": "2026-02-01T20:33:03+08:00"
+          },
+          {
+            "title": "QJMOTOR骁650报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20150",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥41,999-45,999*实际售价以当地经销商价格为准口碑榜NO.24 QJMOTOR 长途摩旅 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的",
+            "published_at": "2026-02-01T20:33:09+08:00"
+          }
+        ],
+        "raw_result_count": 2,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "benda_chinchilla500",
+      "query": "奔达 金吉拉500 中国 官网 售价 参数 site:bendamotor.cn",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "奔达 金吉拉500 中国 官网 售价 参数 site:bendamotor.cn",
+        "results": [
+          {
+            "title": "奔达金吉拉500报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/21484",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥23,980*实际售价以当地经销商价格为准人气榜NO.14口碑榜NO.7 奔达 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “",
+            "published_at": "2026-02-01T15:35:03+08:00"
+          },
+          {
+            "title": "奔达金吉拉450报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20567",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥26,900*实际售价以当地经销商价格为准人气榜NO.27口碑榜NO.10 奔达 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “",
+            "published_at": "2026-02-01T15:35:12+08:00"
+          }
+        ],
+        "raw_result_count": 2,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "honda_cb500sf",
+      "query": "本田 CB500SF 中国 官方 售价 参数",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "本田 CB500SF 中国 官方 售价 参数",
+        "results": [
+          {
+            "title": "42980元CB500SF如期而至,2026 Honda新品发布会现场实拍_腾讯新闻",
+            "url": "https://news.qq.com/rain/a/20260327A06WO200",
+            "site_name": "腾讯网",
+            "source_type": "unclassified_web_source",
+            "snippet": "这次本田中国又不讲武德,说好春暖花开的时候本田CB500SF和CBR500R FOUR上市,万万没想到还带着一家老小7款新车同步来袭,这让我好不容易思考了一个冬天的决定又开始动摇。这次的新车主要定位在",
+            "published_at": "2026-03-27T19:39:08+08:00"
+          },
+          {
+            "title": "本田CB500SF上市定价42980元四缸新势力搅动中排街车格局-有驾",
+            "url": "https://www.yoojia.com/article/9947286305014519258.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "它的心脏,是一台刚研发完成的502cc直列四缸水冷DOHC发动机——代号WH460MR。短冲程设计,缸径60mm、行程44.4mm,最大功率52.8kW(约72匹)在11000转爆发,最大扭矩47.1",
+            "published_at": "2026-05-04T01:00:00+08:00"
+          },
+          {
+            "title": "终于等到了!CB500SF售价42980!本田上海摩托发布会|七款新车齐发-有驾",
+            "url": "https://www.yoojia.com/article/9739221879971747210.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "CB500SF仅售E-Clutch版,售价42980元。 CB500SF延续CB400SF圆灯复古街车风格,融现代配置,搭载TFT仪表、电子油门、E-Clutch电子离合、倒置前减与多连杆后减,兼顾经",
+            "published_at": "2026-03-27T18:10:00+08:00"
+          },
+          {
+            "title": "HONDA CB500SF 亮相工信部,发动机参数真相大白!_摩托车论坛_手机汽车之家",
+            "url": "https://club.m.autohome.com.cn/bbs/thread/03cf7e74d80e549f/113134171-1.html",
+            "site_name": "汽车之家论坛",
+            "source_type": "platform_autohome",
+            "snippet": "在十月最新第400期工信部目录的申报名单中我们看到了本田之前在摩博会上发布的CB500 SUPER FOUR(以下简称:CB500SF)车型。当然随着申报大家此前关心的动力参数也终于真相大白,目前为止",
+            "published_at": "2025-10-09T23:04:33+08:00"
+          },
+          {
+            "title": "本田CB500落地,价格不明,明年春天上市;张雪500F发售,29980元_腾讯新闻",
+            "url": "https://news.qq.com/rain/a/20250919A06OZL00",
+            "site_name": "腾讯网",
+            "source_type": "unclassified_web_source",
+            "snippet": "本田CB500落地,价格不明,明年春天上市;张雪500F发售,29980元本田在重庆摩博会上公布了CB500SF,全球首发,不过没有发布售价,要等到明年春天。外观没有意外,跟之前预测的没有差别,没有了",
+            "published_at": "2025-09-19T17:09:39+08:00"
+          },
+          {
+            "title": "本田四缸CB500SF正式发售,标配电子离合售价42980元。",
+            "url": "https://m.58moto.com/news/12110337",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "本田CB500SF复古街车,外观方面早就曝光,经典的圆灯街车造型,复古经典与现代化精美融合,并未复刻老的CB款,也不至于像neo系列的那么现代,CB500SF没有双炮筒仪表和后双枪减震。本田CB500",
+            "published_at": "2026-03-28T23:57:16+08:00"
+          },
+          {
+            "title": "本田CB500SF正式发售,售价42,980元,四缸传奇焕发新生,中排市场格局随之改变。_易车",
+            "url": "https://news.yiche.com/hao/wenzhang/109654744/",
+            "site_name": "易车",
+            "source_type": "unclassified_web_source",
+            "snippet": "时间来到2026年,尽管国产四缸摩托车势头强劲,合资品牌的销量依然稳健。以本田CB500SF为例,许多人认为其价格较高、配置较低且没有VTEC技术,必然会在市场上受到张雪500F和其他国产四缸摩托车的",
+            "published_at": "2026-05-02T14:54:00+08:00"
+          },
+          {
+            "title": "4.3万元起,CB500SF、CBR500R FOUR国内上市,本田4缸中排新车来了",
+            "url": "https://m.58moto.com/news/12110470",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "3月27日本田春季发布会在上海如期举行,这次推出的新车有大家期待已久的4缸神车——CB500 Super Four,售价42980元;同平台跑车CBR 500R Four,售价44980元。CB500",
+            "published_at": "2026-03-28T23:57:12+08:00"
+          }
+        ],
+        "raw_result_count": 9,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "honda_cbr500r",
+      "query": "本田 CBR500R 中国 官方 售价 参数",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "本田 CBR500R 中国 官方 售价 参数",
+        "results": [
+          {
+            "title": "本田CBR500R(进口)报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/5316",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: 暂无报价*实际售价以当地经销商价格为准本田 竞速超跑 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T17:03:23+08:00"
+          },
+          {
+            "title": "2026款本田CBR500R FOUR发布上市,售价44980元,搭载直列四缸引擎!",
+            "url": "https://m.58moto.com/news/12248952",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "在2026年,本田带来了一款又一款让不少摩友期待的新车,今天小编要介绍的这台 CBR500R FOUR同样如此,官方定价44980元。这是本田专门为国内市场打造的中排量四缸仿赛,简单说就是:四缸声浪、",
+            "published_at": "2026-05-17T02:01:03+08:00"
+          },
+          {
+            "title": "42980元CB500SF如期而至,2026 Honda新品发布会现场实拍_腾讯新闻",
+            "url": "https://news.qq.com/rain/a/20260327A06WO200",
+            "site_name": "腾讯网",
+            "source_type": "unclassified_web_source",
+            "snippet": "这次本田中国又不讲武德,说好春暖花开的时候本田CB500SF和CBR500R FOUR上市,万万没想到还带着一家老小7款新车同步来袭,这让我好不容易思考了一个冬天的决定又开始动摇。这次的新车主要定位在",
+            "published_at": "2026-03-27T19:39:08+08:00"
+          },
+          {
+            "title": "cbr1000rr国内售价_新好教育网",
+            "url": "https://www.xhjyxxw.com/yaxwd/202509/3352208.html",
+            "site_name": "新中经知识网",
+            "source_type": "unclassified_web_source",
+            "snippet": "【cbr1000rr国内售价】本田CBR1000RR作为一款高性能街车,凭借其出色的操控性、动力表现和品牌口碑,在国内摩托车市场中备受关注。近年来,随着市场竞争的加剧和消费者需求的变化,CBR1000",
+            "published_at": "2025-09-12T14:31:17+08:00"
+          }
+        ],
+        "raw_result_count": 6,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "yamaha_mt07",
+      "query": "雅马哈 MT-07 中国 官网 售价 参数 site:yamaha-motor.com.cn",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "雅马哈 MT-07 中国 官网 售价 参数 site:yamaha-motor.com.cn",
+        "results": [
+          {
+            "title": "雅马哈MT-09报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/5648",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥139,800*实际售价以当地经销商价格为准人气榜NO.19雅马哈 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T15:26:22+08:00"
+          },
+          {
+            "title": "雅马哈MT-07报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/5082",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "皖H雅马哈 2016款 MT-07 Moto Cage 'Night Fluo'2016年10月上牌/25000公里/梅州市¥34,800",
+            "published_at": "2026-02-01T15:26:17+08:00"
+          },
+          {
+            "title": "6!98万起雅马哈MT-07太猛了这价位国产车还怎么混-有驾",
+            "url": "https://www.yoojia.com/article/10555540136209713296.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "这台车的核心,是那台689cc CP2并列双缸水冷发动机。参数不算那种一眼炸裂型,最大功率54kW,峰值扭矩67Nm。可摩托这东西,真不是光看纸面数字。很多车看参数像猛兽,骑上去像没睡醒;MT-07不",
+            "published_at": "2026-04-09T21:17:00+08:00"
+          }
+        ],
+        "raw_result_count": 4,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "cfmoto_450mt",
+      "query": "春风 450MT 官网 售价 参数 site:cfmoto.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "春风 450MT 官网 售价 参数 site:cfmoto.com",
+        "results": [
+          {
+            "title": "春风450MT报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20989",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥30,580-32,580*实际售价以当地经销商价格为准人气榜NO.6口碑榜NO.5 春风 长途摩旅 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享",
+            "published_at": "2026-02-01T15:08:29+08:00"
+          },
+          {
+            "title": "春风650MT报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/4340",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: 暂无报价*实际售价以当地经销商价格为准春风 长途摩旅 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T18:38:32+08:00"
+          },
+          {
+            "title": "春风450MT[春风动力旗下摩托车型号]-新浪汽车",
+            "url": "https://k.sina.com.cn/article_7857201856_1d45362c001902hoca.html",
+            "site_name": "新浪网",
+            "source_type": "unclassified_web_source",
+            "snippet": "14春风450MT是春风动力旗下的一款摩托车型。[1]2023年在米兰举行的EICMA展会上展示 了450MT。春风450MT基于CF449cc平台打造, 搭载了现代 449.5cc DOHC 液冷并",
+            "published_at": "2026-02-20T00:19:32+08:00"
+          }
+        ],
+        "raw_result_count": 4,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "cfmoto_800nk",
+      "query": "春风 800NK 官网 售价 参数 site:cfmoto.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "春风 800NK 官网 售价 参数 site:cfmoto.com",
+        "results": [
+          {
+            "title": "春风800NK报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20308",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥42,580*实际售价以当地经销商价格为准人气榜NO.2口碑榜NO.2 春风 竞速超跑 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更",
+            "published_at": "2026-02-01T15:04:44+08:00"
+          },
+          {
+            "title": "春风650NK报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/5294",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: 暂无报价*实际售价以当地经销商价格为准春风 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T18:38:24+08:00"
+          }
+        ],
+        "raw_result_count": 2,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "cfmoto_800mtx",
+      "query": "春风 800MT-X 官网 售价 参数 site:cfmoto.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "春风 800MT-X 官网 售价 参数 site:cfmoto.com",
+        "results": [
+          {
+            "title": "春风800MT-X报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/21035",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥53,680*实际售价以当地经销商价格为准人气榜NO.18口碑榜NO.17 春风 长途摩旅 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点",
+            "published_at": "2026-02-01T15:32:33+08:00"
+          },
+          {
+            "title": "春风800MT报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/18760",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥53,980*实际售价以当地经销商价格为准人气榜NO.14口碑榜NO.11 春风 长途摩旅 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点",
+            "published_at": "2026-02-01T15:11:02+08:00"
+          }
+        ],
+        "raw_result_count": 2,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "cfmoto_750srs",
+      "query": "春风 750SR-S 官网 售价 参数 site:cfmoto.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "failed",
+        "query": "春风 750SR-S 官网 售价 参数 site:cfmoto.com",
+        "results": [],
+        "evidence_verified": false,
+        "candidate_use_allowed": false,
+        "error_code": "bocha_http_429"
+      }
+    },
+    {
+      "candidate_key": "ninebot_e300p_mk2",
+      "query": "九号 E300P MK2 官方 官网 产品 售价 参数",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "九号 E300P MK2 官方 官网 产品 售价 参数",
+        "results": [
+          {
+            "title": "九号E300P MK2智能电摩钜惠-中关村在线",
+            "url": "https://m.zol.com.cn/article/10737732.html",
+            "site_name": "中关村在线",
+            "source_type": "unclassified_web_source",
+            "snippet": "九号智能电动摩托车E300P MK2震撼来袭,高性能骑行体验再升级!搭载强劲动力系统,加速迅猛响应灵敏,无论是城市通勤还是户外出行都能轻松应对。智能化配置支持手机互联、实时车况监测与远程控制,科技感十",
+            "published_at": "2025-11-03T00:00:00+08:00"
+          },
+          {
+            "title": "九号E300P MK2电动摩托预定开启-中关村在线",
+            "url": "https://m.zol.com.cn/article/11764364.html",
+            "site_name": "中关村在线",
+            "source_type": "unclassified_web_source",
+            "snippet": "九号智能电动摩托车E300P MK2高性能旗舰款现已开启预定,搭载强劲电机与长续航电池,支持智能互联、无感解锁及多种骑行模式,整车设计兼具科技感与运动美学,到门店可自由选择心仪颜色;京东平台活动售价2",
+            "published_at": "2026-05-06T08:31:37+08:00"
+          }
+        ],
+        "raw_result_count": 4,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "niu_rqi",
+      "query": "小牛 RQi 中国 官网 售价 参数 电动摩托车 site:niu.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "小牛 RQi 中国 官网 售价 参数 电动摩托车 site:niu.com",
+        "results": [
+          {
+            "title": "小牛NQi报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/19636",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥8,999*实际售价以当地经销商价格为准小牛 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T20:54:14+08:00"
+          },
+          {
+            "title": "小牛NQi GT 动力版_小牛NQi GT 动力版报价、参数、图片、怎么样_太平洋产品报价",
+            "url": "https://g.pconline.com.cn/product/electrombile/niu/1489747.html",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "小牛NQi GT 动力版 全称:小牛 NQi GT 动力版 参考价¥15299 重点参数 参数解读 电动车类型: 电动摩托车 整车尺寸: 1820×730×1200mm 轴距: 1290mm 额定负载",
+            "published_at": "2026-04-02T14:07:56+08:00"
+          },
+          {
+            "title": "小牛RQi高性能纯电街跑_小牛RQi高性能纯电街跑报价、参数、图片、怎么样_太平洋产品报价",
+            "url": "https://g.pconline.com.cn/product/electrombile/niu/1821727.html",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "小牛RQi高性能纯电街跑 全称:小牛 RQi高性能纯电街跑 参考价¥3598 重点参数 参数解读 电动车类型: 电动摩托车 整车尺寸: 2080×835×1084mm 额定负载: 336(186+15",
+            "published_at": "2026-04-02T13:52:10+08:00"
+          },
+          {
+            "title": "小牛NQi GT报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/7223",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥18,199-21,299*实际售价以当地经销商价格为准小牛 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T20:54:16+08:00"
+          }
+        ],
+        "raw_result_count": 6,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "niu_nqi_gt",
+      "query": "小牛 NQi GT 动力版 中国 官网 售价 参数 site:niu.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "小牛 NQi GT 动力版 中国 官网 售价 参数 site:niu.com",
+        "results": [
+          {
+            "title": "小牛NQi GT 动力版_小牛NQi GT 动力版报价、参数、图片、怎么样_太平洋产品报价",
+            "url": "https://g.pconline.com.cn/product/electrombile/niu/1489747.html",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "小牛NQi GT 动力版 全称:小牛 NQi GT 动力版 参考价¥15299 重点参数 参数解读 电动车类型: 电动摩托车 整车尺寸: 1820×730×1200mm 轴距: 1290mm 额定负载",
+            "published_at": "2026-04-02T14:07:56+08:00"
+          },
+          {
+            "title": "小牛NQi GT报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/7223",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥18,199-21,299*实际售价以当地经销商价格为准小牛 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T20:54:16+08:00"
+          },
+          {
+            "title": "小牛NQi GT顶配版_小牛NQi GT顶配版报价、参数、图片、怎么样_太平洋产品报价",
+            "url": "https://g.pconline.com.cn/product/electrombile/niu/1489727.html",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "小牛NQi GT顶配版 全称:小牛 NQi GT顶配版 参考价¥20299 重点参数 参数解读 电动车类型: 电动摩托车 整车尺寸: 1820×730×1200mm 轴距: 1290mm 额定负载:",
+            "published_at": "2026-04-02T13:33:42+08:00"
+          },
+          {
+            "title": "小牛NQi报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/19636",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥8,999*实际售价以当地经销商价格为准小牛 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T20:54:14+08:00"
+          }
+        ],
+        "raw_result_count": 8,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "zeeho_ae6",
+      "query": "极核 AE6 Pro Max 官方 官网 售价 参数",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "极核 AE6 Pro Max 官方 官网 售价 参数",
+        "results": [
+          {
+            "title": "极核全新 AE6 系列电动摩托车上市,首发权益价 7999 元起 - IT之家",
+            "url": "https://www.ithome.com/0/993/598.htm",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "IT之家 8 月 24 日消息,极核官方今日宣布,全新 AE6 系列电动摩托车上市,包含 AE6 Pro、AE6 Max、AE6 Ultra(暂未开售)多个版本,首发权益价 7999 元起。极核 AE",
+            "published_at": "2026-08-24T16:06:31+08:00"
+          },
+          {
+            "title": "极核全新AE6系列电动摩托车上市,首发权益价7999元起_凤凰网",
+            "url": "https://tech.ifeng.com/c/8vqvcrwxudi",
+            "site_name": "凤凰网",
+            "source_type": "unclassified_web_source",
+            "snippet": "IT之家 8 月 24 日消息,极核官方今日宣布,全新 AE6 系列电动摩托车上市,包含 AE6 Pro、AE6 Max、AE6 Ultra(暂未开售)多个版本,首发权益价 7999 元起。AE6 P",
+            "published_at": "2026-08-24T16:08:13+08:00"
+          },
+          {
+            "title": "【网通社快报】极核全新AE6系列电动摩托车上市,首发权益价7999元起_凤凰网",
+            "url": "https://auto.ifeng.com/c/8vqyauCjnRR",
+            "site_name": "凤凰网汽车",
+            "source_type": "unclassified_web_source",
+            "snippet": "极核于8月24日宣布全新AE6系列电动摩托车上市,包含AE6Pro、AE6Max和AE6Ultra(暂未开售)多个版本,首发权益价7999元起。其中,AE6Pro首发权益价7999元,搭载72V32A",
+            "published_at": "2026-08-24T16:09:10+08:00"
+          },
+          {
+            "title": "7999元起 极核全新电动摩托车AE6系列上市 - 车质网",
+            "url": "https://m.12365auto.com/motorcycle/20260825/574350.shtml",
+            "site_name": "车质网",
+            "source_type": "unclassified_web_source",
+            "snippet": "春风旗下电动两轮车品牌极核正式推出全新AE6系列电动摩托车,该系列包含AE6 Pro、AE6 Max以及暂未开售的AE6 Ultra三个版本,首发权益价7999元-17999元。 AE6采用机甲都市设",
+            "published_at": "2026-08-25T08:54:00+08:00"
+          },
+          {
+            "title": "7999元起 极核全新电动摩托车AE6系列上市:顶配版能跑204km|ae|充电器|安培|电动摩托车|续航_手机网易网",
+            "url": "https://m.163.com/dy/article/L543V8TE0511CPVM.html",
+            "site_name": "网易",
+            "source_type": "unclassified_web_source",
+            "snippet": "快科技8月24日消息,春风旗下电动两轮车品牌极核今日正式推出全新AE6系列电动摩托车,该系列包含AE6 Pro、AE6 Max以及暂未开售的AE6 Ultra三个版本,首发权益价7999元-17999",
+            "published_at": "2026-08-24T16:53:23+08:00"
+          }
+        ],
+        "raw_result_count": 10,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "zeeho_ae4",
+      "query": "极核 AE4 2026 官方 官网 售价 参数",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "极核 AE4 2026 官方 官网 售价 参数",
+        "results": [
+          {
+            "title": "4799-8099元,2026款极核AE4,智能化、安全性拉满。",
+            "url": "https://m.58moto.com/news/12491474",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "2026款极核AE4是春风动力推出的一款主打“机甲战斗姿态”与运动操控的电动摩托车,凭借极具攻击性的设计语言与越级配置,是年轻电摩用户的热门选择。造型设计上,AE4采用弓弩式飞行机甲车身,结合战甲式家",
+            "published_at": "2026-08-23T02:23:15+08:00"
+          }
+        ],
+        "raw_result_count": 10,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "senlan_es5",
+      "query": "森蓝 ES5 官方 官网 售价 参数 电动摩托车",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "failed",
+        "query": "森蓝 ES5 官方 官网 售价 参数 电动摩托车",
+        "results": [],
+        "evidence_verified": false,
+        "candidate_use_allowed": false,
+        "error_code": "bocha_http_429"
+      }
+    },
+    {
+      "candidate_key": "senlan_ex1",
+      "query": "森蓝 EX1 官方 官网 售价 参数 电动摩托车",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "森蓝 EX1 官方 官网 售价 参数 电动摩托车",
+        "results": [
+          {
+            "title": "森蓝EX1报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/21300",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥5,699-8,399活动价: ¥4,999-7,699*实际售价以当地经销商价格为准森蓝 上班代步 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享",
+            "published_at": "2026-05-17T08:09:55+08:00"
+          },
+          {
+            "title": "森蓝EX1-Pro参数_森蓝EX1-Pro参数配置|详细参数_太平洋产品报价",
+            "url": "https://g.pconline.com.cn/product/electrombile/cineco/2833231_detail.html",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "电动车类型 电动轻便摩托车 整车尺寸 1790×700×1015mm 产品重量 61kg 轴距 1213mm 选购热点 智能功能 控制器 FOC矢量控制器 仪表 LCD液晶仪表 制动 前后碟刹 注:以",
+            "published_at": "2026-04-02T13:54:01+08:00"
+          },
+          {
+            "title": "宗申森蓝B1蓝调弯梁电摩上市:7699元起,58km实续航+复古实用设计-中关村在线",
+            "url": "https://m.zol.com.cn/article/11269267.html",
+            "site_name": "中关村在线",
+            "source_type": "unclassified_web_source",
+            "snippet": "宗申旗下电动两轮品牌森蓝,于2026年1月31日正式推出全新弯梁式电动轻便摩托车——B1蓝调。弯梁车型素以易操控、灵活敏捷、乘坐舒适、载物便利及使用成本低著称。即便转向电动化平台,其核心实用价值并未削",
+            "published_at": "2026-01-31T00:00:00+08:00"
+          },
+          {
+            "title": "宗申森蓝B1蓝调弯梁电摩上市:7699元起,58km实续航+复古实用设计_汽车新闻-中关村在线",
+            "url": "https://auto.zol.com.cn/1126/11269267.html",
+            "site_name": "中关村在线汽车频道",
+            "source_type": "unclassified_web_source",
+            "snippet": "宗申旗下电动两轮品牌森蓝,于2026年1月31日正式推出全新弯梁式电动轻便摩托车——B1蓝调。弯梁车型素以易操控、灵活敏捷、乘坐舒适、载物便利及使用成本低著称。即便转向电动化平台,其核心实用价值并未削",
+            "published_at": "2026-01-31T02:20:11+08:00"
+          }
+        ],
+        "raw_result_count": 8,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "candidate_key": "electric_registry",
+      "query": "E300P MK2 AE6 RQi 道路机动车辆生产企业及产品公告",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "no_relevant_results",
+        "query": "E300P MK2 AE6 RQi 道路机动车辆生产企业及产品公告",
+        "results": [],
+        "raw_result_count": 10,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    }
+  ]
+}

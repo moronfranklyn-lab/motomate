@@ -1,0 +1,280 @@
+{
+  "schema_version": "expansion_evidence_discovery_v0.1",
+  "captured_at": "2026-09-01T02:57:32.231Z",
+  "provider": "bocha_web_search",
+  "evidence_verified": false,
+  "candidate_use_allowed": false,
+  "runs": [
+    {
+      "model_id": "cfmoto_675srr_current_standard",
+      "query": "春风 675SR-R 中国 官网 当前 售价 参数 site:cfmoto.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "春风 675SR-R 中国 官网 当前 售价 参数 site:cfmoto.com",
+        "results": [
+          {
+            "title": "春风675SR-R报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20859",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥39,580*实际售价以当地经销商价格为准人气榜NO.6口碑榜NO.22 春风 竞速超跑 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击",
+            "published_at": "2026-02-01T15:05:03+08:00"
+          }
+        ],
+        "raw_result_count": 2,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "model_id": "cfmoto_675nk_current_standard",
+      "query": "春风 675NK 中国 官网 当前 售价 参数 site:cfmoto.com",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "春风 675NK 中国 官网 当前 售价 参数 site:cfmoto.com",
+        "results": [
+          {
+            "title": "春风675NK报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/21533",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥35,980*实际售价以当地经销商价格为准人气榜NO.4口碑榜NO.1 春风 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T15:04:50+08:00"
+          },
+          {
+            "title": "春风650NK报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/5294",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: 暂无报价*实际售价以当地经销商价格为准春风 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T18:38:24+08:00"
+          }
+        ],
+        "raw_result_count": 2,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "model_id": "qjmotor_xiao600_current_standard",
+      "query": "QJMOTOR 骁600 官网 当前 售价 参数",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "QJMOTOR 骁600 官网 当前 售价 参数",
+        "results": [
+          {
+            "title": "QJMOTOR赛600报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/18712",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥38,999活动价: ¥34,999*实际售价以当地经销商价格为准人气榜NO.3口碑榜NO.3 QJMOTOR 竞速超跑",
+            "published_at": "2026-02-01T15:05:01+08:00"
+          },
+          {
+            "title": "QJMOTOR骁600 Tour报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/18744",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "赣FQJMOTOR 2022款 赛250 勥版单摇臂2023年06月上牌/8000公里/赣州市¥3,000",
+            "published_at": "2026-08-22T22:04:04+08:00"
+          }
+        ],
+        "raw_result_count": 5,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "model_id": "ninebot_e300p_mk2_current_standard",
+      "query": "九号 E300P MK2 官网 售价 参数 电动摩托车",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "九号 E300P MK2 官网 售价 参数 电动摩托车",
+        "results": [
+          {
+            "title": "九号E300P MK2电动摩托车预定享优惠_电动车市场-中关村在线",
+            "url": "https://ebike.zol.com.cn/1201/12019818.html",
+            "site_name": "中关村在线电动车频道",
+            "source_type": "unclassified_web_source",
+            "snippet": "九号智能电动摩托车E300P MK2具备高性能,现开启预定,还能到门店选颜色。这款电动摩托车凭借出色性能,能为骑行带来卓越体验。在京东平台,此款车目前活动售价为28299元,下单可领取满25000减1",
+            "published_at": "2026-06-21T06:34:29+08:00"
+          },
+          {
+            "title": "九号E300P MK2电动摩托预定开启-中关村在线",
+            "url": "https://m.zol.com.cn/article/11764364.html",
+            "site_name": "中关村在线",
+            "source_type": "unclassified_web_source",
+            "snippet": "九号智能电动摩托车E300P MK2高性能旗舰款现已开启预定,搭载强劲电机与长续航电池,支持智能互联、无感解锁及多种骑行模式,整车设计兼具科技感与运动美学,到门店可自由选择心仪颜色;京东平台活动售价2",
+            "published_at": "2026-05-06T08:31:37+08:00"
+          },
+          {
+            "title": "九号E300P MK2智能电摩钜惠-中关村在线",
+            "url": "https://m.zol.com.cn/article/10737732.html",
+            "site_name": "中关村在线",
+            "source_type": "unclassified_web_source",
+            "snippet": "九号智能电动摩托车E300P MK2震撼来袭,高性能骑行体验再升级!搭载强劲动力系统,加速迅猛响应灵敏,无论是城市通勤还是户外出行都能轻松应对。智能化配置支持手机互联、实时车况监测与远程控制,科技感十",
+            "published_at": "2025-11-03T00:00:00+08:00"
+          }
+        ],
+        "raw_result_count": 4,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "model_id": "ninebot_e300p_mk2_current_standard",
+      "query": "九号 E300P MK2 工信部 道路机动车辆生产企业及产品公告",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "九号 E300P MK2 工信部 道路机动车辆生产企业及产品公告",
+        "results": [
+          {
+            "title": "工信部拟发布新一批道路机动车辆生产企业及产品公告|汽车|摩托车|供应商支付账期_网易订阅",
+            "url": "https://www.163.com/dy/article/KSH85H4N0534A4SC.html",
+            "site_name": "网易",
+            "source_type": "unclassified_web_source",
+            "snippet": "5月9日,工业和信息化部装备工业一司将《道路机动车辆生产企业及产品公告》(第407批)和《享受车船税减免优惠的节约能源 使用新能源汽车车型目录》(第八十六批)拟发布内容予以公示。本批申请新产品准入的车",
+            "published_at": "2026-05-09T22:55:34+08:00"
+          }
+        ],
+        "raw_result_count": 10,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "model_id": "zeeho_ae6_current_pro",
+      "query": "极核 AE6 Pro 官网 售价 参数 电动摩托车",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "failed",
+        "query": "极核 AE6 Pro 官网 售价 参数 电动摩托车",
+        "results": [],
+        "evidence_verified": false,
+        "candidate_use_allowed": false,
+        "error_code": "bocha_http_429"
+      }
+    },
+    {
+      "model_id": "zeeho_ae6_current_max",
+      "query": "极核 AE6 Max 官网 售价 参数 电动摩托车",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "极核 AE6 Max 官网 售价 参数 电动摩托车",
+        "results": [
+          {
+            "title": "极核全新 AE6 系列电动摩托车上市,首发权益价 7999 元起-有驾",
+            "url": "https://www.yoojia.com/article/9272982581221828314.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "极核 AE6 Ultra 可选专属雾黛蓝配色,搭载 76V100Ah 大锂电、GB 工况续航 204km;极速 110+km/h、额定功率 9 千瓦、最大功率 17.5 千瓦;控制器散热形式为 3 个",
+            "published_at": "2026-08-24T16:06:00+08:00"
+          },
+          {
+            "title": "7999元起 极核全新电动摩托车AE6系列上市 - 车质网",
+            "url": "https://m.12365auto.com/motorcycle/20260825/574350.shtml",
+            "site_name": "车质网",
+            "source_type": "unclassified_web_source",
+            "snippet": "春风旗下电动两轮车品牌极核正式推出全新AE6系列电动摩托车,该系列包含AE6 Pro、AE6 Max以及暂未开售的AE6 Ultra三个版本,首发权益价7999元-17999元。 AE6采用机甲都市设",
+            "published_at": "2026-08-25T08:54:00+08:00"
+          },
+          {
+            "title": "极核全新 AE6 系列电动摩托车上市,首发权益价 7999 元起 - IT之家",
+            "url": "https://www.ithome.com/0/993/598.htm",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "IT之家 8 月 24 日消息,极核官方今日宣布,全新 AE6 系列电动摩托车上市,包含 AE6 Pro、AE6 Max、AE6 Ultra(暂未开售)多个版本,首发权益价 7999 元起。极核 AE",
+            "published_at": "2026-08-24T16:06:31+08:00"
+          },
+          {
+            "title": "7999元起 极核全新电动摩托车AE6系列上市:顶配版能跑204km|ae|充电器|安培|电动摩托车|续航_手机网易网",
+            "url": "https://m.163.com/dy/article/L543V8TE0511CPVM.html",
+            "site_name": "网易",
+            "source_type": "unclassified_web_source",
+            "snippet": "快科技8月24日消息,春风旗下电动两轮车品牌极核今日正式推出全新AE6系列电动摩托车,该系列包含AE6 Pro、AE6 Max以及暂未开售的AE6 Ultra三个版本,首发权益价7999元-17999",
+            "published_at": "2026-08-24T16:53:23+08:00"
+          },
+          {
+            "title": "极核全新AE6系列电动摩托车上市,首发权益价7999元起_凤凰网",
+            "url": "https://tech.ifeng.com/c/8vqvcrwxudi",
+            "site_name": "凤凰网",
+            "source_type": "unclassified_web_source",
+            "snippet": "IT之家 8 月 24 日消息,极核官方今日宣布,全新 AE6 系列电动摩托车上市,包含 AE6 Pro、AE6 Max、AE6 Ultra(暂未开售)多个版本,首发权益价 7999 元起。AE6 P",
+            "published_at": "2026-08-24T16:08:13+08:00"
+          },
+          {
+            "title": "【网通社快报】极核全新AE6系列电动摩托车上市,首发权益价7999元起_凤凰网",
+            "url": "https://auto.ifeng.com/c/8vqyauCjnRR",
+            "site_name": "凤凰网汽车",
+            "source_type": "unclassified_web_source",
+            "snippet": "极核于8月24日宣布全新AE6系列电动摩托车上市,包含AE6Pro、AE6Max和AE6Ultra(暂未开售)多个版本,首发权益价7999元起。其中,AE6Pro首发权益价7999元,搭载72V32A",
+            "published_at": "2026-08-24T16:09:10+08:00"
+          },
+          {
+            "title": "7999元起 极核全新电动摩托车AE6系列上市:顶配版能跑204km_汽车频道_证券之星",
+            "url": "https://auto.stockstar.com/IG2026082400023085.shtml",
+            "site_name": "证券之星汽车频道",
+            "source_type": "unclassified_web_source",
+            "snippet": "(原标题:7999元起 极核全新电动摩托车AE6系列上市:顶配版能跑204km) 快科技8月24日消息,春风旗下电动两轮车品牌极核今日正式推出全新AE6系列电动摩托车,该系列包含AE6 Pro、AE6",
+            "published_at": "2026-08-24T16:50:38+08:00"
+          },
+          {
+            "title": "7999元起 极核全新电动摩托车AE6系列上市:顶配版能跑204km_凤凰网",
+            "url": "https://i.ifeng.com/c/8vqyauCjnSE",
+            "site_name": "凤凰网",
+            "source_type": "unclassified_web_source",
+            "snippet": "快科技8月24日消息,春风旗下电动两轮车品牌极核今日正式推出全新AE6系列电动摩托车,该系列包含AE6 Pro、AE6 Max以及暂未开售的AE6 Ultra三个版本,首发权益价7999元-17999",
+            "published_at": "2026-08-24T16:50:38+08:00"
+          },
+          {
+            "title": "7999元起 极核全新电动摩托车AE6系列上市:顶配版能跑204km",
+            "url": "https://c.m.163.com/news/a/L543V8TE0511CPVM.html",
+            "site_name": "网易新闻客户端",
+            "source_type": "unclassified_web_source",
+            "snippet": "快科技8月24日消息,春风旗下电动两轮车品牌极核今日正式推出全新AE6系列电动摩托车,该系列包含AE6 Pro、AE6 Max以及暂未开售的AE6 Ultra三个版本,首发权益价7999元-17999",
+            "published_at": "2026-08-24T16:53:00+08:00"
+          }
+        ],
+        "raw_result_count": 10,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    },
+    {
+      "model_id": "zeeho_ae6_current_pro",
+      "query": "极核 AE6 工信部 道路机动车辆生产企业及产品公告",
+      "result": {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "极核 AE6 工信部 道路机动车辆生产企业及产品公告",
+        "results": [
+          {
+            "title": "极核全新 AE6 系列电动摩托车上市,首发权益价 7999 元起-有驾",
+            "url": "https://www.yoojia.com/article/9272982581221828314.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "极核 AE6 Ultra 可选专属雾黛蓝配色,搭载 76V100Ah 大锂电、GB 工况续航 204km;极速 110+km/h、额定功率 9 千瓦、最大功率 17.5 千瓦;控制器散热形式为 3 个",
+            "published_at": "2026-08-24T16:06:00+08:00"
+          }
+        ],
+        "raw_result_count": 10,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    }
+  ]
+}

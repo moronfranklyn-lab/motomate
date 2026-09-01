@@ -1,0 +1,89 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T03-00-58-128Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_675srr_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 12490,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 520,
+    "prompt_tokens": 10010,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 10530
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "675SR-R",
+      "model_year": null,
+      "trim_name": "standard",
+      "sale_status": "current",
+      "official_msrp_cny": 39580,
+      "official_price_label": "￥39,580",
+      "displacement_cc": 675,
+      "seat_height_mm": 810,
+      "curb_weight_kg": 195,
+      "max_power_kw": 70,
+      "fuel_tank_l": 15,
+      "abs": "标配",
+      "tcs": "标配（两段可调可关闭）",
+      "vehicle_type": "摩托车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ],
+        "vehicle_type": [
+          "https://www.cfmoto.com/motorcycles/675SR-R"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "expansion_route_validation_v0.1",
+  "model": "glm-4.7",
+  "status": "completed",
+  "records": [
+    {
+      "model_id": "cfmoto_675srr_current_standard",
+      "http_status": 200,
+      "json_parseable": true,
+      "source_whitelist_passed": true,
+      "configuration_binding_passed": false,
+      "configuration_binding_action": "reject_model_trim_and_retain_deterministic_registry_trim",
+      "unsupported_completion_detected": false,
+      "usage": {"prompt_tokens": 10010, "completion_tokens": 520, "total_tokens": 10530},
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T03-00-58-128Z.json"
+    },
+    {
+      "model_id": "cfmoto_675nk_current_standard",
+      "http_status": 200,
+      "json_parseable": true,
+      "source_whitelist_passed": true,
+      "configuration_binding_passed": false,
+      "configuration_binding_action": "reject_model_trim_and_retain_deterministic_registry_trim",
+      "unsupported_completion_detected": false,
+      "usage": {"prompt_tokens": 9898, "completion_tokens": 504, "total_tokens": 10402},
+      "output_file": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T03-01-06-812Z.json"
+    }
+  ],
+  "totals": {"calls": 2, "passed_with_deterministic_trim_repair": 2, "retries": 0, "prompt_tokens": 19908, "completion_tokens": 1024, "total_tokens": 20932},
+  "trust_boundary": "model_outputs_remain_extraction_drafts_and_do_not_self_verify"
+}

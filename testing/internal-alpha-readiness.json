@@ -10,7 +10,8 @@
         "alpha_api_passed",
         "development_preview_disclaimer_visible",
         "feedback_review_available",
-        "no_original_consultation_text_persisted",
+        "short_term_memory_ttl_enforced",
+        "memory_management_available",
         "moderator_present"
       ]
     },

@@ -1,0 +1,90 @@
+{
+  "schema_version": "expansion_fetch_batch3_v0.1",
+  "generated_at": "2026-09-01T08:08:28.331Z",
+  "records": [
+    {
+      "model_id": "cfmoto_800nk_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_800nk_current_standard.json",
+      "text_length": 2718,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_800mtx_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_800mtx_current_standard.json",
+      "text_length": 4371,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_750srs_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_750srs_current_standard.json",
+      "text_length": 4147,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_700mt_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_700mt_current_standard.json",
+      "text_length": 3654,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_1000mtx_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_1000mtx_current_standard.json",
+      "text_length": 3739,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_800mtes_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_800mtes_current_standard.json",
+      "text_length": 3276,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_800mtexplore_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_800mtexplore_current_standard.json",
+      "text_length": 2740,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_500srvoom_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_500srvoom_current_standard.json",
+      "text_length": 3301,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_550clc_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_550clc_current_standard.json",
+      "text_length": 3000,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_500sr_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_500sr_current_standard.json",
+      "text_length": 2962,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_450srs_current_standard",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_450srs_current_standard.json",
+      "text_length": 2381,
+      "prompt_injection_detected": false
+    },
+    {
+      "model_id": "cfmoto_450sr_akrapovic_current",
+      "status": "fetched",
+      "output_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_450sr_akrapovic_current.json",
+      "text_length": 2192,
+      "prompt_injection_detected": false
+    }
+  ]
+}

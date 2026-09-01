@@ -1,0 +1,395 @@
+{
+  "schema_version": "expansion_candidate_discovery_v0.1",
+  "captured_at": "2026-09-01T02:47:10.642Z",
+  "provider": "bocha_web_search",
+  "evidence_verified": false,
+  "candidate_use_allowed": false,
+  "batches": {
+    "large_displacement": [
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 春风 450MT 675NK 675SR-R 官网 售价 参数",
+        "results": [
+          {
+            "title": "春风675SR-R报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20859",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥39,580*实际售价以当地经销商价格为准人气榜NO.6口碑榜NO.22 春风 竞速超跑 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击",
+            "published_at": "2026-02-01T15:05:03+08:00"
+          },
+          {
+            "title": "直降2000元,国产450cc巡航车价格击穿底线!春风新款来袭,但你的DreamBike今年可能等不到了-有驾",
+            "url": "https://www.yoojia.com/article/10112146116530608140.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "期待其他热门车型换代的車友,可能要稍微冷静一下。春风的老总明确说了,像675SR-R,675NK,700MT,800NK,800MT-X这些车,今年都不会有2026款。也就是说,你现在看到的是什么样,",
+            "published_at": "2026-03-07T16:54:00+08:00"
+          }
+        ],
+        "raw_result_count": 3,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      },
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 QJMOTOR 赛600 SRT550 官网 售价 参数",
+        "results": [
+          {
+            "title": "QJMOTOR骁600 Tour报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/18744",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "赣FQJMOTOR 2022款 赛250 勥版单摇臂2023年06月上牌/8000公里/赣州市¥3,000",
+            "published_at": "2026-08-22T22:04:04+08:00"
+          },
+          {
+            "title": "QJMOTOR骁600报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20992",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥29,999-33,999*实际售价以当地经销商价格为准口碑榜NO.14 QJMOTOR 长途摩旅 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的",
+            "published_at": "2026-02-01T20:33:03+08:00"
+          }
+        ],
+        "raw_result_count": 5,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      },
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 无极 DS525X CU525 官网 售价 参数",
+        "results": [
+          {
+            "title": "无极2026款CU530标准版发布上市,售价21980",
+            "url": "https://m.58moto.com/news/12210780",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "无极2026款CU530搭载KEL530全新动力平台低扭充沛、起步轻快,中高速平顺、巡航稳定,运转质感高级、震动抑制接近V缸,声浪浑厚有节奏,彻底解决老款CU525的共振问题。270°相位曲轴:模拟9",
+            "published_at": "2026-05-03T23:45:07+08:00"
+          },
+          {
+            "title": "无极CU525报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20489",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥21,980-27,188*实际售价以当地经销商价格为准人气榜NO.3口碑榜NO.1 无极 长途摩旅 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享",
+            "published_at": "2026-02-01T15:08:12+08:00"
+          },
+          {
+            "title": "¥26999元,无极全新DS500X发布,更新三处,价格大降4767元!|ds|mm|500x|无极(电影)_网易订阅",
+            "url": "https://www.163.com/dy/article/KJV3BGC40527K16K.html",
+            "site_name": "网易",
+            "source_type": "unclassified_web_source",
+            "snippet": "关注机车网,每晚9点17分JC君和你一起聊摩托2026年1月23日,无极发布全新DS500X,标准版售价26999元,要三箱加2500元,有三款配色,冰川蓝、雪峰白、曜石黑。这款车大家可以看作是DS5",
+            "published_at": "2026-01-23T11:39:32+08:00"
+          },
+          {
+            "title": "¥26999元,无极全新DS500X发布,更新三处,价格大降4767元!|500x|ds|mm|无极(电影)_手机网易网",
+            "url": "https://m.163.com/dy/article/KJV3BGC40527K16K.html",
+            "site_name": "网易",
+            "source_type": "unclassified_web_source",
+            "snippet": "关注机车网,每晚9点17分JC君和你一起聊摩托2026年1月23日,无极发布全新DS500X,标准版售价26999元,要三箱加2500元,有三款配色,冰川蓝、雪峰白、曜石黑。这款车大家可以看作是DS5",
+            "published_at": "2026-01-23T11:39:32+08:00"
+          },
+          {
+            "title": "¥26999元,无极全新DS500X发布,更新三处,价格大降4767元!",
+            "url": "https://c.m.163.com/news/a/KJV3BGC40527K16K.html",
+            "site_name": "网易新闻客户端",
+            "source_type": "unclassified_web_source",
+            "snippet": "关注机车网,每晚9点17分JC君和你一起聊摩托2026年1月23日,无极发布全新DS500X,标准版售价26999元,要三箱加2500元,有三款配色,冰川蓝、雪峰白、曜石黑。这款车大家可以看作是DS5",
+            "published_at": "2026-01-23T11:39:00+08:00"
+          },
+          {
+            "title": "高低搭配,无极DS500X开售_腾讯新闻",
+            "url": "https://news.qq.com/rain/a/20260124A048II00",
+            "site_name": "腾讯网",
+            "source_type": "unclassified_web_source",
+            "snippet": "无极DS500X宣布上市,标准版售价26999元,三箱加2500元。DS500X,可以认为是一款略微缩水的DS525X,虽然配置缩水,不过相对于价格,性价比是更高了。外观方面基本沿用了DS525X的外",
+            "published_at": "2026-01-24T15:28:14+08:00"
+          },
+          {
+            "title": "CU525升级版!无极CU530强势发布,动力与配置全方位进化!售价21980元起!-有驾",
+            "url": "https://www.yoojia.com/article/10220503416837542507.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "车架保持了老款的成熟架构,但悬挂系统也进行了优化,前41mm倒立式前叉和支持预载可调的后双枪减震让你在骑行中尽享舒适与操控。制动系统方面,全系标配双通道ABS,还配备可独立关闭的TCS牵引力控制系统—",
+            "published_at": "2026-04-26T07:25:00+08:00"
+          }
+        ],
+        "raw_result_count": 8,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      },
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 奔达 LFC700 金吉拉500 官网 售价 参数",
+        "results": [
+          {
+            "title": "奔达金吉拉500报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/21484",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥23,980*实际售价以当地经销商价格为准人气榜NO.14口碑榜NO.7 奔达 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “",
+            "published_at": "2026-02-01T15:35:03+08:00"
+          },
+          {
+            "title": "23980元+12期免息!奔达金吉拉500 官降3000元",
+            "url": "https://c.m.163.com/news/a/KCLSH71O0527K16K.html",
+            "site_name": "网易新闻客户端",
+            "source_type": "unclassified_web_source",
+            "snippet": "关注机车网,每晚9点17分JC君和你一起聊摩托奔达将金吉拉500的官方售价调整至23980元,刚上市为26980元,目前这个车系配色有6款,伏曦橙、玄武灰、弦武黑、墨晶黑、冰川银、远山青。同时提供的1",
+            "published_at": "2025-10-24T21:57:00+08:00"
+          },
+          {
+            "title": "奔达金吉拉450报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20567",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥26,900*实际售价以当地经销商价格为准人气榜NO.27口碑榜NO.10 奔达 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “",
+            "published_at": "2026-02-01T15:35:12+08:00"
+          }
+        ],
+        "raw_result_count": 3,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      },
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 本田 NX400 CBR500R 官网 售价 参数",
+        "results": [
+          {
+            "title": "本田发布CB500F、CBR500R、NX500及两款350踏板,售价29480元起!-有驾",
+            "url": "https://www.yoojia.com/article/9163262466137202601.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "车身尺寸方面,NX500长宽高分别为2148×830×1390mm,轴距1440mm,整备质量198kg(电控离合版201kg)。 轮胎规格为前110/80-ZR19、后160/60-ZR17,制动系",
+            "published_at": "2026-03-28T09:43:00+08:00"
+          },
+          {
+            "title": "本田2026款NX400正式发布,新增电子离合适配通勤骑行,未被NX500替代,将给中端摩托市场带来哪些改变?-有驾",
+            "url": "https://www.yoojia.com/article/9429819737448555798.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "品牌正式推出了2026款NX400摩托车,新车定于6月18日公开亮相,日本市场起售价为111万1000日元,折合人民币约4.7万元。这款经典的400cc级拉力车不仅顺利续款,还迎来了极具实用性的专属升",
+            "published_at": "2026-06-11T21:16:00+08:00"
+          },
+          {
+            "title": "42980元CB500SF如期而至,2026 Honda新品发布会现场实拍_腾讯新闻",
+            "url": "https://news.qq.com/rain/a/20260327A06WO200",
+            "site_name": "腾讯网",
+            "source_type": "unclassified_web_source",
+            "snippet": "这次本田中国又不讲武德,说好春暖花开的时候本田CB500SF和CBR500R FOUR上市,万万没想到还带着一家老小7款新车同步来袭,这让我好不容易思考了一个冬天的决定又开始动摇。这次的新车主要定位在",
+            "published_at": "2026-03-27T19:39:08+08:00"
+          },
+          {
+            "title": "哥们儿,钱包准备好了吗?2026本田CBR500R国产版即将登场",
+            "url": "https://m.58moto.com/news/12019379",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "哥们儿,钱包准备好了吗?2026本田CBR500R国产版即将登场,消息传了大半年了,这次是真的要来了!由五羊-本田负责生产组装,预计2026年3–4月上市/交车,今夏前铁定入市,另外CBR400R F",
+            "published_at": "2026-02-14T00:49:10+08:00"
+          }
+        ],
+        "raw_result_count": 5,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      },
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 雅马哈 MT-07 XMAX300 官网 售价 参数",
+        "results": [
+          {
+            "title": "2026款雅马哈XMAX300正式上市",
+            "url": "https://m.58moto.com/news/12469518",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "作为中大排量进口踏板的热门车型,2026款雅马哈XMAX300正式来到市场,官方指导价49800元,延续了这台长途摩旅踏板的标杆定位,最为雅马哈经典车型吸引众多踏板爱好者。外观相比老款没有变化,依旧是",
+            "published_at": "2026-08-13T17:29:52+08:00"
+          },
+          {
+            "title": "雅马哈2026款XMAX250入华上市摩友欲罢不能-有驾",
+            "url": "https://www.yoojia.com/article/9513454566113273415.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "在中国市场,雅马哈只引进了最贵的那款,XMAX 300作为全球车型进入国内。顺带说一下价格:2026款NMAX155的售价是27800元;XMAX的Tech Max版卖5.08万,Tech Max+版",
+            "published_at": "2026-06-10T01:38:00+08:00"
+          },
+          {
+            "title": "雅马哈MT-07报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/5082",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "皖H雅马哈 2016款 MT-07 Moto Cage 'Night Fluo'2016年10月上牌/25000公里/梅州市¥34,800",
+            "published_at": "2026-02-01T15:26:17+08:00"
+          },
+          {
+            "title": "看了都想买雅马哈2026款XMAX250正式上市-有驾",
+            "url": "https://www.yoojia.com/article/10196233578952626866.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "换个角度想国内的产品布局就能看懂:雅马哈在国内主推的是全球化的XMAX 300,同时还有在售的NMAX 155。以2026款为例,NMAX 155售价27800元,Tech Max版本5.08万元,T",
+            "published_at": "2026-06-12T03:04:00+08:00"
+          }
+        ],
+        "raw_result_count": 4,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    ],
+    "electric_motorcycle": [
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 九号 电动摩托车 E300P E200P 官网 售价 上牌 参数",
+        "results": [
+          {
+            "title": "九号E300P MK2电动摩托预定开启-中关村在线",
+            "url": "https://m.zol.com.cn/article/11764364.html",
+            "site_name": "中关村在线",
+            "source_type": "unclassified_web_source",
+            "snippet": "九号智能电动摩托车E300P MK2高性能旗舰款现已开启预定,搭载强劲电机与长续航电池,支持智能互联、无感解锁及多种骑行模式,整车设计兼具科技感与运动美学,到门店可自由选择心仪颜色;京东平台活动售价2",
+            "published_at": "2026-05-06T08:31:37+08:00"
+          },
+          {
+            "title": "九号E300P MK2智能电摩钜惠-中关村在线",
+            "url": "https://m.zol.com.cn/article/10737732.html",
+            "site_name": "中关村在线",
+            "source_type": "unclassified_web_source",
+            "snippet": "九号智能电动摩托车E300P MK2震撼来袭,高性能骑行体验再升级!搭载强劲动力系统,加速迅猛响应灵敏,无论是城市通勤还是户外出行都能轻松应对。智能化配置支持手机互联、实时车况监测与远程控制,科技感十",
+            "published_at": "2025-11-03T00:00:00+08:00"
+          }
+        ],
+        "raw_result_count": 5,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      },
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 小牛 电动摩托车 RQi 电摩 官网 售价 上牌 参数",
+        "results": [
+          {
+            "title": "小牛RQi高性能纯电街跑_小牛RQi高性能纯电街跑报价、参数、图片、怎么样_太平洋产品报价",
+            "url": "https://g.pconline.com.cn/product/electrombile/niu/1821727.html",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "小牛RQi高性能纯电街跑 全称:小牛 RQi高性能纯电街跑 参考价¥3598 重点参数 参数解读 电动车类型: 电动摩托车 整车尺寸: 2080×835×1084mm 额定负载: 336(186+15",
+            "published_at": "2026-04-02T13:52:10+08:00"
+          },
+          {
+            "title": "小牛NQi GT 动力版_小牛NQi GT 动力版报价、参数、图片、怎么样_太平洋产品报价",
+            "url": "https://g.pconline.com.cn/product/electrombile/niu/1489747.html",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "小牛NQi GT 动力版 全称:小牛 NQi GT 动力版 参考价¥15299 重点参数 参数解读 电动车类型: 电动摩托车 整车尺寸: 1820×730×1200mm 轴距: 1290mm 额定负载",
+            "published_at": "2026-04-02T14:07:56+08:00"
+          },
+          {
+            "title": "小牛NQi报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/19636",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥8,999*实际售价以当地经销商价格为准小牛 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-02-01T20:54:14+08:00"
+          },
+          {
+            "title": "【小牛电动NQi评测】小牛电动 NQi电动车评测_行情_新闻_导购-ZOL中关村在线",
+            "url": "https://detail.zol.com.cn/1373/1372448/article.shtml",
+            "site_name": "中关村在线产品库",
+            "source_type": "unclassified_web_source",
+            "snippet": "导购 小牛电动小牛G400动力版电动摩托车,长续航智能两轮新标杆,现直降500元,特价仅售4099元(原价4599元),性价比爆棚不容错过!整车采用全新符号...[详细] 导购 小牛电动推出全新小牛G",
+            "published_at": "2026-02-07T00:00:00+08:00"
+          }
+        ],
+        "raw_result_count": 9,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      },
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 极核 电动摩托车 AE8 AE4 C!TY SPORT 官网 售价 参数",
+        "results": [
+          {
+            "title": "极核全新 AE6 系列电动摩托车上市,首发权益价 7999 元起-有驾",
+            "url": "https://www.yoojia.com/article/9272982581221828314.html",
+            "site_name": "有驾",
+            "source_type": "content_platform_unverified",
+            "snippet": "极核 AE6 Ultra 可选专属雾黛蓝配色,搭载 76V100Ah 大锂电、GB 工况续航 204km;极速 110+km/h、额定功率 9 千瓦、最大功率 17.5 千瓦;控制器散热形式为 3 个",
+            "published_at": "2026-08-24T16:06:00+08:00"
+          },
+          {
+            "title": "4799-8099元,2026款极核AE4,智能化、安全性拉满。",
+            "url": "https://m.58moto.com/news/12491474",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "2026款极核AE4是春风动力推出的一款主打“机甲战斗姿态”与运动操控的电动摩托车,凭借极具攻击性的设计语言与越级配置,是年轻电摩用户的热门选择。造型设计上,AE4采用弓弩式飞行机甲车身,结合战甲式家",
+            "published_at": "2026-08-23T02:23:15+08:00"
+          },
+          {
+            "title": "【网通社快报】极核全新AE6系列电动摩托车上市,首发权益价7999元起_凤凰网",
+            "url": "https://auto.ifeng.com/c/8vqyauCjnRR",
+            "site_name": "凤凰网汽车",
+            "source_type": "unclassified_web_source",
+            "snippet": "极核于8月24日宣布全新AE6系列电动摩托车上市,包含AE6Pro、AE6Max和AE6Ultra(暂未开售)多个版本,首发权益价7999元起。其中,AE6Pro首发权益价7999元,搭载72V32A",
+            "published_at": "2026-08-24T16:09:10+08:00"
+          },
+          {
+            "title": "极核全新 AE6 系列电动摩托车上市,首发权益价 7999 元起 - IT之家",
+            "url": "https://www.ithome.com/0/993/598.htm",
+            "site_name": "IT之家",
+            "source_type": "unclassified_web_source",
+            "snippet": "IT之家 8 月 24 日消息,极核官方今日宣布,全新 AE6 系列电动摩托车上市,包含 AE6 Pro、AE6 Max、AE6 Ultra(暂未开售)多个版本,首发权益价 7999 元起。极核 AE",
+            "published_at": "2026-08-24T16:06:31+08:00"
+          }
+        ],
+        "raw_result_count": 10,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      },
+      {
+        "schema_version": "motomate_external_discovery_v0.1",
+        "provider": "bocha_web_search",
+        "status": "completed",
+        "query": "2026 中国 在售 森蓝 电动摩托车 ES5 官网 售价 上牌 参数",
+        "results": [
+          {
+            "title": "森蓝ES5报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/20082",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥17,999*实际售价以当地经销商价格为准森蓝 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击更多 “ ”",
+            "published_at": "2026-05-10T06:42:56+08:00"
+          },
+          {
+            "title": "森蓝EX1报价_图片参数_摩托范",
+            "url": "https://m.58moto.com/garage/detail/21300",
+            "site_name": "Windi CSS Nuxt集成文档",
+            "source_type": "platform_motuofan",
+            "snippet": "厂商指导价: ¥5,699-8,399活动价: ¥4,999-7,699*实际售价以当地经销商价格为准森蓝 上班代步 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享",
+            "published_at": "2026-05-17T08:09:55+08:00"
+          }
+        ],
+        "raw_result_count": 10,
+        "evidence_verified": false,
+        "candidate_use_allowed": false
+      }
+    ]
+  }
+}

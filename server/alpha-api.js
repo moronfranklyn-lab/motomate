@@ -3,14 +3,16 @@ const { randomUUID } = require("node:crypto");
 const { readFile } = require("node:fs/promises");
 const { join } = require("node:path");
 const { URL } = require("node:url");
-const knowledgeBase = require("../knowledge_base_outputs/eligible_pool/mvp_eligible_pool_v0.1.json");
-const semanticEnrichment = require("../knowledge_base_outputs/semantic_enrichment/mvp_semantic_v0.1.json");
+const { createKnowledgeRepository } = require("./knowledge-repository.js");
+const knowledgeBase = createKnowledgeRepository();
+const semanticEnrichment = { queryByModelIds: (modelIds) => knowledgeBase.querySemanticByModelIds(modelIds) };
 const candidateRegistry = require("../knowledge_base_outputs/candidate_registry/mvp_candidates_v0.1.json");
-const { runAlphaOrchestrator } = require("../alpha-orchestrator.js");
+const { routeIntent, runAlphaOrchestrator } = require("../alpha-orchestrator.js");
 const { buildMotorcycleDiscoveryQuery, buildTargetedDiscoveryQueries, createBochaSearchClient } = require("../bocha-search-client.js");
 const { extractCandidateDrafts } = require("../external-candidate-discovery.js");
 const { evaluateCostGuard } = require("../cost-guard.js");
 const { createSqliteStore } = require("./sqlite-store.js");
+const { createMemoryStore, DEVICE_ID_PATTERN, MEMORY_KEYS } = require("./memory-store.js");
 
 const MAX_BODY_BYTES = 64 * 1024;
 const SESSION_ID_PATTERN = /^[a-zA-Z0-9_-]{8,80}$/;
@@ -84,6 +86,41 @@ function cleanSessionId(value) {
     throw Object.assign(new Error("invalid_session_id"), { statusCode: 400 });
   }
   return value;
+}
+
+function cleanDeviceId(value, required = false) {
+  if (value === undefined || value === null || value === "") {
+    if (required) throw Object.assign(new Error("device_id_required"), { statusCode: 400 });
+    return null;
+  }
+  if (typeof value !== "string" || !DEVICE_ID_PATTERN.test(value)) throw Object.assign(new Error("invalid_device_id"), { statusCode: 400 });
+  return value;
+}
+
+function memoryContext(memoryStore, deviceId, sessionId) {
+  if (!memoryStore || !deviceId) return { recent_messages: [], long_term_preferences: [] };
+  const settings = memoryStore.ensureDevice(deviceId);
+  if (!settings.memory_enabled) return { recent_messages: [], long_term_preferences: [] };
+  return {
+    recent_messages: memoryStore.getRecentMessages(deviceId, sessionId).map(({ role, content }) => ({ role, content })),
+    rolling_summary: memoryStore.getRollingSummary(deviceId, sessionId)?.summary || null,
+    long_term_preferences: memoryStore.listMemories(deviceId, true).map(({ key, value, source_kind }) => ({ key, value, source_kind })),
+  };
+}
+
+function observeStablePreferences(memoryStore, deviceId, sessionId, requestInput = {}) {
+  if (!memoryStore || !deviceId || !requestInput.needs) return [];
+  const needs = requestInput.needs;
+  const observations = [
+    ["riding_experience", needs.riding_experience],
+    ["primary_usage", needs.usage],
+    ["new_used_preference", needs.new_used_preference],
+    ["preferred_vehicle_type", needs.vehicle_type],
+    ["excluded_vehicle_type", needs.excluded_vehicle_type],
+    ["budget_range_cny", Number.isFinite(needs.budget_cny) ? { max: needs.budget_cny, type: needs.budget_type || null } : null],
+  ].filter(([, value]) => value !== undefined && value !== null && value !== "");
+  const explicitLongTerm = typeof requestInput.raw_text === "string" && /以后(?:都|只|不)|长期(?:都|只|不|偏好)|一直(?:都|只|不)/.test(requestInput.raw_text);
+  return observations.map(([key, value]) => ({ key, ...memoryStore.observePreference(deviceId, sessionId, key, value, explicitLongTerm) }));
 }
 
 function mergeNeeds(previousNeeds = {}, input = {}) {
@@ -162,6 +199,58 @@ function summarizeExplanationGeneration(generation) {
   };
 }
 
+function summarizeConversationDecision(decision) {
+  if (!decision) return null;
+  return {
+    status: decision.status,
+    proposed_action: decision.proposed_action,
+    question_field: decision.question_field,
+    model: decision.model,
+    usage: decision.usage || null,
+    error_code: decision.error_code || null,
+  };
+}
+
+function summarizeOpenAnswer(answer) {
+  if (!answer) return null;
+  return { status: answer.status, model: answer.model, usage: answer.usage || null, error_code: answer.error_code || null };
+}
+
+async function applyOpenAnswer(result, input, context = {}) {
+  if (result.next_action !== "show_open_answer") return null;
+  const agent = context.openAnswerAgent;
+  const mode = result.result?.answer_mode;
+  if (!agent || typeof agent.answer !== "function" || !result.cost_guard?.paid_model_calls_allowed) return null;
+  const answer = await agent.answer({ rawText: input.raw_text, mode, memory_context: context.memoryContext || null });
+  result.open_answer = { ...summarizeOpenAnswer(answer), answer: answer.answer, redirect_suggestions: answer.redirect_suggestions || [] };
+  return answer;
+}
+
+async function applyConversationDecision(result, context = {}) {
+  const agent = context.conversationAgent;
+  if (!agent || typeof agent.decide !== "function" || result.intent !== "beginner_recommendation") return null;
+  const missingFields = result.sufficiency?.missing_fields || [];
+  const allowedActions = result.next_action === "ask_one_question"
+    ? ["ask_one_question"]
+    : result.next_action === "show_development_preview" ? ["recommend"] : [];
+  if (allowedActions.length === 0 || !result.cost_guard?.paid_model_calls_allowed) return null;
+  const decision = await agent.decide({
+    confirmed_needs: sanitizePersistedNeeds(result.needs || {}),
+    missing_fields: missingFields,
+    allowed_actions: allowedActions,
+    run_mode: result.run_mode,
+    memory_context: context.memoryContext || null,
+  });
+  result.conversation = {
+    ...summarizeConversationDecision(decision),
+    assistant_message: decision.status === "completed" ? decision.assistant_message : null,
+  };
+  if (decision.status === "completed" && decision.proposed_action === "ask_one_question") {
+    result.sufficiency.next_question_field = decision.question_field;
+  }
+  return decision;
+}
+
 async function applyNeedExtraction(input, context = {}) {
   const extractor = context.needExtractor;
   if (!extractor || typeof extractor.extract !== "function") {
@@ -213,7 +302,7 @@ async function applyExplanationGeneration(result, input, context = {}) {
   return generation;
 }
 
-function auditEvent(sessionId, result, needExtraction, explanationGeneration) {
+function auditEvent(sessionId, result, needExtraction, explanationGeneration, conversationDecision, openAnswer) {
   return {
     event_id: randomUUID(),
     session_id: sessionId,
@@ -231,6 +320,8 @@ function auditEvent(sessionId, result, needExtraction, explanationGeneration) {
     external_evidence_status: result.result?.external_evidence_run?.status ?? null,
     need_extraction: summarizeNeedExtraction(needExtraction),
     explanation_generation: summarizeExplanationGeneration(explanationGeneration),
+    conversation_decision: summarizeConversationDecision(conversationDecision),
+    open_answer: summarizeOpenAnswer(openAnswer),
   };
 }
 
@@ -278,6 +369,9 @@ function createAlphaApi(options = {}) {
   const externalEvidencePipeline = options.externalEvidencePipeline || null;
   const needExtractor = options.needExtractor || null;
   const explanationGenerator = options.explanationGenerator || null;
+  const conversationAgent = options.conversationAgent || null;
+  const openAnswerAgent = options.openAnswerAgent || null;
+  const memoryStore = options.memoryStore || createMemoryStore(options.memoryDatabasePath || join(__dirname, "..", "runtime", "motomate-memory.sqlite"));
 
   const server = http.createServer(async (request, response) => {
     const requestUrl = new URL(request.url, "http://127.0.0.1");
@@ -289,10 +383,53 @@ function createAlphaApi(options = {}) {
           service: "motomate-alpha-api",
           run_mode: "development_preview",
           pool_version: knowledgeBase.pool_version,
-          model_count: knowledgeBase.models.length,
+          model_count: knowledgeBase.model_count,
+          knowledge_storage_mode: knowledgeBase.storage_mode,
           need_extractor_enabled: Boolean(needExtractor),
           explanation_generator_enabled: Boolean(explanationGenerator),
+          conversation_agent_enabled: Boolean(conversationAgent),
+          open_answer_agent_enabled: Boolean(openAnswerAgent),
+          memory_enabled: Boolean(memoryStore),
         });
+        return;
+      }
+
+      if (request.method === "GET" && requestUrl.pathname === "/api/memory") {
+        const deviceId = cleanDeviceId(requestUrl.searchParams.get("device_id"), true);
+        memoryStore.ensureDevice(deviceId);
+        jsonResponse(response, 200, { device_id: deviceId, settings: memoryStore.getSettings(deviceId), memories: memoryStore.listMemories(deviceId) });
+        return;
+      }
+
+      if (request.method === "PATCH" && requestUrl.pathname === "/api/memory/settings") {
+        const body = await readJsonBody(request);
+        const deviceId = cleanDeviceId(body.device_id, true);
+        if (typeof body.memory_enabled !== "boolean") throw Object.assign(new Error("memory_enabled_required"), { statusCode: 400 });
+        jsonResponse(response, 200, { device_id: deviceId, settings: memoryStore.setEnabled(deviceId, body.memory_enabled) });
+        return;
+      }
+
+      const memoryItemMatch = requestUrl.pathname.match(/^\/api\/memory\/([^/]+)$/);
+      if ((request.method === "PUT" || request.method === "DELETE") && memoryItemMatch) {
+        const key = decodeURIComponent(memoryItemMatch[1]);
+        if (!MEMORY_KEYS.has(key)) throw Object.assign(new Error("memory_key_not_allowed"), { statusCode: 400 });
+        const body = await readJsonBody(request);
+        const deviceId = cleanDeviceId(body.device_id, true);
+        if (request.method === "PUT") {
+          const memory = memoryStore.upsertMemory(deviceId, key, body.value, "user_edited", 1);
+          jsonResponse(response, 200, { device_id: deviceId, memory });
+        } else {
+          memoryStore.deleteMemory(deviceId, key);
+          jsonResponse(response, 200, { device_id: deviceId, deleted: key });
+        }
+        return;
+      }
+
+      if (request.method === "DELETE" && requestUrl.pathname === "/api/memory") {
+        const body = await readJsonBody(request);
+        const deviceId = cleanDeviceId(body.device_id, true);
+        memoryStore.clearMemory(deviceId);
+        jsonResponse(response, 200, { device_id: deviceId, cleared: true });
         return;
       }
 
@@ -304,6 +441,9 @@ function createAlphaApi(options = {}) {
       if (request.method === "POST" && requestUrl.pathname === "/api/alpha/run") {
         const body = await readJsonBody(request);
         const sessionId = cleanSessionId(body.session_id);
+        const deviceId = cleanDeviceId(body.device_id);
+        const currentMemoryContext = memoryContext(memoryStore, deviceId, sessionId);
+        if (deviceId && typeof body.input?.raw_text === "string") memoryStore.appendMessage(deviceId, sessionId, "user", body.input.raw_text);
         const existing = store.getSession(sessionId) || {
           needs: {},
           critical_question_count: 0,
@@ -311,11 +451,15 @@ function createAlphaApi(options = {}) {
           recommendation_versions: [],
         };
         const mergedInput = { ...(body.input || {}), needs: mergeNeeds(existing.needs, body.input || {}) };
-        const needExtractionRun = await applyNeedExtraction(mergedInput, {
-          needExtractor,
-          accumulatedModelCostCny: state.accumulated_model_cost_cny,
-          estimatedNextCallCostCny: body.estimated_next_call_cost_cny || 0,
-        });
+        const preliminaryIntent = routeIntent(mergedInput);
+        const openIntent = preliminaryIntent === "motorcycle_general" || preliminaryIntent === "general_brief_redirect";
+        const needExtractionRun = openIntent
+          ? { input: mergedInput, extraction: null }
+          : await applyNeedExtraction(mergedInput, {
+            needExtractor,
+            accumulatedModelCostCny: state.accumulated_model_cost_cny,
+            estimatedNextCallCostCny: body.estimated_next_call_cost_cny || 0,
+          });
         const input = needExtractionRun.input;
         const result = runAlphaOrchestrator({
           input,
@@ -324,6 +468,8 @@ function createAlphaApi(options = {}) {
           conversation_state: { critical_question_count: existing.critical_question_count },
         }, dependencies);
         result.need_extraction = summarizeNeedExtraction(needExtractionRun.extraction);
+        const openAnswer = await applyOpenAnswer(result, input, { openAnswerAgent, memoryContext: currentMemoryContext });
+        const conversationDecision = await applyConversationDecision(result, { conversationAgent, memoryContext: currentMemoryContext });
         if (result.result?.candidate_coverage?.external_search_required && externalSearchClient) {
           const searchRequest = result.result.candidate_coverage.search_request;
           const query = buildMotorcycleDiscoveryQuery(searchRequest);
@@ -361,7 +507,7 @@ function createAlphaApi(options = {}) {
         const nextQuestionCount = result.sufficiency?.next_action === "ask_one_question"
           ? existing.critical_question_count + 1
           : existing.critical_question_count;
-        const event = auditEvent(sessionId, result, needExtractionRun.extraction, explanationGeneration);
+        const event = auditEvent(sessionId, result, needExtractionRun.extraction, explanationGeneration, conversationDecision, openAnswer);
         const recommendationVersion = createRecommendationVersion(sessionId, result.needs || input.needs, result);
         if (recommendationVersion) recommendationVersion.version_number = existing.recommendation_versions.length + 1;
         if (result.needs) result.needs = sanitizePersistedNeeds(result.needs);
@@ -370,8 +516,14 @@ function createAlphaApi(options = {}) {
           critical_question_count: nextQuestionCount,
         };
         store.saveRun(sessionId, nextSession, event, recommendationVersion);
+        if (deviceId) {
+          observeStablePreferences(memoryStore, deviceId, sessionId, body.input || {});
+          const assistantText = result.open_answer?.answer || result.conversation?.assistant_message || null;
+          if (assistantText) memoryStore.appendMessage(deviceId, sessionId, "assistant", assistantText);
+        }
         jsonResponse(response, 200, {
           session_id: sessionId,
+          device_id: deviceId,
           recommendation_version: recommendationVersion,
           result,
         });
@@ -457,7 +609,7 @@ function createAlphaApi(options = {}) {
     }
   });
 
-  return { server, state, store };
+  return { memoryStore, server, state, store };
 }
 
 if (require.main === module) {
@@ -467,6 +619,8 @@ if (require.main === module) {
   const { createDeepSeekClient } = require("../deepseek-client.js");
   const { createNeedExtractor } = require("../need-extractor.js");
   const { createExplanationGenerator } = require("../explanation-generator.js");
+  const { createConversationAgent } = require("../conversation-agent.js");
+  const { createOpenAnswerAgent } = require("../open-answer-agent.js");
   const { extractAlphaNeeds } = require("../alpha-orchestrator.js");
   loadLocalEnv(join(__dirname, ".."));
   const port = Number(process.env.MOTOMATE_PORT || 4173);
@@ -489,10 +643,16 @@ if (require.main === module) {
   const explanationGenerator = process.env.MOTOMATE_EXPLANATION_GENERATOR_ENABLED === "true" && deepSeekClient
     ? createExplanationGenerator({ client: deepSeekClient })
     : null;
-  const { server } = createAlphaApi({ externalSearchClient, externalEvidencePipeline, needExtractor, explanationGenerator });
+  const conversationAgent = process.env.MOTOMATE_CONVERSATION_AGENT_ENABLED === "true" && deepSeekClient
+    ? createConversationAgent({ client: deepSeekClient })
+    : null;
+  const openAnswerAgent = process.env.MOTOMATE_OPEN_ANSWER_ENABLED === "true" && deepSeekClient
+    ? createOpenAnswerAgent({ client: deepSeekClient })
+    : null;
+  const { server } = createAlphaApi({ externalSearchClient, externalEvidencePipeline, needExtractor, explanationGenerator, conversationAgent, openAnswerAgent });
   server.listen(port, "127.0.0.1", () => {
     console.log(`MotoMate Alpha API: http://127.0.0.1:${port}`);
   });
 }
 
-module.exports = { applyExplanationGeneration, applyNeedExtraction, createAlphaApi, createRuntimeState, enforceExternalBudget, sanitizePersistedNeeds, selectEvidenceCandidate, summarizeExplanationGeneration, summarizeNeedExtraction };
+module.exports = { applyConversationDecision, applyExplanationGeneration, applyNeedExtraction, applyOpenAnswer, createAlphaApi, createRuntimeState, enforceExternalBudget, memoryContext, observeStablePreferences, sanitizePersistedNeeds, selectEvidenceCandidate, summarizeConversationDecision, summarizeExplanationGeneration, summarizeNeedExtraction, summarizeOpenAnswer };

@@ -8,11 +8,20 @@
 
   function routeIntent(input = {}) {
     if (input.intent) return input.intent;
+    const needs = input.needs || {};
     const text = typeof input.raw_text === "string" ? input.raw_text : "";
+    const hasNeeds = ["budget_cny", "budget_wan", "budget_type", "usage", "new_used_preference", "vehicle_type"].some((field) => needs[field] !== undefined);
+    if (!text.trim()) return "beginner_recommendation";
     if (input.listing_price_cny || /二手车源|事故|泡水|调表/.test(text)) return "used_text_risk";
     if (/多少钱|价格|售价|优惠/.test(text)) return "price_query";
-    if (/维修|改装|骑行教学|故障诊断/.test(text)) return "out_of_scope";
-    return "beginner_recommendation";
+    if (/什么|作用|区别|为什么|有必要|有什么用|怎么理解/.test(text)
+      && /摩托|机车|骑行|驾照|护具|头盔|排量|座高|车重|ABS|TCS|保养|维修|改装|故障/i.test(text)) return "motorcycle_general";
+    if (/没骑过|不会骑|零基础|第一次骑|新手.*怎么办|怎么学骑/.test(text)) return "motorcycle_general";
+    if (/买|选车|推荐|预算|裸车|落地|通勤|代步|新车|二手|踏板|街车|巡航|仿赛|复古|ADV|拉力|对比.*车|\d+(?:\.\d+)?\s*[万wW]|\d{4,6}\s*元/i.test(text)) return "beginner_recommendation";
+    if (/摩托|机车|骑行|驾照|护具|头盔|排量|座高|车重|ABS|TCS|保养|维修|改装|故障/i.test(text)) return "motorcycle_general";
+    if (/你好|嗨|谢谢|多谢|再见|心情/.test(text)) return "general_brief_redirect";
+    if (hasNeeds) return "beginner_recommendation";
+    return "general_brief_redirect";
   }
 
   function extractAlphaNeeds(input = {}) {
@@ -30,7 +39,7 @@
       else if (/新车/.test(text)) needs.new_used_preference = "new";
     }
     if (!needs.vehicle_type) {
-      for (const type of ["踏板", "街车", "巡航", "太子"]) {
+      for (const type of ["踏板", "街车", "巡航", "太子", "跑车", "拉力", "ADV"]) {
         if (text.includes(type)) {
           needs.vehicle_type = type;
           break;
@@ -56,8 +65,8 @@
       cost_guard: cost,
     };
 
-    if (intent === "out_of_scope") {
-      return { ...base, status: "redirected", next_action: "return_to_purchase_decision", result: null };
+    if (intent === "motorcycle_general" || intent === "general_brief_redirect") {
+      return { ...base, status: "completed", next_action: "show_open_answer", result: { answer_mode: intent } };
     }
     if (intent === "used_text_risk") {
       return { ...base, status: "completed", next_action: "show_used_text_guidance", result: usedApi.analyzeUsedListing(input) };

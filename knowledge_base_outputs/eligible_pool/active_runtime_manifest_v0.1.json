@@ -1,0 +1,10 @@
+{
+  "schema_version": "kb_active_runtime_manifest_v0.1",
+  "active_pool_file": "knowledge_base_outputs/eligible_pool/active_runtime_pool_v0.1.json",
+  "pool_version": "active_runtime_pool_v0.1",
+  "model_count": 30,
+  "mvp_count": 17,
+  "expansion_count": 13,
+  "recommendation_approved_count": 0,
+  "validator": "scripts/validate-active-runtime-knowledge.mjs"
+}

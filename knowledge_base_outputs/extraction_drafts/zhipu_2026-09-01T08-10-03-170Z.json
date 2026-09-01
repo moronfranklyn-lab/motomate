@@ -1,0 +1,86 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-10-03-170Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_1000mtx_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 9278,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 459,
+    "prompt_tokens": 4065,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 4524
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "1000MT-X",
+      "model_year": null,
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "official_msrp_cny": 59680,
+      "official_price_label": "¥59,680",
+      "displacement_cc": 946.2,
+      "seat_height_mm": 830,
+      "curb_weight_kg": 219,
+      "max_power_kw": 83,
+      "fuel_tank_l": 22.5,
+      "abs": "直线+弯道ABS，博世",
+      "tcs": "3段可调全功能TC，博世",
+      "vehicle_type": null,
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/1000mt-x"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

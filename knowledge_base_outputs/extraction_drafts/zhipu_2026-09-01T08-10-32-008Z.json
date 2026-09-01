@@ -1,0 +1,86 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-10-32-008Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_800mtexplore_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 15607,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 510,
+    "prompt_tokens": 4004,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 4514
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "800MT探险版",
+      "model_year": null,
+      "trim_name": "Explore",
+      "sale_status": "current",
+      "official_msrp_cny": 53980,
+      "official_price_label": "¥53,980",
+      "displacement_cc": 799,
+      "seat_height_mm": 825,
+      "curb_weight_kg": 231,
+      "max_power_kw": 70,
+      "fuel_tank_l": 19,
+      "abs": "博世 直线+弯道ABS",
+      "tcs": "博世 全功能TC（直线TC、弯道TC、DTC、WC）",
+      "vehicle_type": null,
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/800mt-explore"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

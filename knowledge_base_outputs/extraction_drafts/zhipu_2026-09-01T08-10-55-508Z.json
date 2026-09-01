@@ -1,0 +1,86 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-10-55-508Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_550clc_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 12063,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 424,
+    "prompt_tokens": 3658,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 4082
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "550CL-C",
+      "model_year": null,
+      "trim_name": null,
+      "sale_status": "current",
+      "official_msrp_cny": 25880,
+      "official_price_label": "￥25,880",
+      "displacement_cc": 526,
+      "seat_height_mm": 710,
+      "curb_weight_kg": 195,
+      "max_power_kw": 39,
+      "fuel_tank_l": 14,
+      "abs": "标配",
+      "tcs": "标配",
+      "vehicle_type": "摩托车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ],
+        "vehicle_type": [
+          "https://www.cfmoto.com/motorcycles/550cl-c"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

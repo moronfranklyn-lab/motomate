@@ -1,0 +1,86 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-09-36-078Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_800mtx_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 10765,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 485,
+    "prompt_tokens": 5086,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 5571
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "800MT-X",
+      "model_year": null,
+      "trim_name": "标准版",
+      "sale_status": "current",
+      "official_msrp_cny": 53680,
+      "official_price_label": "¥53,680",
+      "displacement_cc": 799,
+      "seat_height_mm": 830,
+      "curb_weight_kg": 214,
+      "max_power_kw": 70,
+      "fuel_tank_l": 22.5,
+      "abs": "博世 直线+弯道ABS",
+      "tcs": "博世 电子TC",
+      "vehicle_type": null,
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/800MT-X"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

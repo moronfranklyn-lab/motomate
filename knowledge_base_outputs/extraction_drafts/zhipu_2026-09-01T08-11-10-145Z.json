@@ -1,0 +1,89 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-11-10-145Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_500sr_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 14548,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 498,
+    "prompt_tokens": 3651,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 4149
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "500SR",
+      "model_year": null,
+      "trim_name": "Standard",
+      "sale_status": "current",
+      "official_msrp_cny": 28980,
+      "official_price_label": "￥28,980",
+      "displacement_cc": 500,
+      "seat_height_mm": 805,
+      "curb_weight_kg": 187,
+      "max_power_kw": 58,
+      "fuel_tank_l": 15.5,
+      "abs": "标配(大陆/后轮可关)",
+      "tcs": "标配(2段/可关)",
+      "vehicle_type": "摩托车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ],
+        "vehicle_type": [
+          "https://www.cfmoto.com/motorcycles/500sr"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

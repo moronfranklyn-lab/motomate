@@ -1,11 +1,13 @@
 const state = {
   mode: null,
   sessionId: `alpha_${crypto.randomUUID().replaceAll("-", "")}`,
+  deviceId: getOrCreateDeviceId(),
   needs: {},
   busy: false,
   recommendationVersion: null,
-  needsConfirmed: false,
-  pendingPrompt: null,
+  lastPrompt: null,
+  recommendations: [],
+  activeCandidateIndex: 0,
 };
 
 const form = document.querySelector("#advisorForm");
@@ -37,9 +39,31 @@ const advisorView = document.querySelector("#advisorView");
 const welcomePanel = document.querySelector("#welcomePanel");
 const nextActions = document.querySelector("#nextActions");
 const chatScroll = document.querySelector("#chatScroll");
+const composerWrap = document.querySelector(".composer-wrap");
+const mobileReviewButton = document.querySelector("#mobileReviewButton");
+const mobileMemoryButton = document.querySelector("#mobileMemoryButton");
+const mobileResetButton = document.querySelector("#mobileResetButton");
+const sidebarToast = document.querySelector("#sidebarToast");
+const homeComposerSlot = document.querySelector("#homeComposerSlot");
+const memoryBand = document.querySelector("#memoryBand");
+const memoryEnabled = document.querySelector("#memoryEnabled");
+const memoryStatus = document.querySelector("#memoryStatus");
+const memoryList = document.querySelector("#memoryList");
+const clearMemoryButton = document.querySelector("#clearMemory");
 
 const modeValues = { new: "new", both: "either", used: "used" };
 const modeLabels = { new: "新车优先", both: "新车/二手都看", used: "只看二手" };
+const hintExamples = [
+  "上下班来回 20 公里，新手第一辆车怎么选？",
+  "UHR150 和 PCX160 我有点纠结，差别在哪？",
+  "卖家说个人一手、跑了 8000 公里，这辆二手车靠谱吗？",
+  "预算还没完全想好，平时主要在市区骑。",
+];
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+let hintTimer = null;
+let hintExampleIndex = 0;
+let hintCharacterIndex = 0;
+let hintDeleting = false;
 
 document.querySelectorAll(".quick-prompts button").forEach((button) => {
   button.addEventListener("click", () => {
@@ -55,22 +79,34 @@ input.addEventListener("keydown", (event) => {
   }
 });
 
+input.addEventListener("focus", () => stopHintAnimation(true));
+input.addEventListener("input", () => {
+  stopHintAnimation(true);
+  resizeComposer();
+});
+input.addEventListener("paste", () => stopHintAnimation(true));
+input.addEventListener("blur", () => {
+  if (!input.value && document.body.classList.contains("is-home")) scheduleHintAnimation(900);
+});
+window.addEventListener("resize", syncComposerInset);
+window.visualViewport?.addEventListener("resize", syncComposerInset);
+reducedMotionQuery.addEventListener?.("change", resetHintAnimation);
+
 document.querySelectorAll(".nav-item").forEach((button) => {
   button.addEventListener("click", () => {
-    document.querySelectorAll(".nav-item").forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    const view = button.dataset.view;
-    if (view === "review") {
-      advisorView.hidden = true;
-      loadFeedbackReview();
-      reviewBand.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (button.dataset.planned) {
+      showSidebarToast(`${button.dataset.planned}功能规划中`);
       return;
     }
-    reviewBand.hidden = true;
-    advisorView.hidden = false;
-    input.focus();
+    switchView(button.dataset.view);
   });
 });
+
+mobileReviewButton.addEventListener("click", () => switchView(advisorView.hidden ? "advisor" : "review"));
+mobileMemoryButton.addEventListener("click", () => switchView(memoryBand.hidden ? "memory" : "advisor"));
+mobileResetButton.addEventListener("click", resetSession);
+memoryEnabled.addEventListener("change", updateMemorySetting);
+clearMemoryButton.addEventListener("click", clearAllMemory);
 
 refreshReview.addEventListener("click", loadFeedbackReview);
 
@@ -88,9 +124,14 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const text = input.value.trim();
   if (!text || state.busy) return;
+  stopHintAnimation();
+  input.placeholder = "继续追问、比较或修改条件…";
+  document.body.classList.remove("is-home");
+  advisorView.appendChild(composerWrap);
   welcomePanel.hidden = true;
   addMessage(text, "user");
   input.value = "";
+  resizeComposer();
   await submitPrompt(text);
 });
 
@@ -99,14 +140,12 @@ async function submitPrompt(text) {
   state.needs = { ...state.needs, ...parsed };
   if (parsed.new_used_preference) state.mode = preferenceMode(parsed.new_used_preference);
   updateSummary();
-  if (!state.needsConfirmed && hasMinimumNeeds(state.needs)) {
-    showNeedConfirmation(text);
-    return;
-  }
   await runPrompt(text, parsed);
 }
 
 async function runPrompt(text, parsed = parseNeed(text)) {
+  state.lastPrompt = text;
+  document.querySelectorAll(".state-panel.transient").forEach((panel) => panel.remove());
   setBusy(true);
   try {
     const response = await fetch("/api/alpha/run", {
@@ -114,20 +153,23 @@ async function runPrompt(text, parsed = parseNeed(text)) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         session_id: state.sessionId,
+        device_id: state.deviceId,
         input: buildApiInput(text, parsed),
       }),
     });
     if (!response.ok) throw new Error(`api_${response.status}`);
     const payload = await response.json();
-    state.recommendationVersion = payload.recommendation_version;
+    state.recommendationVersion = payload.recommendation_version || null;
     renderResult(payload.result);
-    statusPill.textContent = "内部 Alpha 已连接";
+    setConnectionStatus("已连接", "ready");
   } catch {
-    addMessage("本地 Alpha 服务暂时不可用，请确认服务已启动后重试。", "assistant", true);
-    statusPill.textContent = "服务未连接";
-    setActions(["确认本地服务状态", "保留当前需求", "稍后重试"]);
+    renderStatePanel("连接失败", "当前需求仍保留在本页，但这次请求没有生成结果。请检查本地服务后重试。", "error", [
+      { label: "重试本次请求", action: () => runPrompt(state.lastPrompt) },
+    ]);
+    setConnectionStatus("未连接", "error");
   } finally {
     setBusy(false);
+    if (!memoryBand.hidden) loadMemory();
   }
 }
 
@@ -158,6 +200,8 @@ function parseNeed(text) {
   if (/踏板/.test(text)) needs.vehicle_type = "踏板";
   else if (/街车/.test(text)) needs.vehicle_type = "街车";
   else if (/巡航|太子/.test(text)) needs.vehicle_type = "巡航";
+  else if (/仿赛|跑车|公路赛/.test(text)) needs.vehicle_type = "跑车";
+  else if (/复古/.test(text)) needs.vehicle_type = "复古";
   return needs;
 }
 
@@ -176,9 +220,13 @@ function parseUsedFields(text) {
 }
 
 function renderResult(run) {
+  if (run.cost_guard && !run.cost_guard.paid_model_calls_allowed) {
+    renderStatePanel("已进入基础模式", "付费模型调用已暂停，当前仅保留规则筛选和固定模板解释。候选边界与正式批准状态不变。", "warning");
+  }
   if (run.next_action === "ask_one_question") {
-    addMessage(run.sufficiency.next_question, "assistant", true);
-    setActions(questionOptions(run.sufficiency.next_question_field), true);
+    if (run.needs) syncNeedsFromRun(run.needs);
+    addMessage(conversationAssistantMessage(run, "ask_one_question") || contextualQuestion(run), "assistant");
+    setActions(questionOptions(conversationQuestionField(run)), true);
     resultMeta.textContent = "等待补充信息";
     return;
   }
@@ -196,51 +244,21 @@ function renderResult(run) {
     resultMeta.textContent = "价格状态已返回";
     return;
   }
+  if (run.next_action === "show_open_answer") {
+    renderOpenAnswer(run.open_answer);
+    return;
+  }
   if (run.next_action === "show_development_preview") {
+    if (run.needs) syncNeedsFromRun(run.needs);
+    addMessage(conversationAssistantMessage(run, "recommend") || recommendationTransition(run.needs), "assistant");
     renderRecommendationRun(run.result);
     return;
   }
   addMessage("当前请求不在内部 Alpha 的购车决策范围内。", "assistant", true);
 }
 
-function hasMinimumNeeds(needs) {
-  return Number.isFinite(needs.budget_cny) && Boolean(needs.budget_type) && Boolean(needs.usage) && Boolean(needs.new_used_preference);
-}
-
 function preferenceMode(value) {
   return ({ new: "new", either: "both", used: "used" })[value] || null;
-}
-
-function showNeedConfirmation(text) {
-  document.querySelector("#needConfirmation")?.remove();
-  state.pendingPrompt = text;
-  const section = document.createElement("section");
-  section.id = "needConfirmation";
-  section.className = "need-confirmation";
-  section.innerHTML = `
-    <p class="confirmation-label">需求确认</p>
-    <h3>我理解得对吗？</h3>
-    <div class="need-summary">
-      <div><span>预算</span><strong>${escapeHtml(formatCny(state.needs.budget_cny))}${state.needs.budget_type === "total_purchase_budget" ? "（落地）" : "（裸车）"}</strong></div>
-      <div><span>主要用途</span><strong>${escapeHtml(usageLabel(state.needs.usage))}</strong></div>
-      <div><span>新旧偏好</span><strong>${escapeHtml(modeLabels[state.mode] || "待确认")}</strong></div>
-    </div>
-    <div class="confirmation-actions"><button class="confirm-secondary" type="button">修改</button><button class="confirm-primary" type="button">确认，开始筛选</button></div>`;
-  conversation.appendChild(section);
-  section.querySelector(".confirm-secondary").addEventListener("click", () => {
-    section.remove();
-    input.value = "我想修改：";
-    input.focus();
-  });
-  section.querySelector(".confirm-primary").addEventListener("click", async () => {
-    section.querySelectorAll("button").forEach((button) => { button.disabled = true; });
-    state.needsConfirmed = true;
-    addMessage("好的，按这组需求开始筛选。", "assistant");
-    await runPrompt(state.pendingPrompt);
-    section.remove();
-  });
-  section.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  resultMeta.textContent = "等待确认需求";
 }
 
 function questionOptions(field) {
@@ -252,15 +270,94 @@ function questionOptions(field) {
   })[field] || [`补充${fieldLabel(field)}`];
 }
 
+function completedConversation(run, expectedAction) {
+  const conversation = run?.conversation;
+  if (conversation?.status !== "completed" || conversation.proposed_action !== expectedAction) return null;
+  const message = typeof conversation.assistant_message === "string" ? conversation.assistant_message.trim() : "";
+  return message ? conversation : null;
+}
+
+function conversationAssistantMessage(run, expectedAction) {
+  return completedConversation(run, expectedAction)?.assistant_message || null;
+}
+
+function conversationQuestionField(run) {
+  const allowedFields = new Set(["budget", "budget_type", "usage", "new_used_preference"]);
+  const agentField = completedConversation(run, "ask_one_question")?.question_field;
+  if (allowedFields.has(agentField)) return agentField;
+  return run.sufficiency?.next_question_field || null;
+}
+
+function renderOpenAnswer(openAnswer) {
+  const answer = typeof openAnswer?.answer === "string" ? openAnswer.answer.trim() : "";
+  const suggestions = Array.isArray(openAnswer?.redirect_suggestions)
+    ? openAnswer.redirect_suggestions
+      .filter((item) => typeof item === "string" && item.trim())
+      .slice(0, 3)
+      .map((item) => item.trim())
+    : [];
+  addMessage(
+    answer || "这次没有稳定生成回答。你可以换个说法，或者回到新手选车、车型对比和二手车源核查。",
+    "assistant",
+  );
+  setActions(suggestions.length ? suggestions : ["开始新手选车", "对比两款车", "核查二手车源"]);
+  if (!state.recommendationVersion) feedbackBand.hidden = true;
+  resultMeta.textContent = "Agent 已回答";
+}
+
+function syncNeedsFromRun(needs = {}) {
+  const knownFields = ["budget_cny", "budget_type", "usage", "new_used_preference", "vehicle_type"];
+  knownFields.forEach((field) => {
+    if (needs[field] !== undefined && needs[field] !== null) state.needs[field] = needs[field];
+  });
+  if (state.needs.new_used_preference) state.mode = preferenceMode(state.needs.new_used_preference);
+  updateSummary();
+}
+
+function knownNeedFragments(needs = {}) {
+  const fragments = [];
+  if (Number.isFinite(needs.budget_cny)) {
+    const scope = needs.budget_type === "bare_vehicle_budget"
+      ? "裸车预算"
+      : needs.budget_type === "total_purchase_budget" ? "落地总预算" : "预算";
+    fragments.push(`${scope}约 ${formatCny(needs.budget_cny)}`);
+  }
+  if (needs.usage) fragments.push(`主要用于${usageLabel(needs.usage)}`);
+  if (needs.new_used_preference) fragments.push(`倾向${modeLabels[preferenceMode(needs.new_used_preference)] || "新车和二手都可以"}`);
+  if (needs.vehicle_type) fragments.push(`车型方向是${vehicleTypeLabel(needs.vehicle_type)}`);
+  return fragments;
+}
+
+function contextualQuestion(run) {
+  const fragments = knownNeedFragments(run.needs);
+  const context = fragments.length
+    ? `我先记下了：${fragments.join("，")}。`
+    : "我们先从最影响筛选结果的信息开始。";
+  const question = run.sufficiency?.next_question || `还需要补充${fieldLabel(run.sufficiency?.next_question_field)}。`;
+  return `${context}现在只确认一个关键点：${question}`;
+}
+
+function recommendationTransition(needs = {}) {
+  const fragments = knownNeedFragments(needs);
+  const summary = fragments.length ? `我理解的是：${fragments.join("，")}。` : "目前的信息已经足够开始筛选。";
+  return `${summary}我先按这组需求筛选，你随时可以继续追问或修改。`;
+}
+
 function usageLabel(value) {
   return ({ commute: "城市通勤", weekend: "周末休闲", touring: "长途摩旅" })[value] || "待确认";
 }
 
+function vehicleTypeLabel(value) {
+  return value === "跑车" ? "仿赛 / 跑车" : value;
+}
+
 function renderRecommendationRun(result) {
+  feedbackBand.hidden = true;
+  setActions([]);
+  document.querySelectorAll(".state-panel.transient").forEach((panel) => panel.remove());
   const allCandidates = result.candidate_pool?.candidates || [];
   const candidates = result.display_candidates || allCandidates.slice(0, 3);
   if (candidates.length > 0) {
-    addMessage(`已从当前规则池得到 ${allCandidates.length} 个候选，并按入门、均衡和升级三个预算层次优先展示。以下仅为内部开发预览，不是正式推荐批准。`, "assistant");
     renderRecommendations(candidates);
     renderTemporaryCandidate(result.external_evidence_run);
     if (result.candidate_coverage?.external_search_required) {
@@ -277,7 +374,9 @@ function renderRecommendationRun(result) {
   if (closest.length > 0) {
     renderClosest(closest);
     renderTemporaryCandidate(result.external_evidence_run);
-    addMessage("当前条件没有完全匹配。下方仅展示最接近候选及未满足条件，系统没有自动放宽预算。", "assistant", true);
+    renderStatePanel("没有完全匹配", "下方只展示最接近候选及未满足条件。系统没有自动放宽预算，也没有把它们当作正式推荐。", "warning", [
+      { label: "我来调整条件", prompt: "我愿意调整：" },
+    ]);
     if (result.candidate_coverage?.external_search_required) {
       addMessage(externalDiscoveryMessage(result), "assistant", true);
     }
@@ -285,6 +384,9 @@ function renderRecommendationRun(result) {
     return;
   }
   renderEmpty("当前规则池没有可展示候选", "当前覆盖不足不等于市场上没有合适车型；需要通过联网搜索补充并核验候选。");
+  if (result.candidate_coverage?.external_search_required) {
+    addMessage(externalDiscoveryMessage(result), "assistant", true);
+  }
 }
 
 function externalDiscoveryMessage(result) {
@@ -327,20 +429,103 @@ function externalRequirementLabel(value) {
 }
 
 function renderRecommendations(items) {
-  grid.innerHTML = items.map((bike) => `
-    <article class="bike-card">
-      <div class="card-top"><span class="rank">${escapeHtml(budgetTierLabel(bike.budget_tier))}</span><span class="price">${formatCny(bike.budget_guard_price_cny)}</span></div>
-      <div><h3>${escapeHtml(`${bike.brand} ${bike.model_name} ${bike.trim_name}`)}</h3><p class="card-copy">${escapeHtml(candidateSummary(bike))}</p></div>
-      <div class="plain-language">
-        <div><strong>日常挪车</strong><span>${escapeHtml(weightMeaning(bike.curb_weight_kg))}</span></div>
-        <div><strong>坐上去的感受</strong><span>${escapeHtml(seatMeaning(bike.seat_height_mm))}</span></div>
-        <div><strong>安全辅助</strong><span>${escapeHtml(safetyMeaning(bike))}</span></div>
+  state.recommendations = items;
+  state.activeCandidateIndex = 0;
+  grid.innerHTML = `<section class="recommendation-stage" id="recommendationStage" aria-live="polite"></section>`;
+  renderActiveRecommendation();
+  requestAnimationFrame(() => {
+    const stage = document.querySelector("#recommendationStage");
+    if (!stage) return;
+    stage.style.minHeight = `${Math.ceil(stage.getBoundingClientRect().height)}px`;
+    stage.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+function renderActiveRecommendation() {
+  const stage = document.querySelector("#recommendationStage");
+  const items = state.recommendations;
+  if (!stage || items.length === 0) return;
+  const index = Math.min(Math.max(state.activeCandidateIndex, 0), items.length - 1);
+  const bike = items[index];
+  const before = chatScroll.scrollTop;
+  const tradeoffs = candidateTradeoffs(bike);
+  const answer = directCandidateAnswer(bike, index);
+  stage.innerHTML = `
+    <article class="direct-answer">
+      <div class="answer-kicker"><span>MotoMate 判断</span><span>${escapeHtml(cardRankLabel(index, bike.budget_tier))}</span></div>
+      <p class="answer-lead">${escapeHtml(answer)}</p>
+      <div class="answer-facts" aria-label="关键参数">
+        ${factItem("价格", formatCny(bike.budget_guard_price_cny), bike.evidence?.price?.official_label || "官方公开价格")}
+        ${factItem("座高", formatSpec(bike.seat_height_mm, " mm"), seatMeaning(bike.seat_height_mm))}
+        ${factItem("整备质量", formatSpec(bike.curb_weight_kg, " kg"), weightMeaning(bike.curb_weight_kg))}
+        ${factItem("安全辅助", safetyShortLabel(bike), safetyMeaning(bike))}
       </div>
-      <p class="fit-note">${escapeHtml(seatFitNote(bike.seat_height_mm))}</p>
-      <div class="warning">内部开发预览，尚未获得正式推荐批准。</div>
-      ${renderEvidence(bike)}
     </article>
-  `).join("");
+    <section class="candidate-switcher" aria-label="候选车型切换">
+      <div class="candidate-title-row"><div><span class="candidate-sequence">MOTO ${String(index + 1).padStart(2, "0")}</span><h3>${escapeHtml(`${bike.brand} ${bike.model_name}`)}</h3><p>${escapeHtml(bike.trim_name || "当前配置")}</p></div><strong class="candidate-price">${formatCny(bike.budget_guard_price_cny)}</strong></div>
+      <div class="candidate-detail">
+        <section><h4>你需要接受的取舍</h4><ul>${tradeoffs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
+        <section><h4>下一步怎么验证</h4><p>${escapeHtml(candidateNextStep(bike))}</p></section>
+      </div>
+      <div class="candidate-boundary"><strong>开发预览，尚未正式推荐批准</strong><span>价格以官网与门店同配置报价为准；适配以现场试坐和挪车为准。</span></div>
+      ${renderEvidence(bike)}
+      <div class="carousel-controls">
+        <button class="carousel-arrow previous" type="button" aria-label="查看上一款车型" ${index === 0 ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="carousel-position"><strong>${index + 1} / ${items.length}</strong><div class="carousel-dots" aria-label="候选位置">${items.map((_, dotIndex) => `<button type="button" aria-label="查看第 ${dotIndex + 1} 款车型" class="${dotIndex === index ? "active" : ""}" data-index="${dotIndex}"></button>`).join("")}</div></div>
+        <button class="carousel-arrow next" type="button" aria-label="查看下一款车型" ${index === items.length - 1 ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+      </div>
+    </section>`;
+  stage.querySelector(".previous").addEventListener("click", () => changeCandidate(index - 1));
+  stage.querySelector(".next").addEventListener("click", () => changeCandidate(index + 1));
+  stage.querySelectorAll(".carousel-dots button").forEach((button) => button.addEventListener("click", () => changeCandidate(Number(button.dataset.index))));
+  bindCandidateSwipe(stage.querySelector(".candidate-switcher"));
+  chatScroll.scrollTop = before;
+}
+
+function changeCandidate(nextIndex) {
+  if (nextIndex < 0 || nextIndex >= state.recommendations.length || nextIndex === state.activeCandidateIndex) return;
+  state.activeCandidateIndex = nextIndex;
+  renderActiveRecommendation();
+}
+
+function bindCandidateSwipe(target) {
+  let startX = null;
+  target.addEventListener("pointerdown", (event) => { startX = event.clientX; });
+  target.addEventListener("pointerup", (event) => {
+    if (startX === null) return;
+    const delta = event.clientX - startX;
+    startX = null;
+    if (Math.abs(delta) < 52) return;
+    changeCandidate(state.activeCandidateIndex + (delta < 0 ? 1 : -1));
+  });
+  target.addEventListener("pointercancel", () => { startX = null; });
+}
+
+function factItem(label, value, note) {
+  return `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong><small>${escapeHtml(note)}</small></div>`;
+}
+
+function directCandidateAnswer(bike, index) {
+  const title = `${bike.brand} ${bike.model_name} ${bike.trim_name}`;
+  const price = formatCny(bike.budget_guard_price_cny);
+  const seat = Number.isFinite(bike.seat_height_mm) ? `${bike.seat_height_mm} mm 座高` : "座高证据不足";
+  const weight = Number.isFinite(bike.curb_weight_kg) ? `${bike.curb_weight_kg} kg 整备质量` : "整备质量证据不足";
+  const safety = safetyShortLabel(bike);
+  const opening = index === 0 ? "先看这台" : "再对比这台";
+  return `${opening}${title}。当前预算保护价为 ${price}；${seat}、${weight}，安全辅助记录为${safety}。这些参数说明它为什么进入当前候选，也说明你到店最该核对什么。`;
+}
+
+function safetyShortLabel(bike) {
+  const abs = bike.abs || "ABS 待核验";
+  const tcs = bike.tcs ? ` / TCS ${bike.tcs}` : " / TCS 待核验";
+  return `${abs}${tcs}`;
+}
+
+function candidateNextStep(bike) {
+  const checks = ["核对同年款、同配置的最终报价"];
+  if (Number.isFinite(bike.seat_height_mm)) checks.push("试坐确认单脚稳定着地");
+  if (Number.isFinite(bike.curb_weight_kg)) checks.push("完成一次原地倒车和掉头");
+  return `${checks.join("，")}。纸面参数不替代现场判断。`;
 }
 
 function renderTemporaryCandidate(evidenceRun) {
@@ -368,6 +553,20 @@ function renderTemporaryCandidate(evidenceRun) {
 
 function budgetTierLabel(tier) {
   return ({ entry: "省心入门", balanced: "均衡选择", upgrade: "预算内升级" })[tier] || "候选";
+}
+
+function cardRankLabel(index, tier) {
+  const prefix = ["优先了解", "对比选择", "升级选择"][index] || "候选";
+  return `${prefix} · ${budgetTierLabel(tier)}`;
+}
+
+function candidateTradeoffs(bike) {
+  const items = [];
+  if (bike.budget_tier === "upgrade") items.push("价格接近预算上沿，需要判断增加预算是否值得");
+  if (!bike.abs || !/双通道/.test(bike.abs)) items.push(`ABS 当前记录为${bike.abs || "证据不足"}，需核对当前配置`);
+  if (!bike.tcs) items.push("TCS 证据不足，不作为购买判断");
+  if (items.length === 0) items.push("纸面参数不能替代现场试坐和低速挪车");
+  return items.slice(0, 2);
 }
 
 function candidateSummary(bike) {
@@ -500,28 +699,50 @@ function updateSummary() {
 function setBusy(busy) {
   state.busy = busy;
   sendButton.disabled = busy;
-  if (busy) statusPill.textContent = "正在分析";
+  input.disabled = busy;
+  form.setAttribute("aria-busy", String(busy));
+  document.querySelectorAll(".quick-prompts button, .action-chip").forEach((button) => { button.disabled = busy; });
+  document.querySelector("#processingMessage")?.remove();
+  if (busy) {
+    setConnectionStatus("正在分析", "busy");
+    const article = document.createElement("article");
+    article.id = "processingMessage";
+    article.className = "message assistant-message processing-message";
+    article.innerHTML = `<div class="message-avatar">M</div><div class="bubble"><p class="processing-line">正在核对需求、筛选候选与准备解释…</p></div>`;
+    conversation.appendChild(article);
+    article.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
 }
 
 function resetSession() {
   document.querySelectorAll(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.view === "advisor"));
   reviewBand.hidden = true;
+  memoryBand.hidden = true;
   advisorView.hidden = false;
   state.sessionId = `alpha_${crypto.randomUUID().replaceAll("-", "")}`;
   state.needs = {};
   state.recommendationVersion = null;
   state.mode = null;
-  state.needsConfirmed = false;
-  state.pendingPrompt = null;
+  state.lastPrompt = null;
+  state.recommendations = [];
+  state.activeCandidateIndex = 0;
+  document.body.classList.add("is-home");
+  homeComposerSlot.appendChild(composerWrap);
   updateSummary();
-  conversation.innerHTML = `<article class="message assistant-message"><div class="message-avatar">M</div><div class="bubble"><p>告诉我预算和主要用途就可以开始。遇到座高、车重这些参数，我会翻译成你实际骑车时的感受。</p></div></article>`;
+  conversation.innerHTML = `<article class="message assistant-message"><div class="message-avatar">M</div><div class="bubble"><p>想到什么就直接说。预算、用途，或者正在纠结哪两台都行。</p></div></article>`;
   grid.innerHTML = "";
   welcomePanel.hidden = false;
   nextActions.hidden = true;
   resultMeta.textContent = "等待你的需求";
   feedbackBand.hidden = true;
   feedbackForm.reset();
+  feedbackStatus.removeAttribute("data-tone");
+  input.disabled = false;
+  input.value = "";
+  resetHintAnimation();
+  resizeComposer();
   setActions([]);
+  switchView("advisor");
 }
 
 function showFeedback() {
@@ -529,7 +750,8 @@ function showFeedback() {
   feedbackForm.reset();
   feedbackForm.querySelectorAll("input, textarea, button").forEach((element) => { element.disabled = false; });
   failureReasons.hidden = true;
-  feedbackStatus.textContent = "反馈不会影响测试资格";
+  feedbackStatus.textContent = "请选择评分和具体帮助";
+  feedbackStatus.removeAttribute("data-tone");
   versionMeta.textContent = `推荐版本 V${state.recommendationVersion.version_number}`;
   feedbackBand.hidden = false;
 }
@@ -543,15 +765,18 @@ async function submitFeedback(event) {
   const failureReasonsValue = data.getAll("failure_reason");
   if (!rating || helpTags.length === 0) {
     feedbackStatus.textContent = "请选择评分和至少一项具体帮助";
+    feedbackStatus.dataset.tone = "error";
     return;
   }
   if (rating <= 3 && failureReasonsValue.length === 0) {
     feedbackStatus.textContent = "低分反馈请选择至少一个原因";
+    feedbackStatus.dataset.tone = "error";
     return;
   }
   const submitButton = feedbackForm.querySelector("button[type=submit]");
   submitButton.disabled = true;
-  feedbackStatus.textContent = "正在提交";
+  feedbackStatus.textContent = "正在提交，当前内容尚未保存";
+  feedbackStatus.removeAttribute("data-tone");
   try {
     const response = await fetch(`/api/recommendations/${state.recommendationVersion.recommendation_version_id}/feedback`, {
       method: "POST",
@@ -568,9 +793,11 @@ async function submitFeedback(event) {
     const payload = await response.json();
     feedbackForm.querySelectorAll("input, textarea, button").forEach((element) => { element.disabled = true; });
     feedbackStatus.textContent = payload.feedback.success_sample ? "已提交，计入有效帮助样本" : "已提交，感谢指出问题";
+    feedbackStatus.dataset.tone = "success";
   } catch {
     submitButton.disabled = false;
     feedbackStatus.textContent = "提交失败，当前内容尚未保存";
+    feedbackStatus.dataset.tone = "error";
   }
 }
 
@@ -620,6 +847,225 @@ function renderCounts(container, counts, labeler, emptyText) {
   container.innerHTML = entries.length ? entries.map(([key, count]) => `<div><span>${escapeHtml(labeler(key))}</span><strong>${count}</strong></div>`).join("") : `<div class="review-empty">${emptyText}</div>`;
 }
 
+function switchView(view) {
+  const isReview = view === "review";
+  const isMemory = view === "memory";
+  document.querySelectorAll(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.view === view));
+  advisorView.hidden = isReview || isMemory;
+  reviewBand.hidden = !isReview;
+  memoryBand.hidden = !isMemory;
+  mobileReviewButton.classList.toggle("active", isReview);
+  mobileMemoryButton.classList.toggle("active", isMemory);
+  mobileReviewButton.textContent = isReview ? "返回" : "复盘";
+  mobileMemoryButton.textContent = isMemory ? "返回" : "记忆";
+  if (isReview) {
+    reviewBand.scrollTop = 0;
+    loadFeedbackReview();
+  } else if (isMemory) {
+    memoryBand.scrollTop = 0;
+    loadMemory();
+  } else if (!state.busy) {
+    input.focus({ preventScroll: true });
+  }
+}
+
+function getOrCreateDeviceId() {
+  const existing = localStorage.getItem("motomate_device_id");
+  if (/^device_[a-zA-Z0-9_-]{16,80}$/.test(existing || "")) return existing;
+  const created = `device_${crypto.randomUUID().replaceAll("-", "")}`;
+  localStorage.setItem("motomate_device_id", created);
+  return created;
+}
+
+const memoryLabels = {
+  riding_experience: "骑行经验", primary_usage: "长期主要用途", new_used_preference: "新车 / 二手偏好",
+  preferred_vehicle_type: "偏好车型", excluded_vehicle_type: "排除车型", budget_range_cny: "长期预算范围",
+};
+
+function formatMemoryValue(value) {
+  if (value && typeof value === "object") return Number.isFinite(value.max) ? formatCny(value.max) : "未设置";
+  return String(value ?? "");
+}
+
+async function loadMemory() {
+  memoryStatus.textContent = "正在读取…";
+  try {
+    const response = await fetch(`/api/memory?device_id=${encodeURIComponent(state.deviceId)}`);
+    if (!response.ok) throw new Error(`memory_${response.status}`);
+    const payload = await response.json();
+    memoryEnabled.checked = payload.settings.memory_enabled;
+    renderMemoryList(payload.memories || []);
+    memoryStatus.textContent = payload.settings.memory_enabled ? "记忆已启用" : "记忆已关闭，新对话不会被保存";
+  } catch {
+    memoryStatus.textContent = "读取失败，请确认服务已连接后重试。";
+  }
+}
+
+function renderMemoryList(items) {
+  memoryList.innerHTML = items.length ? items.map((item) => `<div class="memory-row" data-key="${escapeHtml(item.key)}"><div><strong>${escapeHtml(memoryLabels[item.key] || item.key)}</strong><span>${escapeHtml(formatMemoryValue(item.value))}</span></div><div class="memory-row-actions"><button type="button" data-action="edit">编辑</button><button type="button" data-action="delete">删除</button></div></div>`).join("") : `<div class="memory-empty"><strong>还没有长期偏好</strong><p>明确说“以后都优先看踏板”，或在不同咨询中重复同一偏好后，这里才会出现记录。</p></div>`;
+  memoryList.querySelectorAll("[data-action=edit]").forEach((button) => button.addEventListener("click", () => beginMemoryEdit(button.closest(".memory-row"))));
+  memoryList.querySelectorAll("[data-action=delete]").forEach((button) => button.addEventListener("click", () => memoryRequest(`/api/memory/${encodeURIComponent(button.closest(".memory-row").dataset.key)}`, "DELETE", {}, "记忆已删除")));
+}
+
+function beginMemoryEdit(row) {
+  const key = row.dataset.key;
+  const value = row.querySelector("span").textContent;
+  row.innerHTML = `<label><strong>${escapeHtml(memoryLabels[key] || key)}</strong><input class="memory-edit-input" value="${escapeHtml(value)}" aria-label="编辑${escapeHtml(memoryLabels[key] || key)}"></label><div class="memory-row-actions"><button type="button" data-save>保存</button><button type="button" data-cancel>取消</button></div>`;
+  row.querySelector("[data-cancel]").addEventListener("click", loadMemory);
+  row.querySelector("[data-save]").addEventListener("click", () => {
+    const raw = row.querySelector("input").value.trim();
+    if (!raw) return;
+    const valueToSave = key === "budget_range_cny" ? { max: Number(raw.replace(/\D/g, "")) } : raw;
+    memoryRequest(`/api/memory/${encodeURIComponent(key)}`, "PUT", { value: valueToSave }, "记忆已更新");
+  });
+  row.querySelector("input").focus();
+}
+
+async function memoryRequest(url, method, body, successText) {
+  memoryStatus.textContent = "正在保存…";
+  try {
+    const response = await fetch(url, { method, headers: { "content-type": "application/json" }, body: JSON.stringify({ device_id: state.deviceId, ...body }) });
+    if (!response.ok) throw new Error(`memory_${response.status}`);
+    memoryStatus.textContent = successText;
+  } catch {
+    memoryStatus.textContent = "操作失败，原有记忆未更改。";
+  }
+  await loadMemory();
+}
+
+async function updateMemorySetting() {
+  await memoryRequest("/api/memory/settings", "PATCH", { memory_enabled: memoryEnabled.checked }, memoryEnabled.checked ? "记忆已启用" : "记忆已关闭");
+}
+
+async function clearAllMemory() {
+  if (!window.confirm("确定清空短期对话和全部长期偏好吗？此操作无法恢复。")) return;
+  await memoryRequest("/api/memory", "DELETE", {}, "全部记忆已清空");
+}
+
+function showMemoryDisclosure() {
+  if (localStorage.getItem("motomate_memory_disclosure_seen") === "true") return;
+  const notice = document.createElement("div");
+  notice.className = "memory-disclosure";
+  notice.innerHTML = `<span>本浏览器会临时保存最近约 20 轮对话，24 小时后自动删除；稳定购车偏好可在“我的记忆”中管理。</span><button type="button">知道了</button>`;
+  welcomePanel.querySelector("p").insertAdjacentElement("afterend", notice);
+  notice.querySelector("button").addEventListener("click", () => { localStorage.setItem("motomate_memory_disclosure_seen", "true"); notice.remove(); });
+}
+
+let sidebarToastTimer;
+function showSidebarToast(message) {
+  clearTimeout(sidebarToastTimer);
+  sidebarToast.textContent = message;
+  sidebarToast.hidden = false;
+  sidebarToastTimer = setTimeout(() => { sidebarToast.hidden = true; }, 2200);
+}
+
+function clearHintTimer() {
+  if (hintTimer !== null) window.clearTimeout(hintTimer);
+  hintTimer = null;
+}
+
+function stopHintAnimation(clearPlaceholder = false) {
+  clearHintTimer();
+  input.dataset.hintState = "stopped";
+  if (clearPlaceholder && !input.value && document.body.classList.contains("is-home")) input.placeholder = "";
+}
+
+function scheduleHintAnimation(delay = 0) {
+  clearHintTimer();
+  if (input.value || document.activeElement === input || !document.body.classList.contains("is-home")) return;
+  if (reducedMotionQuery.matches) {
+    input.placeholder = hintExamples[0];
+    input.dataset.hintState = "static";
+    return;
+  }
+  input.dataset.hintState = "scheduled";
+  hintTimer = window.setTimeout(runHintFrame, delay);
+}
+
+function runHintFrame() {
+  if (input.value || document.activeElement === input || !document.body.classList.contains("is-home")) {
+    stopHintAnimation();
+    return;
+  }
+  const example = hintExamples[hintExampleIndex];
+  input.dataset.hintState = hintDeleting ? "deleting" : "typing";
+  if (!hintDeleting) {
+    hintCharacterIndex = Math.min(hintCharacterIndex + 1, example.length);
+    input.placeholder = example.slice(0, hintCharacterIndex);
+    if (hintCharacterIndex === example.length) {
+      hintDeleting = true;
+      hintTimer = window.setTimeout(runHintFrame, 2400);
+      return;
+    }
+    hintTimer = window.setTimeout(runHintFrame, 62);
+    return;
+  }
+  hintCharacterIndex = Math.max(0, hintCharacterIndex - 1);
+  input.placeholder = example.slice(0, hintCharacterIndex);
+  if (hintCharacterIndex === 0) {
+    hintDeleting = false;
+    hintExampleIndex = (hintExampleIndex + 1) % hintExamples.length;
+    hintTimer = window.setTimeout(runHintFrame, 520);
+    return;
+  }
+  hintTimer = window.setTimeout(runHintFrame, 34);
+}
+
+function resetHintAnimation() {
+  clearHintTimer();
+  hintExampleIndex = 0;
+  hintCharacterIndex = 0;
+  hintDeleting = false;
+  input.placeholder = reducedMotionQuery.matches ? hintExamples[0] : "";
+  scheduleHintAnimation(reducedMotionQuery.matches ? 0 : 450);
+}
+
+function resizeComposer() {
+  input.style.height = "auto";
+  input.style.height = `${Math.min(input.scrollHeight, 112)}px`;
+  requestAnimationFrame(syncComposerInset);
+}
+
+function syncComposerInset() {
+  if (document.body.classList.contains("is-home")) {
+    chatScroll.style.paddingBottom = "64px";
+    chatScroll.style.scrollPaddingBottom = "64px";
+    return;
+  }
+  const inset = Math.ceil(composerWrap.getBoundingClientRect().height + 20);
+  chatScroll.style.paddingBottom = `${inset}px`;
+  chatScroll.style.scrollPaddingBottom = `${inset}px`;
+}
+
+function setConnectionStatus(text, stateName) {
+  statusPill.textContent = text;
+  statusPill.dataset.state = stateName;
+}
+
+function renderStatePanel(title, copy, tone = "", actions = []) {
+  const panel = document.createElement("section");
+  panel.className = `state-panel transient ${tone}`.trim();
+  panel.setAttribute("role", tone === "error" ? "alert" : "status");
+  panel.innerHTML = `<strong>${escapeHtml(title)}</strong><p>${escapeHtml(copy)}</p>${actions.length ? `<div class="state-actions"></div>` : ""}`;
+  const actionContainer = panel.querySelector(".state-actions");
+  actions.forEach((item) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = item.label;
+    button.addEventListener("click", () => {
+      if (item.prompt !== undefined) {
+        input.value = item.prompt;
+        resizeComposer();
+        input.focus();
+      }
+      item.action?.();
+    });
+    actionContainer?.appendChild(button);
+  });
+  grid.insertAdjacentElement("afterend", panel);
+  panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
 function helpTagLabel(value) {
   return ({ narrowed_candidates: "缩小候选范围", understood_budget_tradeoff: "理解预算取舍", excluded_unsuitable: "排除不适合车型", clear_next_step: "明确下一步", other: "其他" })[value] || value;
 }
@@ -639,7 +1085,13 @@ function formatDateTime(value) {
 
 function renderEmpty(title, copy) {
   grid.innerHTML = "";
-  addMessage(`${title}。${copy}`, "assistant", true);
+  feedbackBand.hidden = true;
+  setActions([]);
+  resultMeta.textContent = "规则池无匹配候选";
+  renderStatePanel(title, copy, "warning", [
+    { label: "调整一个条件", prompt: "我想调整一个条件：" },
+    { label: "重新描述需求", action: () => { input.value = ""; input.focus(); } },
+  ]);
 }
 
 function setActions(items, submitOnClick = false) {
@@ -672,11 +1124,14 @@ async function checkHealth() {
   try {
     const response = await fetch("/health");
     if (!response.ok) throw new Error("health_failed");
-    statusPill.textContent = "内部 Alpha 已连接";
+    setConnectionStatus("已连接", "ready");
   } catch {
-    statusPill.textContent = "服务未连接";
+    setConnectionStatus("未连接", "error");
   }
 }
 
 updateSummary();
+showMemoryDisclosure();
+resizeComposer();
+resetHintAnimation();
 checkHealth();

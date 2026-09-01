@@ -1,0 +1,11 @@
+{
+  "schema_version": "kb_expansion_eligible_manifest_v0.1",
+  "generated_at": "2026-09-01T08:14:47.849Z",
+  "pool_path": "knowledge_base_outputs/expansion/eligible_pool/expansion_pool_v0.1.json",
+  "source_registry": "knowledge_base_outputs/expansion/candidate_registry/expansion_candidates_v0.1.json",
+  "record_count": 13,
+  "large_displacement_count": 13,
+  "electric_motorcycle_count": 0,
+  "recommendation_approved_count": 0,
+  "validator": "scripts/validate-expansion-eligible-pool.mjs"
+}

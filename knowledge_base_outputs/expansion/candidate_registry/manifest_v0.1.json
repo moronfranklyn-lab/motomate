@@ -1,0 +1,13 @@
+{
+  "schema_version": "kb_expansion_manifest_v0.1",
+  "registry": "knowledge_base_outputs/expansion/candidate_registry/expansion_candidates_v0.1.json",
+  "scope_rule": "knowledge_base_outputs/expansion/扩展知识库范围与字段规则V0.1.md",
+  "discovery_report": "knowledge_base_outputs/expansion/route_validation/discovery_2026-09-01.json",
+  "record_count": 27,
+  "large_displacement_count": 19,
+  "electric_motorcycle_count": 8,
+  "eligible_count": 13,
+  "blocked_count": 14,
+  "recommendation_approved_count": 0,
+  "validator": "scripts/validate-expansion-candidate-registry.mjs"
+}

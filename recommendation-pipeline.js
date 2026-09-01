@@ -23,6 +23,9 @@
       "太子": ["巡航", "巡航太子"],
       "街车": ["街车"],
       "踏板": ["踏板"],
+      "跑车": ["跑车"],
+      "拉力": ["拉力"],
+      "ADV": ["拉力"],
     }[requestedType] || [requestedType];
     return aliases.includes(model.vehicle_type);
   }
@@ -49,7 +52,14 @@
 
   function closestCandidates(knowledgeBase, needs = {}, limit = 3) {
     const budgetCny = normalizeBudgetCny(needs);
-    return (knowledgeBase?.models || [])
+    const aliases = needs.vehicle_type ? ({
+      "巡航": ["巡航", "巡航太子"], "太子": ["巡航", "巡航太子"], "街车": ["街车"],
+      "踏板": ["踏板"], "跑车": ["跑车"], "拉力": ["拉力"], "ADV": ["拉力"],
+    }[needs.vehicle_type] || [needs.vehicle_type]) : [];
+    const models = typeof knowledgeBase?.queryModels === "function"
+      ? knowledgeBase.queryModels({ vehicleTypes: aliases })
+      : (knowledgeBase?.models || []);
+    return models
       .filter((model) => model.rule_pool_eligibility?.status === "eligible")
       .filter((model) => model.sale_status === "current")
       .filter((model) => matchesType(model, needs.vehicle_type))

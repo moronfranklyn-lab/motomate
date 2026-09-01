@@ -9,7 +9,13 @@ const dependencies = { knowledgeBase, semanticEnrichment };
 
 assert.equal(routeIntent({ raw_text: "这台二手车是不是调表车" }), "used_text_risk");
 assert.equal(routeIntent({ raw_text: "这款现在多少钱" }), "price_query");
-assert.equal(routeIntent({ raw_text: "教我改装排气" }), "out_of_scope");
+assert.equal(routeIntent({ raw_text: "摩托车 ABS 有什么用" }), "motorcycle_general");
+assert.equal(routeIntent({ raw_text: "ABS 和 TCS 有什么区别，新手选车有必要关注吗" }), "motorcycle_general");
+assert.equal(routeIntent({ raw_text: "我是新手，请帮我选车" }), "beginner_recommendation");
+assert.equal(routeIntent({ raw_text: "我还没骑过车怎么办", needs: { budget_cny: 30000, usage: "weekend", new_used_preference: "new" } }), "motorcycle_general");
+assert.equal(routeIntent({ raw_text: "谢谢", needs: { budget_cny: 30000, usage: "weekend", new_used_preference: "new" } }), "general_brief_redirect");
+assert.equal(routeIntent({ raw_text: "这是裸车预算", needs: { budget_cny: 30000 } }), "beginner_recommendation");
+assert.equal(routeIntent({ raw_text: "你好，今天心情怎么样" }), "general_brief_redirect");
 
 const extracted = extractAlphaNeeds({ raw_text: "2 万裸车预算，通勤用的新车踏板" });
 assert.equal(extracted.usage, "commute");

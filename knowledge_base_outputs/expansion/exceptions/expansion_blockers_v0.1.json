@@ -1,0 +1,119 @@
+{
+  "schema_version": "kb_expansion_exceptions_v0.1",
+  "generated_at": "2026-09-01T08:14:47.821Z",
+  "blocked_count": 14,
+  "records": [
+    {
+      "model_id": "qjmotor_xiao600_current_standard",
+      "group": "large_displacement",
+      "blockers": [
+        "官网当前在售、具体配置、官方价格与排量待核验"
+      ],
+      "discovery_source_count": 2
+    },
+    {
+      "model_id": "voge_ds525x_current_wilderness",
+      "group": "large_displacement",
+      "blockers": [
+        "官网目录确认当前车型与494mL，但官网价格字段为占位符xxxxx，缺有效官方公开价格"
+      ],
+      "discovery_source_count": 4
+    },
+    {
+      "model_id": "benda_chinchilla500_current_standard",
+      "group": "large_displacement",
+      "blockers": [
+        "奔达官网当前在售、官方价格及配置参数待核验"
+      ],
+      "discovery_source_count": 2
+    },
+    {
+      "model_id": "honda_cb500sf_current_standard",
+      "group": "large_displacement",
+      "blockers": [
+        "中国销售主体、正式上市状态、官网价格与配置待核验"
+      ],
+      "discovery_source_count": 1
+    },
+    {
+      "model_id": "honda_cbr500r_current_standard",
+      "group": "large_displacement",
+      "blockers": [
+        "中国销售主体、正式上市状态、官网价格与配置待核验"
+      ],
+      "discovery_source_count": 3
+    },
+    {
+      "model_id": "yamaha_mt07_current_standard",
+      "group": "large_displacement",
+      "blockers": [
+        "中国官网当前在售和官方价格未取得；不得用历史二手信息替代"
+      ],
+      "discovery_source_count": 1
+    },
+    {
+      "model_id": "ninebot_e300p_mk2_current_standard",
+      "group": "electric_motorcycle",
+      "blockers": [
+        "官网当前在售、官方价格、机动车目录/登记属性待核验"
+      ],
+      "discovery_source_count": 2
+    },
+    {
+      "model_id": "niu_rqi_current_standard",
+      "group": "electric_motorcycle",
+      "blockers": [
+        "搜索价格明显可能错配；官网价格和机动车登记属性待核验"
+      ],
+      "discovery_source_count": 1
+    },
+    {
+      "model_id": "niu_nqi_gt_current_power",
+      "group": "electric_motorcycle",
+      "blockers": [
+        "当前版本、官网价格及机动车登记属性待核验"
+      ],
+      "discovery_source_count": 1
+    },
+    {
+      "model_id": "zeeho_ae6_current_pro",
+      "group": "electric_motorcycle",
+      "blockers": [
+        "官网当前配置价格、机动车属性和性能参数待核验"
+      ],
+      "discovery_source_count": 1
+    },
+    {
+      "model_id": "zeeho_ae6_current_max",
+      "group": "electric_motorcycle",
+      "blockers": [
+        "官网当前配置价格、机动车属性和性能参数待核验"
+      ],
+      "discovery_source_count": 1
+    },
+    {
+      "model_id": "zeeho_ae4_2026_standard",
+      "group": "electric_motorcycle",
+      "blockers": [
+        "官网具体配置、官方价格和机动车登记属性待核验"
+      ],
+      "discovery_source_count": 1
+    },
+    {
+      "model_id": "senlan_es5_current_standard",
+      "group": "electric_motorcycle",
+      "blockers": [
+        "森蓝官网当前在售、官方价格和机动车登记属性待核验"
+      ],
+      "discovery_source_count": 1
+    },
+    {
+      "model_id": "senlan_ex1_current_standard",
+      "group": "electric_motorcycle",
+      "blockers": [
+        "不同配置价格区间、机动车类别和登记属性待核验"
+      ],
+      "discovery_source_count": 1
+    }
+  ]
+}

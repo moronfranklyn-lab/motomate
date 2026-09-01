@@ -1,0 +1,80 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-10-43-364Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_500srvoom_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 11269,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 452,
+    "prompt_tokens": 4008,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 4460
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "500SR VOOM",
+      "model_year": null,
+      "trim_name": null,
+      "sale_status": "current",
+      "official_msrp_cny": 28580,
+      "official_price_label": "¥28,580",
+      "displacement_cc": 500,
+      "seat_height_mm": 795,
+      "curb_weight_kg": 194,
+      "max_power_kw": 58,
+      "fuel_tank_l": 15.5,
+      "abs": "标配（大陆）",
+      "tcs": "标配（2两段）",
+      "vehicle_type": null,
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

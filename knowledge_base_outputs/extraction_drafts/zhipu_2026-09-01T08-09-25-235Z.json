@@ -1,0 +1,92 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-09-25-235Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_800nk_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 12224,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 476,
+    "prompt_tokens": 3836,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 4312
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "800NK",
+      "model_year": "2025",
+      "trim_name": "Standard",
+      "sale_status": "current",
+      "official_msrp_cny": 42580,
+      "official_price_label": "￥42,580",
+      "displacement_cc": 799,
+      "seat_height_mm": 795,
+      "curb_weight_kg": 186,
+      "max_power_kw": 74,
+      "fuel_tank_l": 15,
+      "abs": "Bosch straight/curve ABS",
+      "tcs": "Bosch full-function TC (straight/curve TC, DTC, WC)",
+      "vehicle_type": "Street Motorcycle",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "model_year": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ],
+        "vehicle_type": [
+          "https://www.cfmoto.com/motorcycles/800NK"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

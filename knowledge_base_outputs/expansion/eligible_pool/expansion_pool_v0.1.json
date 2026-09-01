@@ -1,0 +1,1100 @@
+{
+  "schema_version": "kb_expansion_eligible_pool_v0.1",
+  "pool_version": "expansion_pool_v0.1",
+  "generated_at": "2026-09-01T08:14:47.849Z",
+  "source_registry": "knowledge_base_outputs/expansion/candidate_registry/expansion_candidates_v0.1.json",
+  "scope": "isolated_large_displacement_and_electric_motorcycle_expansion",
+  "product_use_boundary": "future_expansion_rule_filtering_only",
+  "recommendation_approved_count": 0,
+  "records": [
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_675srr_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "675SR-R",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 39580,
+      "official_price_label": "官网售价",
+      "displacement_cc": 675,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 70,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 810,
+      "curb_weight_kg": 195,
+      "fuel_tank_l": 15,
+      "battery_spec": null,
+      "abs": "标配",
+      "tcs": "标配（两段可调可关闭）",
+      "vehicle_type": "跑车",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [
+        {
+          "title": "春风675SR-R报价_图片参数_摩托范",
+          "url": "https://m.58moto.com/garage/detail/20859",
+          "source_type": "platform_motuofan",
+          "snippet": "厂商指导价: ¥39,580*实际售价以当地经销商价格为准人气榜NO.6口碑榜NO.22 春风 竞速超跑 1.在浏览器中点击 “ ” 2.在弹出的浮层中选择你分享的途径 3.如若未找到分享的路径则点击",
+          "published_at": "2026-02-01T15:05:03+08:00",
+          "evidence_status": "discovery_only_unverified"
+        },
+        {
+          "title": "直降2000元,国产450cc巡航车价格击穿底线!春风新款来袭,但你的DreamBike今年可能等不到了-有驾",
+          "url": "https://www.yoojia.com/article/10112146116530608140.html",
+          "source_type": "content_platform_unverified",
+          "snippet": "期待其他热门车型换代的車友,可能要稍微冷静一下。春风的老总明确说了,像675SR-R,675NK,700MT,800NK,800MT-X这些车,今年都不会有2026款。也就是说,你现在看到的是什么样,",
+          "published_at": "2026-03-07T16:54:00+08:00",
+          "evidence_status": "discovery_only_unverified"
+        }
+      ],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/675SR-R",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_675srr_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T03-00-58-128Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 39580,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/675SR-R"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_675nk_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "675NK",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 35980,
+      "official_price_label": "官网售价",
+      "displacement_cc": 675,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 70,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 810,
+      "curb_weight_kg": 189,
+      "fuel_tank_l": 15,
+      "battery_spec": null,
+      "abs": "标配",
+      "tcs": "2段可调可关闭",
+      "vehicle_type": "街车",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [
+        {
+          "title": "直降2000元,国产450cc巡航车价格击穿底线!春风新款来袭,但你的DreamBike今年可能等不到了-有驾",
+          "url": "https://www.yoojia.com/article/10112146116530608140.html",
+          "source_type": "content_platform_unverified",
+          "snippet": "期待其他热门车型换代的車友,可能要稍微冷静一下。春风的老总明确说了,像675SR-R,675NK,700MT,800NK,800MT-X这些车,今年都不会有2026款。也就是说,你现在看到的是什么样,",
+          "published_at": "2026-03-07T16:54:00+08:00",
+          "evidence_status": "discovery_only_unverified"
+        }
+      ],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/675NK",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_675nk_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T03-01-06-812Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 35980,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/675NK"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "voge_cu530_current_standard",
+      "brand": "无极",
+      "manufacturer": "隆鑫通用动力股份有限公司",
+      "model_name": "CU530",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 21980,
+      "official_price_label": "官网公开API price字段",
+      "displacement_cc": 500,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 41,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 710,
+      "curb_weight_kg": 195,
+      "fuel_tank_l": 15,
+      "battery_spec": null,
+      "abs": null,
+      "tcs": null,
+      "vehicle_type": "巡航",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "unverified",
+          "tcs": "unverified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T02:47:10.642Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official VOGE directory/detail API reviewed; ABS/TCS remain null; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T02:47:10.642Z"
+      },
+      "discovery_sources": [
+        {
+          "title": "无极2026款CU530标准版发布上市,售价21980",
+          "url": "https://m.58moto.com/news/12210780",
+          "source_type": "platform_motuofan",
+          "snippet": "无极2026款CU530搭载KEL530全新动力平台低扭充沛、起步轻快,中高速平顺、巡航稳定,运转质感高级、震动抑制接近V缸,声浪浑厚有节奏,彻底解决老款CU525的共振问题。270°相位曲轴:模拟9",
+          "published_at": "2026-05-03T23:45:07+08:00",
+          "evidence_status": "discovery_only_unverified"
+        },
+        {
+          "title": "CU525升级版!无极CU530强势发布,动力与配置全方位进化!售价21980元起!-有驾",
+          "url": "https://www.yoojia.com/article/10220503416837542507.html",
+          "source_type": "content_platform_unverified",
+          "snippet": "车架保持了老款的成熟架构,但悬挂系统也进行了优化,前41mm倒立式前叉和支持预载可调的后双枪减震让你在骑行中尽享舒适与操控。制动系统方面,全系标配双通道ABS,还配备可独立关闭的TCS牵引力控制系统—",
+          "published_at": "2026-04-26T07:25:00+08:00",
+          "evidence_status": "discovery_only_unverified"
+        }
+      ],
+      "official_sources": [
+        {
+          "url": "https://api.vogemotor.com/?m=Mobile&c=MajorProduct&a=production_class_list&lang=1",
+          "source_type": "official_api",
+          "captured_at": "2026-09-01T02:47:10.642Z"
+        },
+        {
+          "url": "https://api.vogemotor.com/?m=Mobile&c=MajorProduct&a=get_product_info&id=45&store_id=21&lang=1&types=",
+          "source_type": "official_api",
+          "captured_at": "2026-09-01T02:47:10.642Z"
+        }
+      ],
+      "model_year": "current_version",
+      "budget_guard_price_cny": 21980,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://api.vogemotor.com/?m=Mobile&c=MajorProduct&a=production_class_list&lang=1",
+        "https://api.vogemotor.com/?m=Mobile&c=MajorProduct&a=get_product_info&id=45&store_id=21&lang=1&types="
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_800nk_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "800NK",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 42580,
+      "official_price_label": "官网售价",
+      "displacement_cc": 799,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 74,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 795,
+      "curb_weight_kg": 186,
+      "fuel_tank_l": 15,
+      "battery_spec": null,
+      "abs": "博世直线/弯道ABS",
+      "tcs": "博世全功能TC",
+      "vehicle_type": "街车",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/800NK",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_800nk_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-09-25-235Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 42580,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/800NK"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_800mtx_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "800MT-X",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 53680,
+      "official_price_label": "官网售价",
+      "displacement_cc": 799,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 70,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 830,
+      "curb_weight_kg": 214,
+      "fuel_tank_l": 22.5,
+      "battery_spec": null,
+      "abs": "博世直线+弯道ABS",
+      "tcs": "博世电子TC",
+      "vehicle_type": "拉力",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/800MT-X",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_800mtx_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-09-36-078Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 53680,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/800MT-X"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_750srs_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "750SR-S",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 44980,
+      "official_price_label": "官网售价",
+      "displacement_cc": 749,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 82,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 805,
+      "curb_weight_kg": 213,
+      "fuel_tank_l": 17,
+      "battery_spec": null,
+      "abs": "直线+弯道ABS标配",
+      "tcs": "直线+弯道TC标配（两段可调）",
+      "vehicle_type": "跑车",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/750SR-S",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_750srs_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-09-47-284Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 44980,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/750SR-S"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_700mt_current_loboo",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "700MT",
+      "trim_name": "LOBOO三箱版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 33680,
+      "official_price_label": "官网售价",
+      "displacement_cc": 693,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 50,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 800,
+      "curb_weight_kg": 240,
+      "fuel_tank_l": 20,
+      "battery_spec": null,
+      "abs": "标配",
+      "tcs": "标配（后轮ABS与TC可关）",
+      "vehicle_type": "拉力",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/700MT",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_700mt_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-09-53-798Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 33680,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/700MT"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_1000mtx_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "1000MT-X",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 59680,
+      "official_price_label": "官网售价",
+      "displacement_cc": 946.2,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 83,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 830,
+      "curb_weight_kg": 219,
+      "fuel_tank_l": 22.5,
+      "battery_spec": null,
+      "abs": "博世直线+弯道ABS",
+      "tcs": "博世三段可调全功能TC",
+      "vehicle_type": "拉力",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/1000mt-x",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_1000mtx_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-10-03-170Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 59680,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/1000mt-x"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_800mtes_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "800MT-ES",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 53980,
+      "official_price_label": "官网售价",
+      "displacement_cc": 799,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 70,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 825,
+      "curb_weight_kg": 234,
+      "fuel_tank_l": 19,
+      "battery_spec": null,
+      "abs": "博世直线+弯道ABS",
+      "tcs": "博世全功能TC",
+      "vehicle_type": "拉力",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/800mt-es",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_800mtes_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-10-16-311Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 53980,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/800mt-es"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_800mtexplore_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "800MT Explore",
+      "trim_name": "探险版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 53980,
+      "official_price_label": "官网售价",
+      "displacement_cc": 799,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 70,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 825,
+      "curb_weight_kg": 231,
+      "fuel_tank_l": 19,
+      "battery_spec": null,
+      "abs": "博世直线+弯道ABS",
+      "tcs": "博世全功能TC",
+      "vehicle_type": "拉力",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/800mt-explore",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_800mtexplore_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-10-32-008Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 53980,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/800mt-explore"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_500srvoom_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "500SR VOOM",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 28580,
+      "official_price_label": "官网售价",
+      "displacement_cc": 500,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 58,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 795,
+      "curb_weight_kg": 194,
+      "fuel_tank_l": 15.5,
+      "battery_spec": null,
+      "abs": "大陆ABS标配",
+      "tcs": "两段TC标配",
+      "vehicle_type": "跑车",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/500SR-VOOM",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_500srvoom_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-10-43-364Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 28580,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/500SR-VOOM"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_550clc_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "550CL-C",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 25880,
+      "official_price_label": "官网售价",
+      "displacement_cc": 526,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 39,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 710,
+      "curb_weight_kg": 195,
+      "fuel_tank_l": 14,
+      "battery_spec": null,
+      "abs": "标配",
+      "tcs": "标配",
+      "vehicle_type": "巡航",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/550cl-c",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_550clc_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-10-55-508Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 25880,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/550cl-c"
+      ]
+    },
+    {
+      "group": "large_displacement",
+      "model_id": "cfmoto_500sr_current_standard",
+      "brand": "春风",
+      "manufacturer": "浙江春风动力股份有限公司",
+      "model_name": "500SR",
+      "trim_name": "标准版",
+      "current_version": true,
+      "china_sale_status": "current",
+      "official_public_price_cny": 28980,
+      "official_price_label": "官网售价",
+      "displacement_cc": 500,
+      "vehicle_registration_class": null,
+      "registration_eligibility": null,
+      "max_power_kw": 58,
+      "rated_power_kw": null,
+      "top_speed_kmh": null,
+      "range_km": null,
+      "range_test_cycle": null,
+      "seat_height_mm": 805,
+      "curb_weight_kg": 187,
+      "fuel_tank_l": 15.5,
+      "battery_spec": null,
+      "abs": "大陆ABS标配（后轮可关）",
+      "tcs": "两段TC标配（可关）",
+      "vehicle_type": "跑车",
+      "fact_verification_status": {
+        "overall": "sufficient_for_expansion_rules",
+        "fields": {
+          "china_sale_status": "official_verified",
+          "official_public_price_cny": "official_verified",
+          "displacement_cc": "official_verified",
+          "max_power_kw": "official_verified",
+          "seat_height_mm": "official_verified",
+          "curb_weight_kg": "official_verified",
+          "fuel_tank_l": "official_verified",
+          "abs": "official_verified",
+          "tcs": "official_verified"
+        }
+      },
+      "expansion_pool_eligibility": {
+        "status": "eligible",
+        "blockers": [],
+        "rule_version": "kb_expansion_admission_v0.1",
+        "evaluated_at": "2026-09-01T08:15:00.000Z"
+      },
+      "recommendation_review_status": {
+        "status": "codex_reviewed",
+        "review_notes": [
+          "Official CFMOTO single-model page reviewed; model extraction trim was rejected and registry trim retained deterministically; no recommendation approval"
+        ],
+        "reviewed_at": "2026-09-01T03:02:00.000Z"
+      },
+      "discovery_sources": [],
+      "official_sources": [
+        {
+          "url": "https://www.cfmoto.com/motorcycles/500sr",
+          "source_type": "official_page",
+          "captured_at": "2026-09-01T08:05:00.000Z",
+          "supports": [
+            "current_version",
+            "price",
+            "displacement",
+            "power",
+            "seat_height",
+            "curb_weight",
+            "fuel_tank",
+            "abs",
+            "tcs"
+          ]
+        }
+      ],
+      "evidence_input_path": "knowledge_base_inputs/expansion_public_sources/cfmoto_500sr_current_standard.json",
+      "extraction_draft_path": "knowledge_base_outputs/extraction_drafts/zhipu_2026-09-01T08-11-10-145Z.json",
+      "model_year": "current_version",
+      "budget_guard_price_cny": 28980,
+      "qualified_platform_reference_price_cny": null,
+      "source_urls": [
+        "https://www.cfmoto.com/motorcycles/500sr"
+      ]
+    }
+  ]
+}

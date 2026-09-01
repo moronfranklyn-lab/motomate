@@ -1,32 +1,47 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MotoMate 新手选车 Agent</title><link rel="stylesheet" href="./styles.css"></head>
-<body><div class="app-shell">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content"><title>MotoMate 新手选车 Agent</title><link rel="stylesheet" href="./styles.css"></head>
+<body class="is-home"><div class="app-shell">
   <aside class="sidebar" aria-label="主导航">
-    <div class="brand"><div class="brand-mark">M</div><div><strong>MotoMate</strong><span>新手选车 Agent</span></div></div>
-    <button class="new-chat" id="resetButton" type="button"><span>＋</span>新对话</button>
-    <nav class="nav-list"><button class="nav-item active" type="button" data-view="advisor"><span>●</span>当前咨询</button><button class="nav-item" type="button" data-view="review"><span>▦</span>反馈复盘</button></nav>
-    <div class="alpha-note"><strong>内部 Alpha</strong><span>17 配置开发预览</span></div>
+    <div class="brand"><div class="brand-mark" aria-hidden="true">M</div><div><strong>MotoMate</strong><span>摩托车新手选车</span></div></div>
+    <button class="new-chat" id="resetButton" type="button"><span aria-hidden="true">＋</span>新对话</button>
+    <nav class="nav-list">
+      <button class="nav-item active" type="button" data-view="advisor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h14v9H9l-4 3v-12Z"/></svg>当前咨询</button>
+      <button class="nav-item" type="button" data-view="review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9m7 10V5m7 14v-7"/></svg>反馈复盘</button>
+      <button class="nav-item" type="button" data-view="memory"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a4 4 0 0 0-4 4v1a3 3 0 0 0-2 5.2A3.5 3.5 0 0 0 9.5 19H12m0-16a4 4 0 0 1 4 4v1a3 3 0 0 1 2 5.2A3.5 3.5 0 0 1 14.5 19H12m0-16v16"/></svg>我的记忆</button>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <button class="nav-item planned" type="button" data-planned="选车记录"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16H6zM9 8h6M9 12h6M9 16h4"/></svg>选车记录<span>规划中</span></button>
+      <button class="nav-item planned" type="button" data-planned="车型对比"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14M4 9h4m8 6h4"/></svg>车型对比<span>规划中</span></button>
+      <button class="nav-item planned" type="button" data-planned="收藏清单"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 18-6 3V5h12v16l-6-3Z"/></svg>收藏清单<span>规划中</span></button>
+    </nav>
+    <div class="sidebar-toast" id="sidebarToast" role="status" aria-live="polite" hidden></div>
+    <div class="alpha-note"><strong>开发预览</strong><span>17 配置 · 尚未正式推荐批准</span></div>
   </aside>
   <main class="chat-main">
-    <header class="chat-header"><div class="mobile-brand"><span class="brand-mark">M</span><strong>MotoMate</strong></div><div class="chat-title"><strong>新手选车</strong><span id="resultMeta">等待你的需求</span></div><div class="status-pill" id="statusPill">正在连接</div></header>
+    <header class="chat-header">
+      <div class="mobile-brand"><span class="brand-mark" aria-hidden="true">M</span><span><strong>MotoMate</strong><small>摩托车选车顾问</small></span></div>
+      <div class="chat-title"><strong>新手选车</strong><span id="resultMeta">等待你的需求</span></div>
+      <div class="header-actions"><span class="preview-badge">开发预览 · 未正式批准</span><span class="status-pill" id="statusPill">正在连接</span><button class="mobile-tool" id="mobileMemoryButton" type="button" aria-label="查看我的记忆">记忆</button><button class="mobile-tool" id="mobileReviewButton" type="button" aria-label="切换内部复盘">复盘</button><button class="mobile-new-chat" id="mobileResetButton" type="button" aria-label="开始新对话"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>
+    </header>
     <section class="advisor-view" id="advisorView">
       <div class="chat-scroll" id="chatScroll">
-        <section class="welcome" id="welcomePanel"><div class="welcome-mark">M</div><p class="eyebrow">MotoMate</p><h1>今天想解决哪件事？</h1><p>不用懂参数，像和朋友聊天一样告诉我你的情况。</p>
-          <div class="quick-prompts" aria-label="开始咨询"><button type="button" data-prompt="我是新手，还不知道买什么车，请帮我一步步选">不知道买什么</button><button type="button" data-prompt="我已经有两款车在纠结，想请你帮我比较">两款车在纠结</button><button type="button" data-prompt="我想核查一辆二手摩托车源">核查二手车源</button></div>
+        <section class="welcome" id="welcomePanel"><div class="welcome-mark" aria-hidden="true">M</div><h1><span>今天想选一辆什么样的</span><span>摩托车？</span></h1><p>像问懂车的朋友一样说需求。预算、用途、新车或二手，想到什么就说什么。</p>
+          <div class="home-composer-slot" id="homeComposerSlot"><div class="composer-wrap"><form class="composer" id="advisorForm"><textarea id="advisorInput" rows="1" maxlength="1000" placeholder="例如：2 万以内，城市通勤，周末偶尔近郊，只看新车…" aria-label="向 MotoMate 描述选车需求"></textarea><div class="composer-footer"><span class="composer-hint">Enter 发送 · Shift + Enter 换行</span><button class="send-button" type="submit" title="发送" aria-label="发送"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button></div></form><p class="composer-note"><strong>开发预览 · 尚未正式推荐批准</strong>　价格与适配需以官网、门店及现场试坐核实</p></div></div>
+          <div class="quick-prompts" aria-label="开始咨询"><button type="button" data-prompt="我是新手，还不知道买什么车，请帮我一步步选"><span class="prompt-index">01</span><strong>不知道买什么</strong><span>从预算和用途开始</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button><button type="button" data-prompt="我已经有两款车在纠结，想请你帮我比较"><span class="prompt-index">02</span><strong>两款车在纠结</strong><span>看清差异和取舍</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button><button type="button" data-prompt="我想核查一辆二手摩托车源"><span class="prompt-index">03</span><strong>核查二手车源</strong><span>整理信息与线下核查点</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button></div>
+          <section class="starter-notes" aria-label="选车资讯"><div class="starter-notes-heading"><h2>选车前先看</h2><span>后续资讯功能预留</span></div><div class="starter-note-list"><article><strong>裸车价不等于落地价</strong><p>保险、上牌和基础护具要单独留出预算。</p></article><article><strong>座高不是唯一答案</strong><p>坐垫宽度、腿长和车重都会影响真实着地感。</p></article><article><strong>配置要对应年款</strong><p>付款前核对同年款、同版本与门店最终报价。</p></article></div></section>
         </section>
-        <section class="conversation" id="conversation" aria-live="polite"><article class="message assistant-message"><div class="message-avatar">M</div><div class="bubble"><p>告诉我预算和主要用途就可以开始。遇到座高、车重这些参数，我会翻译成你实际骑车时的感受。</p></div></article></section>
+        <section class="conversation" id="conversation" aria-live="polite"><article class="message assistant-message"><div class="message-avatar">M</div><div class="bubble"><p>想到什么就直接说。预算、用途，或者正在纠结哪两台都行。</p></div></article></section>
         <section class="recommendation-grid" id="recommendationGrid"></section>
-        <section class="next-actions" id="nextActions" hidden><span>你还可以继续问</span><div id="actionList"></div></section>
-        <section class="feedback-band" id="feedbackBand" hidden><div class="feedback-heading"><span id="versionMeta">推荐版本</span><h2>这次有帮助吗？</h2></div><form class="feedback-form" id="feedbackForm">
+        <section class="next-actions" id="nextActions" hidden><h2>可以这样继续问，也可以直接输入</h2><div id="actionList"></div></section>
+        <section class="feedback-band" id="feedbackBand" hidden><div class="feedback-heading"><span id="versionMeta">推荐版本</span><h2>这次结果对你有帮助吗？</h2><p>请按真实感受反馈，不影响测试资格。</p></div><form class="feedback-form" id="feedbackForm">
           <fieldset><legend>帮助度</legend><div class="rating-control"><label><input type="radio" name="rating" value="1">1</label><label><input type="radio" name="rating" value="2">2</label><label><input type="radio" name="rating" value="3">3</label><label><input type="radio" name="rating" value="4">4</label><label><input type="radio" name="rating" value="5">5</label></div></fieldset>
           <fieldset><legend>具体帮助</legend><div class="choice-grid"><label><input type="checkbox" name="help_tag" value="narrowed_candidates">缩小范围</label><label><input type="checkbox" name="help_tag" value="understood_budget_tradeoff">理解预算取舍</label><label><input type="checkbox" name="help_tag" value="excluded_unsuitable">排除不适合</label><label><input type="checkbox" name="help_tag" value="clear_next_step">明确下一步</label><label><input type="checkbox" name="help_tag" value="other">其他</label></div></fieldset>
           <fieldset id="failureReasons" hidden><legend>哪里没帮到你？</legend><div class="choice-grid"><label><input type="checkbox" name="failure_reason" value="over_budget">超预算</label><label><input type="checkbox" name="failure_reason" value="usage_mismatch">不符合用途</label><label><input type="checkbox" name="failure_reason" value="dislike_model_or_style">不喜欢车型</label><label><input type="checkbox" name="failure_reason" value="possible_data_error">数据可能有误</label><label><input type="checkbox" name="failure_reason" value="too_many_questions">追问太多</label><label><input type="checkbox" name="failure_reason" value="hard_to_understand">看不懂</label><label><input type="checkbox" name="failure_reason" value="missing_target_model">缺目标车型</label><label><input type="checkbox" name="failure_reason" value="other">其他</label></div></fieldset>
-          <label class="comment-field">想补充什么（选填）<textarea name="comment" rows="2" maxlength="500"></textarea></label><div class="feedback-actions"><span id="feedbackStatus">请按真实感受评分</span><button type="submit" class="primary-action">提交</button></div>
+          <label class="comment-field">想补充什么（选填）<textarea name="comment" rows="2" maxlength="500" placeholder="哪一点符合或不符合你的真实需求？"></textarea></label><div class="feedback-actions"><span id="feedbackStatus" role="status">请选择评分和具体帮助</span><button type="submit" class="primary-action">提交反馈</button></div>
         </form></section>
       </div>
-      <div class="composer-wrap"><form class="composer" id="advisorForm"><textarea id="advisorInput" rows="2" placeholder="和 MotoMate 聊聊…"></textarea><div class="composer-footer"><span class="composer-hint">Enter 发送</span><button class="send-button" type="submit" title="发送" aria-label="发送">↑</button></div></form><p class="composer-note">AI 可能出错，价格和座高请以官方信息与现场试坐为准</p></div>
     </section>
+    <section class="memory-view" id="memoryBand" hidden><div class="memory-header"><div><h1>我的记忆</h1><p>这些信息只用于让后续咨询更连贯，不会绕过预算和候选规则。</p></div><label class="memory-toggle"><input type="checkbox" id="memoryEnabled"><span>启用记忆</span></label></div><div class="memory-status" id="memoryStatus" role="status"></div><div class="memory-list" id="memoryList"></div><div class="memory-actions"><button class="secondary-action" id="clearMemory" type="button">清空全部记忆</button></div><p class="memory-boundary">短期对话 24 小时自动删除；长期偏好连续 180 天未使用自动删除。当前会话明确要求始终优先。</p></section>
     <section class="review-view" id="reviewBand" hidden><div class="review-header"><div><p class="eyebrow">Internal Review</p><h1>反馈复盘</h1></div><button id="refreshReview" class="secondary-action" type="button">刷新</button></div><div class="review-metrics" id="reviewMetrics"></div><div class="review-grid"><section class="review-panel"><h3>评分分布</h3><div id="ratingDistribution" class="distribution-list"></div></section><section class="review-panel"><h3>具体帮助</h3><div id="helpTagCounts" class="count-list"></div></section><section class="review-panel"><h3>失败原因</h3><div id="failureReasonCounts" class="count-list"></div></section></div><section class="recent-feedback"><h3>最近反馈</h3><div id="recentFeedbackList"></div></section><p class="review-boundary">仅用于本地内部 Alpha，当前尚无管理员认证。</p></section>
     <div class="sr-only" aria-hidden="true"><span id="budgetValue"></span><span id="usageValue"></span><span id="typeValue"></span><span id="modeValue"></span></div>
   </main>

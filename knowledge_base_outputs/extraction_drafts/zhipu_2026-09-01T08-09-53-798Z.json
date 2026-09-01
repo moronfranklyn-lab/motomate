@@ -1,0 +1,95 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-09-53-798Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_700mt_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 6440,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 457,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4582,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 5039
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "CFMOTO 700MT",
+      "model_year": null,
+      "trim_name": "Standard",
+      "sale_status": "current",
+      "official_msrp_cny": 33680,
+      "official_price_label": "¥33,680",
+      "displacement_cc": 693,
+      "seat_height_mm": 800,
+      "curb_weight_kg": 240,
+      "max_power_kw": 50,
+      "fuel_tank_l": 20,
+      "abs": "Standard",
+      "tcs": "Standard",
+      "vehicle_type": "Motorcycle",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "model_year": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ],
+        "vehicle_type": [
+          "https://www.cfmoto.com/motorcycles/700MT"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

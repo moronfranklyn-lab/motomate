@@ -1,0 +1,89 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T08-09-47-284Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_750srs_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 11111,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 446,
+    "prompt_tokens": 4947,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 5393
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "750SR-S",
+      "model_year": null,
+      "trim_name": "Standard",
+      "sale_status": "current",
+      "official_msrp_cny": 44980,
+      "official_price_label": "￥44,980",
+      "displacement_cc": 749,
+      "seat_height_mm": 805,
+      "curb_weight_kg": 213,
+      "max_power_kw": 82,
+      "fuel_tank_l": 17,
+      "abs": "标配",
+      "tcs": "标配",
+      "vehicle_type": "摩托车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ],
+        "vehicle_type": [
+          "https://www.cfmoto.com/motorcycles/750SR-S"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

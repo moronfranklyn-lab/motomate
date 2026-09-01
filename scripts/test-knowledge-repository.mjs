@@ -1,0 +1,24 @@
+import assert from "node:assert/strict";
+import { performance } from "node:perf_hooks";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+const source = require("../knowledge_base_outputs/eligible_pool/active_runtime_pool_v0.1.json");
+const { createKnowledgeRepository } = require("../server/knowledge-repository.js");
+const repository = createKnowledgeRepository();
+assert.equal(repository.model_count, source.models.length);
+assert.equal(repository.pool_version, source.pool_version);
+const all = repository.queryModels();
+assert.deepEqual(new Set(all.map((model) => model.model_id)), new Set(source.models.map((model) => model.model_id)));
+const scooters = repository.queryModels({ vehicleTypes: ["踏板"], maxBudgetCny: 30000 });
+assert.ok(scooters.length > 0);
+assert.ok(scooters.every((model) => model.vehicle_type === "踏板" && model.budget_guard_price_cny <= 30000));
+const adventure = repository.queryModels({ vehicleTypes: ["拉力"], maxBudgetCny: 60000 });
+assert.ok(adventure.length >= 5);
+const semantics = repository.querySemanticByModelIds(adventure.map((model) => model.model_id));
+assert.equal(semantics.length, adventure.length);
+const started = performance.now();
+for (let index = 0; index < 100; index += 1) repository.queryModels({ vehicleTypes: [index % 2 ? "跑车" : "街车"], maxBudgetCny: 60000 });
+const elapsedMs = performance.now() - started;
+assert.ok(elapsedMs < 5000, `100 indexed queries too slow: ${elapsedMs.toFixed(1)}ms`);
+console.log(JSON.stringify({ passed: true, models: all.length, adventure: adventure.length, indexed_queries: 100, elapsed_ms: Number(elapsedMs.toFixed(1)), storage_mode: repository.storage_mode }, null, 2));

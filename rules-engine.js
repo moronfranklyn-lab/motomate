@@ -4,12 +4,16 @@
     "太子": ["巡航", "巡航太子"],
     "街车": ["街车"],
     "踏板": ["踏板"],
+    "跑车": ["跑车"],
+    "拉力": ["拉力"],
+    "ADV": ["拉力"],
   };
 
   const USAGE_TAGS = {
     commute: "urban_commute",
     transport: "daily_transport",
     weekend: "weekend_leisure",
+    touring: "long_distance_touring",
   };
 
   const INTENSITY_POINTS = { high: 3, medium: 2, low: 0 };
@@ -36,7 +40,7 @@
   function sourceLabel(url, index) {
     try {
       const hostname = new URL(url).hostname.replace(/^www\./, "");
-      const officialHosts = ["haojue.com", "cfmoto.com", "yamaha-motor.com.cn", "wuyang-honda.com"];
+      const officialHosts = ["haojue.com", "cfmoto.com", "yamaha-motor.com.cn", "wuyang-honda.com", "vogemotor.com"];
       if (officialHosts.some((host) => hostname === host || hostname.endsWith(`.${host}`))) return `品牌官方来源 ${index + 1}`;
       if (hostname.includes("58moto.com")) return `摩托范参考 ${index + 1}`;
       if (hostname.includes("autohome.com.cn")) return `汽车之家参考 ${index + 1}`;
@@ -136,11 +140,17 @@
   }
 
   function shortlistModels(knowledgeBase, needs = {}, options = {}) {
-    const models = Array.isArray(knowledgeBase?.models) ? knowledgeBase.models : [];
     const budgetCny = normalizeBudgetCny(needs);
+    const requestedTypes = needs.vehicle_type ? (TYPE_ALIASES[needs.vehicle_type] || [needs.vehicle_type]) : [];
+    const models = typeof knowledgeBase?.queryModels === "function"
+      ? knowledgeBase.queryModels({ vehicleTypes: requestedTypes, maxBudgetCny: budgetCny })
+      : Array.isArray(knowledgeBase?.models) ? knowledgeBase.models : [];
     const allowUnapprovedPreview = options.allowUnapprovedPreview === true;
-    const hasSemanticEnrichment = Array.isArray(options.semanticEnrichment?.models);
-    const semanticIndex = semanticByModel(options.semanticEnrichment);
+    const semanticModels = typeof options.semanticEnrichment?.queryByModelIds === "function"
+      ? options.semanticEnrichment.queryByModelIds(models.map((model) => model.model_id))
+      : options.semanticEnrichment?.models;
+    const hasSemanticEnrichment = Array.isArray(semanticModels);
+    const semanticIndex = semanticByModel({ models: semanticModels || [] });
 
     const candidates = models
       .filter((model) => model.rule_pool_eligibility?.status === "eligible")

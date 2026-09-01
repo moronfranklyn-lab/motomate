@@ -8,7 +8,7 @@
 - 辅助能力：轻量二手车风险助手
 - 交互端：同一套响应式网页，兼顾手机端用户测试与桌面端面试展示
 - 推荐架构：规则筛选 + AI 解释
-- 知识库：第一批 8 个配置已进入确定性规则池
+- 知识库：17 个 MVP 配置与 13 个已核验大排量配置进入统一 30 配置运行池；原范围池保持独立
 
 ## 核心文件
 
@@ -17,6 +17,8 @@
 - `项目问题与解决方案档案.md`：项目问题、取舍、验证结果与面试复盘案例
 - `system_prompt.md`：Agent 行为边界与解释策略
 - `knowledge_base_outputs/eligible_pool/first_batch_v1.json`：第一批正式规则池
+- `knowledge_base_outputs/eligible_pool/active_runtime_pool_v0.1.json`：主运行链路使用的 20 配置统一池
+- `knowledge_base_outputs/expansion/eligible_pool/expansion_pool_v0.1.json`：与 MVP 范围隔离的 3 配置扩展规则池
 - `知识库状态与准入规则V0.2.md`：知识库状态与准入规则
 - `scripts/`：模型抽取、抽样及确定性校验脚本
 - `rules-engine.js`：正式知识库之上的确定性准入、初筛与低权重语义排序模块
@@ -32,8 +34,10 @@
 - `web-evidence-fetcher.js`：带域名、DNS、重定向、体积和网页内容安全限制的公开证据抓取器
 - `external-evidence-pipeline.js`：编排官网与平台双源核验，只有通过门禁才生成库外临时候选
 - `alpha-orchestrator.js`：内部 Alpha 的意图路由、状态判断、工具编排与降级入口
-- `server/alpha-api.js`：加载独立17配置MVP开发预览池的本地HTTP API和脱敏审计事件
+- `server/alpha-api.js`：加载统一30配置运行池的本地HTTP API和脱敏审计事件
 - `server/sqlite-store.js`：使用本机 SQLite 持久化会话、推荐版本、反馈与审计事件
+- `server/knowledge-repository.js`：从只读 SQLite 索引按预算、类型、状态查询车型，并按候选ID读取语义字段
+- `scripts/build-knowledge-sqlite.mjs`：将可审计 JSON 运行池编译为 `runtime/motomate-knowledge.sqlite`
 - `knowledge_base_outputs/semantic_enrichment/`：第一批车型的可审计语义增强层
 - `evaluations/smoke/smoke_cases_v0.1.json`：20 条工程冒烟测试契约
 - `scripts/run-smoke-evals.mjs`：冒烟测试运行器，区分通过、失败和模块未实现阻塞
@@ -62,6 +66,8 @@ node scripts/test-external-search-integration.mjs
 node scripts/check-external-evidence-positive-path.mjs
 node scripts/test-alpha-orchestrator.mjs
 node scripts/test-alpha-api.mjs
+node scripts/build-knowledge-sqlite.mjs
+node scripts/test-knowledge-repository.mjs
 ```
 
 运行当前可执行的 20 条工程冒烟基线：
@@ -100,7 +106,9 @@ node scripts/check-alpha-test-readiness.mjs
 
 当前工程冒烟基线为20条通过、0条失败、0条阻塞，50条离线产品黄金评测为50/50通过；博查客户端17个场景、库外证据管线30个场景、自动搜索集成9个场景、编排器11个场景和Alpha API 13个场景通过。黄金评测促成了落地总预算筛选修复：3万元落地预算保留原始需求展示，但规则筛选使用扣除费用预留后的26,500元上限。自动发现采用通用搜索加最多2次车型类型相关品牌定向补搜；用户明确车型类型时，不接受类型未知的库外草稿。核验完成后还会按用户预算再次拦截，防止搜索摘要缺价的候选绕过预算初筛。TVL350的4万元页面场景仅用于触发预算覆盖不足的技术验收，不代表MVP正式价格范围从1至3万元扩大。价格模块仍不包含通用的真实联网刷新；二手模块不包含图片分析、真实车况鉴定或行情判断；费用门禁尚未接入真实计费存储和请求网关。
 
-内部 Alpha 编排器另有 8 个端到端场景通过，可统一路由选车、价格、二手文字和范围外候选，并在费用上限下保留规则与固定模板能力。本地 Alpha API 另有 13 个场景通过，显式加载17配置`mvp_eligible_pool_v0.1`与`mvp_semantic_v0.1`，支持静态网页、健康检查、多轮会话、推荐版本、结构化反馈和不保存原始咨询文本的审计事件。会话、推荐版本、反馈和审计事件已分表写入本地 SQLite，并通过服务重启后读取回归。候选卡可展开查看入选原因、价格口径、字段核验状态、公开来源、规则评估和Codex运营复核时间，且明确区分运营复核与正式推荐批准。本地反馈复盘页汇总推荐版本数、反馈覆盖率、平均评分、有效帮助率、评分分布、帮助标签、失败原因和最近反馈，不返回会话ID。网页已移除虚构车型目录和浏览器本地推荐算法，选车与二手结果均来自 Alpha API。17配置全部仅限`development_preview`且`recommendation_approved_count=0`；当前仍未接入模型解释、认证、云数据库、备份、删除生命周期或公网安全配置。`/api/internal/feedback-summary`无管理员认证，只能用于本地 Alpha，不得公网暴露。
+内部 Alpha 编排器可统一路由选车、价格、二手文字和范围外候选，并在费用上限下保留规则与固定模板能力。本地 Alpha API 加载30配置`active_runtime_pool_v0.1`与`active_runtime_semantic_v0.1`：其中17条来自原MVP池，13条来自隔离扩展池。大排量街车、跑车、巡航和拉力场景可进入主链路；3万元MVP筛选仍执行预算上限。30配置全部仍限`development_preview`且`recommendation_approved_count=0`，技术接入不等于正式推荐发布批准。`/api/internal/feedback-summary`无管理员认证，只能用于本地 Alpha，不得公网暴露。
+
+运行时车型检索使用 `runtime/motomate-knowledge.sqlite`。JSON 池与语义层仍是事实和审计源，SQLite 只是可重建的查询产物，不允许反向覆盖 JSON。服务发现数据库缺失或早于源 JSON 时会自动重建；查询将 `eligible/current/vehicle_type/budget` 条件下推 SQL，并只按候选 `model_id` 读取语义记录。数据库文件及 WAL 文件继续由 `.gitignore` 排除。
 
 启动本地 Alpha API：
 

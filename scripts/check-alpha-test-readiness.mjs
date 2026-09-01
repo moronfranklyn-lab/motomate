@@ -19,14 +19,15 @@ const golden = run("node", ["scripts/run-golden-evals.mjs"]);
 const api = run("node", ["scripts/test-alpha-api.mjs"]);
 const appSource = fs.readFileSync("app.js", "utf8");
 const apiSource = fs.readFileSync("server/alpha-api.js", "utf8");
-const storeSource = fs.readFileSync("server/sqlite-store.js", "utf8");
+const memorySource = fs.readFileSync("server/memory-store.js", "utf8");
 
 const supervisedChecks = {
   engineering_smoke_20_passed: smoke.status === 0 && /"passed": 20/.test(smoke.stdout),
   alpha_api_passed: api.status === 0 && /alpha-api: \d+ scenarios passed/.test(api.stdout),
   development_preview_disclaimer_visible: /尚未获得正式推荐批准|未完成正式推荐批准/.test(appSource),
   feedback_review_available: apiSource.includes("/api/internal/feedback-summary"),
-  no_original_consultation_text_persisted: !/raw_text\s+TEXT/i.test(storeSource),
+  short_term_memory_ttl_enforced: /SHORT_TERM_TTL_MS\s*=\s*24\s*\*\s*60\s*\*\s*60\s*\*\s*1000/.test(memorySource),
+  memory_management_available: ["/api/memory", "/api/memory/settings"].every((route) => apiSource.includes(route)),
   moderator_present: requiredFiles.every((file) => fs.existsSync(file)),
 };
 

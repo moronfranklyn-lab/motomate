@@ -1,0 +1,92 @@
+{
+  "extraction_run_id": "zhipu_2026-09-01T03-01-06-812Z",
+  "extraction_provider": "zhipu",
+  "extraction_model": "glm-4.7",
+  "request_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "max_tokens": 1800,
+    "temperature": 0.1,
+    "output_mode": "single_model"
+  },
+  "status": "extraction_draft",
+  "input_paths": [
+    "knowledge_base_inputs/expansion_public_sources/cfmoto_675nk_current_standard.json"
+  ],
+  "http_status": 200,
+  "latency_ms": 8596,
+  "retry_count": 0,
+  "usage": {
+    "completion_tokens": 504,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 9898,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 10402
+  },
+  "parseable": true,
+  "extracted": {
+    "model": {
+      "model_search_name": "675NK",
+      "model_year": null,
+      "trim_name": "Standard",
+      "sale_status": "current",
+      "official_msrp_cny": 35980,
+      "official_price_label": "¥35,980",
+      "displacement_cc": 675,
+      "seat_height_mm": 810,
+      "curb_weight_kg": 189,
+      "max_power_kw": 70,
+      "fuel_tank_l": 15,
+      "abs": "标配",
+      "tcs": "2段可调可关",
+      "vehicle_type": "摩托车",
+      "field_sources": {
+        "model_search_name": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "trim_name": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "sale_status": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "official_msrp_cny": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "official_price_label": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "displacement_cc": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "seat_height_mm": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "curb_weight_kg": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "max_power_kw": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "fuel_tank_l": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "abs": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "tcs": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ],
+        "vehicle_type": [
+          "https://www.cfmoto.com/motorcycles/675NK"
+        ]
+      },
+      "warnings": []
+    }
+  }
+}

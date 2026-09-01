@@ -9,3 +9,4 @@ _eval_doc.xml
 runtime/*.sqlite
 runtime/*.sqlite-shm
 runtime/*.sqlite-wal
+generated-images/
