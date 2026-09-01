@@ -7,7 +7,7 @@
       "purpose": "Validate comprehension, interaction friction, evidence visibility, and feedback completion without treating development previews as purchase advice.",
       "required_checks": [
         "engineering_smoke_20_passed",
-        "alpha_api_13_passed",
+        "alpha_api_passed",
         "development_preview_disclaimer_visible",
         "feedback_review_available",
         "no_original_consultation_text_persisted",

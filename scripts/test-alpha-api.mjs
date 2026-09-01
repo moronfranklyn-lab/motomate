@@ -10,7 +10,48 @@ const alphaManifest = JSON.parse(fs.readFileSync("knowledge_base_outputs/eligibl
 
 const temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "motomate-alpha-api-"));
 const databasePath = path.join(temporaryDirectory, "test.sqlite");
-const { server } = createAlphaApi({ databasePath });
+let modelExtractionCalls = 0;
+const needExtractor = {
+  async extract(input) {
+    modelExtractionCalls += 1;
+    return {
+      schema_version: "motomate_need_extraction_v0.1",
+      status: "completed",
+      provider: "deepseek",
+      model: "deepseek-v4-flash",
+      needs: { ...(input.needs || {}), budget_cny: 30000, budget_type: "total_purchase_budget" },
+      extracted_fields: ["budget_cny", "budget_type"],
+      usage: { prompt_tokens: 100, completion_tokens: 20, total_tokens: 120 },
+      error_code: null,
+    };
+  },
+};
+let explanationGenerationCalls = 0;
+const explanationGenerator = {
+  async generate({ candidates }) {
+    explanationGenerationCalls += 1;
+    return {
+      status: "completed",
+      model: "deepseek-v4-flash",
+      usage: { prompt_tokens: 200, completion_tokens: 80, total_tokens: 280 },
+      error_code: null,
+      validation: { schema_version: "motomate_explanation_validation_v0.1", validation_status: "pass", output_blocked: false, violations: [] },
+      recommendations: candidates.map((candidate, index) => ({
+        rank: index === 0 ? "首选" : index === 1 ? "次选" : "备选",
+        model_id: candidate.model_id,
+        title: `${candidate.brand} ${candidate.model_name} ${candidate.trim_name}`,
+        summary: "受控模型解释。",
+        pros: ["候选来自规则池。"],
+        cons: ["仍需线下核验。"],
+        fit: ["符合当前结构化需求的人。"],
+        not_fit: ["需求尚未覆盖的人。"],
+        next_steps: ["到店试坐。"],
+        caveats: ["内部 Alpha 预览。"],
+      })),
+    };
+  },
+};
+const { server, state } = createAlphaApi({ databasePath, needExtractor, explanationGenerator });
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
@@ -26,6 +67,34 @@ try {
   assert.equal(healthBody.run_mode, "development_preview");
   assert.equal(healthBody.pool_version, "mvp_eligible_pool_v0.1");
   assert.equal(healthBody.model_count, alphaManifest.model_count);
+  assert.equal(healthBody.need_extractor_enabled, true);
+  assert.equal(healthBody.explanation_generator_enabled, true);
+
+  const modelExtracted = await fetch(`${baseUrl}/api/alpha/run`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ session_id: "alpha_model_session", input: { raw_text: "三万元落地" } }),
+  });
+  assert.equal(modelExtracted.status, 200);
+  const modelExtractedBody = await modelExtracted.json();
+  assert.equal(modelExtractedBody.result.need_extraction.status, "completed");
+  assert.equal(modelExtractedBody.result.needs.budget_cny, 30000);
+  assert.equal("raw_text" in modelExtractedBody.result.needs, false);
+  assert.equal(modelExtractedBody.result.sufficiency.next_question_field, "usage");
+  assert.equal(modelExtractionCalls, 1);
+
+  state.accumulated_model_cost_cny = 50;
+  const modelSkipped = await fetch(`${baseUrl}/api/alpha/run`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ session_id: "alpha_cost_session", input: { raw_text: "帮我选车" } }),
+  });
+  assert.equal(modelSkipped.status, 200);
+  const modelSkippedBody = await modelSkipped.json();
+  assert.equal(modelSkippedBody.result.need_extraction.status, "skipped");
+  assert.equal(modelSkippedBody.result.need_extraction.error_code, "cost_limit_reached");
+  assert.equal(modelExtractionCalls, 1);
+  state.accumulated_model_cost_cny = 0;
 
   const first = await fetch(`${baseUrl}/api/alpha/run`, {
     method: "POST",
@@ -53,6 +122,9 @@ try {
   assert.equal(secondBody.result.next_action, "show_development_preview");
   assert.equal(secondBody.result.formal_recommendation_allowed, false);
   assert.ok(secondBody.result.result.recommendations.length > 0);
+  assert.equal(secondBody.result.explanation_generation.status, "completed");
+  assert.equal(secondBody.result.result.recommendations[0].summary, "受控模型解释。");
+  assert.equal(explanationGenerationCalls, 1);
   assert.equal(secondBody.recommendation_version.version_number, 1);
   assert.equal(secondBody.recommendation_version.pool_version, "mvp_eligible_pool_v0.1");
   assert.ok(secondBody.recommendation_version.candidate_model_ids.length > 0);
@@ -89,6 +161,7 @@ try {
   const versionsBody = await versions.json();
   assert.equal(versionsBody.recommendation_versions.length, 1);
   assert.equal(versionsBody.recommendation_versions[0].needs_snapshot.usage, "commute");
+  assert.equal("raw_text" in versionsBody.recommendation_versions[0].needs_snapshot, false);
   assert.equal(versionsBody.recommendation_versions[0].feedback.rating, 4);
 
   const audit = await fetch(`${baseUrl}/api/sessions/alpha_test_session/audit`);
@@ -141,7 +214,7 @@ try {
   assert.equal(feedbackSummaryBody.success_sample_rate, 1);
   assert.equal(feedbackSummaryBody.help_tag_counts.narrowed_candidates, 1);
   assert.equal("session_id" in feedbackSummaryBody.recent_feedback[0], false);
-  console.log("alpha-api: 13 scenarios passed");
+  console.log("alpha-api: 17 scenarios passed");
 } finally {
   await new Promise((resolve, reject) => restartedServer.close((error) => error ? reject(error) : resolve()));
   fs.rmSync(temporaryDirectory, { recursive: true, force: true });

@@ -9,6 +9,7 @@ const candidateRegistry = require("../knowledge_base_outputs/candidate_registry/
 const { runAlphaOrchestrator } = require("../alpha-orchestrator.js");
 const { buildMotorcycleDiscoveryQuery, buildTargetedDiscoveryQueries, createBochaSearchClient } = require("../bocha-search-client.js");
 const { extractCandidateDrafts } = require("../external-candidate-discovery.js");
+const { evaluateCostGuard } = require("../cost-guard.js");
 const { createSqliteStore } = require("./sqlite-store.js");
 
 const MAX_BODY_BYTES = 64 * 1024;
@@ -91,6 +92,12 @@ function mergeNeeds(previousNeeds = {}, input = {}) {
   return merged;
 }
 
+function sanitizePersistedNeeds(needs = {}) {
+  const sanitized = { ...needs };
+  delete sanitized.raw_text;
+  return sanitized;
+}
+
 function selectEvidenceCandidate(drafts, searchRequest) {
   return drafts.find((draft) => {
     if (draft.registry_match) return false;
@@ -124,7 +131,89 @@ function enforceExternalBudget(evidenceRun, budgetCny) {
   };
 }
 
-function auditEvent(sessionId, result) {
+function summarizeNeedExtraction(extraction) {
+  if (!extraction) return null;
+  return {
+    schema_version: extraction.schema_version,
+    status: extraction.status,
+    provider: extraction.provider,
+    model: extraction.model,
+    extracted_fields: extraction.extracted_fields || [],
+    usage: extraction.usage || null,
+    error_code: extraction.error_code || null,
+  };
+}
+
+function summarizeExplanationGeneration(generation) {
+  if (!generation) return null;
+  return {
+    status: generation.status,
+    model: generation.model,
+    usage: generation.usage || null,
+    error_code: generation.error_code || null,
+    validation_status: generation.validation?.validation_status || null,
+    violation_codes: [...new Set((generation.validation?.violations || []).map((item) => item.code))],
+    validation_violations: (generation.validation?.violations || []).slice(0, 12).map((item) => ({
+      code: item.code,
+      model_id: item.model_id || null,
+      field: item.field || null,
+      value: item.value || null,
+    })),
+  };
+}
+
+async function applyNeedExtraction(input, context = {}) {
+  const extractor = context.needExtractor;
+  if (!extractor || typeof extractor.extract !== "function") {
+    return { input, extraction: null };
+  }
+  if (typeof input.raw_text !== "string" || !input.raw_text.trim()) {
+    return { input, extraction: null };
+  }
+  const cost = evaluateCostGuard({
+    accumulated_model_cost_cny: context.accumulatedModelCostCny,
+    estimated_next_call_cost_cny: context.estimatedNextCallCostCny,
+  });
+  if (!cost.paid_model_calls_allowed) {
+    return {
+      input,
+      extraction: {
+        schema_version: "motomate_need_extraction_v0.1",
+        status: "skipped",
+        provider: null,
+        model: null,
+        extracted_fields: [],
+        usage: null,
+        error_code: "cost_limit_reached",
+      },
+    };
+  }
+  const extraction = await extractor.extract(input);
+  return {
+    input: { ...input, needs: extraction.needs || input.needs },
+    extraction,
+  };
+}
+
+async function applyExplanationGeneration(result, input, context = {}) {
+  const generator = context.explanationGenerator;
+  if (!generator || typeof generator.generate !== "function") return null;
+  if (result.next_action !== "show_development_preview" || !Array.isArray(result.result?.display_candidates) || result.result.display_candidates.length === 0) return null;
+  if (!result.cost_guard?.paid_model_calls_allowed) {
+    return { status: "skipped", recommendations: null, validation: null, usage: null, model: null, error_code: "cost_limit_reached" };
+  }
+  const generation = await generator.generate({
+    needs: result.needs || input.needs || {},
+    candidates: result.result.display_candidates,
+  });
+  if (generation.status === "completed" && Array.isArray(generation.recommendations)) {
+    result.result.recommendations = generation.recommendations;
+    result.result.explanation_validation = generation.validation;
+  }
+  return generation;
+}
+
+function auditEvent(sessionId, result, needExtraction, explanationGeneration) {
   return {
     event_id: randomUUID(),
     session_id: sessionId,
@@ -140,6 +229,8 @@ function auditEvent(sessionId, result) {
     external_discovery_status: result.result?.external_discovery?.status ?? null,
     external_discovery_result_count: result.result?.external_discovery?.results?.length ?? 0,
     external_evidence_status: result.result?.external_evidence_run?.status ?? null,
+    need_extraction: summarizeNeedExtraction(needExtraction),
+    explanation_generation: summarizeExplanationGeneration(explanationGeneration),
   };
 }
 
@@ -154,7 +245,7 @@ function createRecommendationVersion(sessionId, needs, result) {
     run_mode: result.run_mode,
     pool_version: knowledgeBase.pool_version,
     rule_version: knowledgeBase.rule_version,
-    needs_snapshot: structuredClone(needs),
+    needs_snapshot: structuredClone(sanitizePersistedNeeds(needs)),
     candidate_model_ids: (recommendation.display_candidates || recommendation.candidate_pool?.candidates || []).slice(0, 3).map((item) => item.model_id),
     closest_candidate_model_ids: (recommendation.closest_candidates || []).map((item) => item.model_id),
     status: recommendation.status,
@@ -185,6 +276,8 @@ function createAlphaApi(options = {}) {
   const dependencies = options.dependencies || { knowledgeBase, semanticEnrichment };
   const externalSearchClient = options.externalSearchClient || null;
   const externalEvidencePipeline = options.externalEvidencePipeline || null;
+  const needExtractor = options.needExtractor || null;
+  const explanationGenerator = options.explanationGenerator || null;
 
   const server = http.createServer(async (request, response) => {
     const requestUrl = new URL(request.url, "http://127.0.0.1");
@@ -197,6 +290,8 @@ function createAlphaApi(options = {}) {
           run_mode: "development_preview",
           pool_version: knowledgeBase.pool_version,
           model_count: knowledgeBase.models.length,
+          need_extractor_enabled: Boolean(needExtractor),
+          explanation_generator_enabled: Boolean(explanationGenerator),
         });
         return;
       }
@@ -215,13 +310,20 @@ function createAlphaApi(options = {}) {
           audit_events: [],
           recommendation_versions: [],
         };
-        const input = { ...(body.input || {}), needs: mergeNeeds(existing.needs, body.input || {}) };
+        const mergedInput = { ...(body.input || {}), needs: mergeNeeds(existing.needs, body.input || {}) };
+        const needExtractionRun = await applyNeedExtraction(mergedInput, {
+          needExtractor,
+          accumulatedModelCostCny: state.accumulated_model_cost_cny,
+          estimatedNextCallCostCny: body.estimated_next_call_cost_cny || 0,
+        });
+        const input = needExtractionRun.input;
         const result = runAlphaOrchestrator({
           input,
           accumulated_model_cost_cny: state.accumulated_model_cost_cny,
           estimated_next_call_cost_cny: body.estimated_next_call_cost_cny || 0,
           conversation_state: { critical_question_count: existing.critical_question_count },
         }, dependencies);
+        result.need_extraction = summarizeNeedExtraction(needExtractionRun.extraction);
         if (result.result?.candidate_coverage?.external_search_required && externalSearchClient) {
           const searchRequest = result.result.candidate_coverage.search_request;
           const query = buildMotorcycleDiscoveryQuery(searchRequest);
@@ -254,14 +356,17 @@ function createAlphaApi(options = {}) {
               : [];
           }
         }
+        const explanationGeneration = await applyExplanationGeneration(result, input, { explanationGenerator });
+        result.explanation_generation = summarizeExplanationGeneration(explanationGeneration);
         const nextQuestionCount = result.sufficiency?.next_action === "ask_one_question"
           ? existing.critical_question_count + 1
           : existing.critical_question_count;
-        const event = auditEvent(sessionId, result);
+        const event = auditEvent(sessionId, result, needExtractionRun.extraction, explanationGeneration);
         const recommendationVersion = createRecommendationVersion(sessionId, result.needs || input.needs, result);
         if (recommendationVersion) recommendationVersion.version_number = existing.recommendation_versions.length + 1;
+        if (result.needs) result.needs = sanitizePersistedNeeds(result.needs);
         const nextSession = {
-          needs: result.needs || input.needs,
+          needs: sanitizePersistedNeeds(result.needs || input.needs),
           critical_question_count: nextQuestionCount,
         };
         store.saveRun(sessionId, nextSession, event, recommendationVersion);
@@ -359,6 +464,10 @@ if (require.main === module) {
   const { loadLocalEnv } = require("./load-local-env.js");
   const { createWebEvidenceFetcher } = require("../web-evidence-fetcher.js");
   const { createExternalEvidencePipeline } = require("../external-evidence-pipeline.js");
+  const { createDeepSeekClient } = require("../deepseek-client.js");
+  const { createNeedExtractor } = require("../need-extractor.js");
+  const { createExplanationGenerator } = require("../explanation-generator.js");
+  const { extractAlphaNeeds } = require("../alpha-orchestrator.js");
   loadLocalEnv(join(__dirname, ".."));
   const port = Number(process.env.MOTOMATE_PORT || 4173);
   const externalSearchClient = process.env.BOCHA_API_KEY
@@ -367,10 +476,23 @@ if (require.main === module) {
   const externalEvidencePipeline = externalSearchClient
     ? createExternalEvidencePipeline({ searchClient: externalSearchClient, fetchEvidencePage: createWebEvidenceFetcher() })
     : null;
-  const { server } = createAlphaApi({ externalSearchClient, externalEvidencePipeline });
+  const deepSeekClient = process.env.DEEPSEEK_API_KEY
+    ? createDeepSeekClient({
+      apiKey: process.env.DEEPSEEK_API_KEY,
+      model: process.env.DEEPSEEK_MODEL,
+      baseUrl: process.env.DEEPSEEK_BASE_URL,
+    })
+    : null;
+  const needExtractor = process.env.MOTOMATE_NEED_EXTRACTOR_ENABLED === "true" && deepSeekClient
+    ? createNeedExtractor({ client: deepSeekClient, fallbackExtractor: extractAlphaNeeds })
+    : null;
+  const explanationGenerator = process.env.MOTOMATE_EXPLANATION_GENERATOR_ENABLED === "true" && deepSeekClient
+    ? createExplanationGenerator({ client: deepSeekClient })
+    : null;
+  const { server } = createAlphaApi({ externalSearchClient, externalEvidencePipeline, needExtractor, explanationGenerator });
   server.listen(port, "127.0.0.1", () => {
     console.log(`MotoMate Alpha API: http://127.0.0.1:${port}`);
   });
 }
 
-module.exports = { createAlphaApi, createRuntimeState, enforceExternalBudget, selectEvidenceCandidate };
+module.exports = { applyExplanationGeneration, applyNeedExtraction, createAlphaApi, createRuntimeState, enforceExternalBudget, sanitizePersistedNeeds, selectEvidenceCandidate, summarizeExplanationGeneration, summarizeNeedExtraction };

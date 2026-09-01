@@ -23,7 +23,7 @@ const storeSource = fs.readFileSync("server/sqlite-store.js", "utf8");
 
 const supervisedChecks = {
   engineering_smoke_20_passed: smoke.status === 0 && /"passed": 20/.test(smoke.stdout),
-  alpha_api_13_passed: api.status === 0 && /13 scenarios passed/.test(api.stdout),
+  alpha_api_passed: api.status === 0 && /alpha-api: \d+ scenarios passed/.test(api.stdout),
   development_preview_disclaimer_visible: /尚未获得正式推荐批准|未完成正式推荐批准/.test(appSource),
   feedback_review_available: apiSource.includes("/api/internal/feedback-summary"),
   no_original_consultation_text_persisted: !/raw_text\s+TEXT/i.test(storeSource),
