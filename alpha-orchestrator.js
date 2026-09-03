@@ -17,10 +17,11 @@
     if (/什么|作用|区别|为什么|有必要|有什么用|怎么理解/.test(text)
       && /摩托|机车|骑行|驾照|护具|头盔|排量|座高|车重|ABS|TCS|保养|维修|改装|故障/i.test(text)) return "motorcycle_general";
     if (/没骑过|不会骑|零基础|第一次骑|新手.*怎么办|怎么学骑/.test(text)) return "motorcycle_general";
+    if (/试乘|试驾|试坐|门店看车|到店看车|到店验车|原地挪车/.test(text)) return "motorcycle_general";
+    if (/(门店|车行|销售|经销商).*(坑|套路|注意|报价|费用|合同|订金|定金|赠品|加价|落地)|(?:坑|套路).*(门店|车行|销售|经销商)/.test(text)) return "motorcycle_general";
     if (/买|选车|推荐|预算|裸车|落地|通勤|代步|新车|二手|踏板|街车|巡航|仿赛|复古|ADV|拉力|对比.*车|\d+(?:\.\d+)?\s*[万wW]|\d{4,6}\s*元/i.test(text)) return "beginner_recommendation";
     if (/摩托|机车|骑行|驾照|护具|头盔|排量|座高|车重|ABS|TCS|保养|维修|改装|故障/i.test(text)) return "motorcycle_general";
     if (/你好|嗨|谢谢|多谢|再见|心情/.test(text)) return "general_brief_redirect";
-    if (hasNeeds) return "beginner_recommendation";
     return "general_brief_redirect";
   }
 
@@ -28,6 +29,10 @@
     const needs = { ...(input.needs || {}) };
     const text = typeof input.raw_text === "string" ? input.raw_text : "";
     if (!needs.raw_text && text) needs.raw_text = text;
+    if (!needs.budget_cny && decisionApi?.extractBudgetFromText) {
+      const budget = decisionApi.extractBudgetFromText(text);
+      if (budget) needs.budget_cny = budget;
+    }
     if (!needs.usage) {
       if (/通勤|代步/.test(text)) needs.usage = "commute";
       else if (/周末|休闲/.test(text)) needs.usage = "weekend";
@@ -67,6 +72,16 @@
 
     if (intent === "motorcycle_general" || intent === "general_brief_redirect") {
       return { ...base, status: "completed", next_action: "show_open_answer", result: { answer_mode: intent } };
+    }
+    if (intent === "beginner_recommendation" && input.card_authorized === false) {
+      return {
+        ...base,
+        intent: "motorcycle_general",
+        status: "completed",
+        next_action: "show_open_answer",
+        card_gate: { authorized: false, reason: "current_turn_did_not_authorize_cards" },
+        result: { answer_mode: "motorcycle_general" },
+      };
     }
     if (intent === "used_text_risk") {
       return { ...base, status: "completed", next_action: "show_used_text_guidance", result: usedApi.analyzeUsedListing(input) };

@@ -13,14 +13,29 @@ assert.equal(routeIntent({ raw_text: "摩托车 ABS 有什么用" }), "motorcycl
 assert.equal(routeIntent({ raw_text: "ABS 和 TCS 有什么区别，新手选车有必要关注吗" }), "motorcycle_general");
 assert.equal(routeIntent({ raw_text: "我是新手，请帮我选车" }), "beginner_recommendation");
 assert.equal(routeIntent({ raw_text: "我还没骑过车怎么办", needs: { budget_cny: 30000, usage: "weekend", new_used_preference: "new" } }), "motorcycle_general");
+assert.equal(routeIntent({ raw_text: "我去门店试乘试驾的时候应该注意些什么？" }), "motorcycle_general");
+assert.equal(routeIntent({ raw_text: "我去门店试坐要注意什么？" }), "motorcycle_general");
+assert.equal(routeIntent({ raw_text: "去门店应该注意什么？他会不会坑我？", needs: { budget_cny: 20000, usage: "commute" } }), "motorcycle_general");
+assert.equal(routeIntent({ raw_text: "销售会不会套路我？", needs: { budget_cny: 20000 } }), "motorcycle_general");
 assert.equal(routeIntent({ raw_text: "谢谢", needs: { budget_cny: 30000, usage: "weekend", new_used_preference: "new" } }), "general_brief_redirect");
 assert.equal(routeIntent({ raw_text: "这是裸车预算", needs: { budget_cny: 30000 } }), "beginner_recommendation");
 assert.equal(routeIntent({ raw_text: "你好，今天心情怎么样" }), "general_brief_redirect");
 
 const extracted = extractAlphaNeeds({ raw_text: "2 万裸车预算，通勤用的新车踏板" });
+assert.equal(extracted.budget_cny, 20000);
 assert.equal(extracted.usage, "commute");
 assert.equal(extracted.new_used_preference, "new");
 assert.equal(extracted.vehicle_type, "踏板");
+
+const chineseBudgetNeeds = extractAlphaNeeds({ raw_text: "预算两万元，主要上下班通勤" });
+assert.equal(chineseBudgetNeeds.budget_cny, 20000);
+assert.equal(chineseBudgetNeeds.usage, "commute");
+
+const chineseBudgetQuestion = runAlphaOrchestrator({
+  input: { raw_text: "预算两万元，主要上下班通勤" },
+}, dependencies);
+assert.equal(chineseBudgetQuestion.next_action, "ask_one_question");
+assert.equal(chineseBudgetQuestion.sufficiency.next_question_field, "budget_type");
 
 const question = runAlphaOrchestrator({
   input: { raw_text: "预算 2 万，想买踏板" },
@@ -43,6 +58,14 @@ assert.equal(recommendation.run_mode, "development_preview");
 assert.equal(recommendation.formal_recommendation_allowed, false);
 assert.equal(recommendation.result.candidate_pool.status, "development_preview");
 assert.ok(recommendation.result.recommendations.length > 0);
+
+const preliminaryAfterTwoQuestions = runAlphaOrchestrator({
+  input: { needs: { budget_cny: 20000, budget_type: "bare_vehicle_budget" } },
+  conversation_state: { critical_question_count: 2 },
+}, dependencies);
+assert.equal(preliminaryAfterTwoQuestions.next_action, "show_development_preview");
+assert.equal(preliminaryAfterTwoQuestions.sufficiency.recommendation_scope, "preliminary_candidates");
+assert.deepEqual(preliminaryAfterTwoQuestions.sufficiency.missing_fields, ["usage", "new_used_preference"]);
 
 const totalBudgetRecommendation = runAlphaOrchestrator({
   input: {
@@ -84,4 +107,4 @@ const basicMode = runAlphaOrchestrator({
 assert.equal(basicMode.cost_guard.mode, "basic");
 assert.equal(basicMode.result.recommendations.length > 0, true);
 
-console.log("alpha-orchestrator: 11 scenarios passed");
+console.log("alpha-orchestrator: 19 scenarios passed");

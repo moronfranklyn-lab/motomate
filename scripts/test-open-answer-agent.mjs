@@ -29,6 +29,14 @@ assert.match(scooterShortcut.answer, /正规驾校|培训机构/);
 assert.match(SYSTEM_PROMPT, /正规培训/);
 assert.match(SYSTEM_PROMPT, /不得把“小排量”/);
 
+const testRideFallback = await createOpenAnswerAgent().answer({ rawText: "去门店试乘试驾要注意什么？", mode: "motorcycle_general" });
+assert.match(testRideFallback.answer, /静态试坐/);
+assert.match(testRideFallback.answer, /驾驶资格/);
+
+const dealerFallback = await createOpenAnswerAgent().answer({ rawText: "去门店应该注意什么？他会不会坑我？", mode: "motorcycle_general" });
+assert.match(dealerFallback.answer, /不能先下结论/);
+assert.match(dealerFallback.answer, /定金.*订金/);
+
 const invalidMode = await createOpenAnswerAgent({ client: clientFor({}) }).answer({ rawText: "test", mode: "anything" });
 assert.equal(invalidMode.status, "fallback");
 

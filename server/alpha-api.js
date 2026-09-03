@@ -11,6 +11,7 @@ const { routeIntent, runAlphaOrchestrator } = require("../alpha-orchestrator.js"
 const { buildMotorcycleDiscoveryQuery, buildTargetedDiscoveryQueries, createBochaSearchClient } = require("../bocha-search-client.js");
 const { extractCandidateDrafts } = require("../external-candidate-discovery.js");
 const { evaluateCostGuard } = require("../cost-guard.js");
+const { fallbackDecision: fallbackTurnIntentDecision } = require("../turn-intent-agent.js");
 const { createSqliteStore } = require("./sqlite-store.js");
 const { createMemoryStore, DEVICE_ID_PATTERN, MEMORY_KEYS } = require("./memory-store.js");
 
@@ -21,6 +22,10 @@ const STATIC_FILES = Object.freeze({
   "/index.html": ["index.html", "text/html; charset=utf-8"],
   "/styles.css": ["styles.css", "text/css; charset=utf-8"],
   "/app.js": ["app.js", "text/javascript; charset=utf-8"],
+  "/assets/intro/scooter.jpg": ["assets/intro/scooter.jpg", "image/jpeg"],
+  "/assets/intro/street.jpg": ["assets/intro/street.jpg", "image/jpeg"],
+  "/assets/intro/cruiser.jpg": ["assets/intro/cruiser.jpg", "image/jpeg"],
+  "/assets/intro/adv.jpg": ["assets/intro/adv.jpg", "image/jpeg"],
 });
 const HELP_TAGS = new Set(["narrowed_candidates", "understood_budget_tradeoff", "excluded_unsuitable", "clear_next_step", "other"]);
 const FAILURE_REASONS = new Set(["over_budget", "usage_mismatch", "dislike_model_or_style", "possible_data_error", "too_many_questions", "hard_to_understand", "missing_target_model", "other"]);
@@ -216,6 +221,22 @@ function summarizeOpenAnswer(answer) {
   return { status: answer.status, model: answer.model, usage: answer.usage || null, error_code: answer.error_code || null };
 }
 
+function summarizeTurnIntentDecision(decision) {
+  if (!decision) return null;
+  return {
+    status: decision.status,
+    intent: decision.intent,
+    orchestrator_intent: decision.orchestrator_intent,
+    card_action: decision.card_action,
+    card_authorized: decision.card_authorized === true,
+    confidence: decision.confidence,
+    gate_reason: decision.gate_reason,
+    model: decision.model,
+    usage: decision.usage || null,
+    error_code: decision.error_code || null,
+  };
+}
+
 async function applyOpenAnswer(result, input, context = {}) {
   if (result.next_action !== "show_open_answer") return null;
   const agent = context.openAnswerAgent;
@@ -238,6 +259,7 @@ async function applyConversationDecision(result, context = {}) {
     confirmed_needs: sanitizePersistedNeeds(result.needs || {}),
     missing_fields: missingFields,
     allowed_actions: allowedActions,
+    recommendation_scope: result.sufficiency?.recommendation_scope || "confirmed_needs",
     run_mode: result.run_mode,
     memory_context: context.memoryContext || null,
   });
@@ -302,7 +324,7 @@ async function applyExplanationGeneration(result, input, context = {}) {
   return generation;
 }
 
-function auditEvent(sessionId, result, needExtraction, explanationGeneration, conversationDecision, openAnswer) {
+function auditEvent(sessionId, result, needExtraction, explanationGeneration, conversationDecision, openAnswer, turnIntentDecision) {
   return {
     event_id: randomUUID(),
     session_id: sessionId,
@@ -322,6 +344,7 @@ function auditEvent(sessionId, result, needExtraction, explanationGeneration, co
     explanation_generation: summarizeExplanationGeneration(explanationGeneration),
     conversation_decision: summarizeConversationDecision(conversationDecision),
     open_answer: summarizeOpenAnswer(openAnswer),
+    turn_intent_decision: summarizeTurnIntentDecision(turnIntentDecision),
   };
 }
 
@@ -371,6 +394,7 @@ function createAlphaApi(options = {}) {
   const explanationGenerator = options.explanationGenerator || null;
   const conversationAgent = options.conversationAgent || null;
   const openAnswerAgent = options.openAnswerAgent || null;
+  const turnIntentAgent = options.turnIntentAgent || null;
   const memoryStore = options.memoryStore || createMemoryStore(options.memoryDatabasePath || join(__dirname, "..", "runtime", "motomate-memory.sqlite"));
 
   const server = http.createServer(async (request, response) => {
@@ -389,6 +413,7 @@ function createAlphaApi(options = {}) {
           explanation_generator_enabled: Boolean(explanationGenerator),
           conversation_agent_enabled: Boolean(conversationAgent),
           open_answer_agent_enabled: Boolean(openAnswerAgent),
+          turn_intent_agent_enabled: Boolean(turnIntentAgent),
           memory_enabled: Boolean(memoryStore),
         });
         return;
@@ -451,11 +476,28 @@ function createAlphaApi(options = {}) {
           recommendation_versions: [],
         };
         const mergedInput = { ...(body.input || {}), needs: mergeNeeds(existing.needs, body.input || {}) };
-        const preliminaryIntent = routeIntent(mergedInput);
+        const deterministicIntent = routeIntent({ ...mergedInput, intent: body.input?.intent });
+        const turnIntentContext = {
+          raw_text: typeof body.input?.raw_text === "string" ? body.input.raw_text : "",
+          current_needs: body.input?.needs || {},
+          confirmed_needs: sanitizePersistedNeeds(existing.needs),
+          has_previous_recommendation: existing.recommendation_versions.length > 0,
+          recent_messages: currentMemoryContext.recent_messages || [],
+          deterministic_intent: deterministicIntent,
+        };
+        const turnIntentDecision = turnIntentAgent && typeof turnIntentAgent.decide === "function"
+          ? await turnIntentAgent.decide(turnIntentContext)
+          : fallbackTurnIntentDecision(turnIntentContext, deterministicIntent, "model_unavailable");
+        const routedInput = {
+          ...mergedInput,
+          intent: turnIntentDecision.orchestrator_intent,
+          card_authorized: turnIntentDecision.card_authorized === true,
+        };
+        const preliminaryIntent = routedInput.intent;
         const openIntent = preliminaryIntent === "motorcycle_general" || preliminaryIntent === "general_brief_redirect";
         const needExtractionRun = openIntent
-          ? { input: mergedInput, extraction: null }
-          : await applyNeedExtraction(mergedInput, {
+          ? { input: routedInput, extraction: null }
+          : await applyNeedExtraction(routedInput, {
             needExtractor,
             accumulatedModelCostCny: state.accumulated_model_cost_cny,
             estimatedNextCallCostCny: body.estimated_next_call_cost_cny || 0,
@@ -468,6 +510,7 @@ function createAlphaApi(options = {}) {
           conversation_state: { critical_question_count: existing.critical_question_count },
         }, dependencies);
         result.need_extraction = summarizeNeedExtraction(needExtractionRun.extraction);
+        result.turn_intent = summarizeTurnIntentDecision(turnIntentDecision);
         const openAnswer = await applyOpenAnswer(result, input, { openAnswerAgent, memoryContext: currentMemoryContext });
         const conversationDecision = await applyConversationDecision(result, { conversationAgent, memoryContext: currentMemoryContext });
         if (result.result?.candidate_coverage?.external_search_required && externalSearchClient) {
@@ -507,7 +550,7 @@ function createAlphaApi(options = {}) {
         const nextQuestionCount = result.sufficiency?.next_action === "ask_one_question"
           ? existing.critical_question_count + 1
           : existing.critical_question_count;
-        const event = auditEvent(sessionId, result, needExtractionRun.extraction, explanationGeneration, conversationDecision, openAnswer);
+        const event = auditEvent(sessionId, result, needExtractionRun.extraction, explanationGeneration, conversationDecision, openAnswer, turnIntentDecision);
         const recommendationVersion = createRecommendationVersion(sessionId, result.needs || input.needs, result);
         if (recommendationVersion) recommendationVersion.version_number = existing.recommendation_versions.length + 1;
         if (result.needs) result.needs = sanitizePersistedNeeds(result.needs);
@@ -620,6 +663,7 @@ if (require.main === module) {
   const { createNeedExtractor } = require("../need-extractor.js");
   const { createExplanationGenerator } = require("../explanation-generator.js");
   const { createConversationAgent } = require("../conversation-agent.js");
+  const { createTurnIntentAgent } = require("../turn-intent-agent.js");
   const { createOpenAnswerAgent } = require("../open-answer-agent.js");
   const { extractAlphaNeeds } = require("../alpha-orchestrator.js");
   loadLocalEnv(join(__dirname, ".."));
@@ -646,13 +690,16 @@ if (require.main === module) {
   const conversationAgent = process.env.MOTOMATE_CONVERSATION_AGENT_ENABLED === "true" && deepSeekClient
     ? createConversationAgent({ client: deepSeekClient })
     : null;
+  const turnIntentAgent = process.env.MOTOMATE_CONVERSATION_AGENT_ENABLED === "true" && deepSeekClient
+    ? createTurnIntentAgent({ client: deepSeekClient })
+    : null;
   const openAnswerAgent = process.env.MOTOMATE_OPEN_ANSWER_ENABLED === "true" && deepSeekClient
     ? createOpenAnswerAgent({ client: deepSeekClient })
     : null;
-  const { server } = createAlphaApi({ externalSearchClient, externalEvidencePipeline, needExtractor, explanationGenerator, conversationAgent, openAnswerAgent });
+  const { server } = createAlphaApi({ externalSearchClient, externalEvidencePipeline, needExtractor, explanationGenerator, conversationAgent, openAnswerAgent, turnIntentAgent });
   server.listen(port, "127.0.0.1", () => {
     console.log(`MotoMate Alpha API: http://127.0.0.1:${port}`);
   });
 }
 
-module.exports = { applyConversationDecision, applyExplanationGeneration, applyNeedExtraction, applyOpenAnswer, createAlphaApi, createRuntimeState, enforceExternalBudget, memoryContext, observeStablePreferences, sanitizePersistedNeeds, selectEvidenceCandidate, summarizeConversationDecision, summarizeExplanationGeneration, summarizeNeedExtraction, summarizeOpenAnswer };
+module.exports = { applyConversationDecision, applyExplanationGeneration, applyNeedExtraction, applyOpenAnswer, createAlphaApi, createRuntimeState, enforceExternalBudget, memoryContext, observeStablePreferences, sanitizePersistedNeeds, selectEvidenceCandidate, summarizeConversationDecision, summarizeExplanationGeneration, summarizeNeedExtraction, summarizeOpenAnswer, summarizeTurnIntentDecision };

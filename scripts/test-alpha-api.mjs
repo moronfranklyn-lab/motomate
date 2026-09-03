@@ -6,6 +6,7 @@ import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
 const { createAlphaApi } = require("../server/alpha-api.js");
+const { fallbackDecision: fallbackTurnIntentDecision } = require("../turn-intent-agent.js");
 const alphaManifest = JSON.parse(fs.readFileSync("knowledge_base_outputs/eligible_pool/active_runtime_manifest_v0.1.json", "utf8"));
 
 const temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "motomate-alpha-api-"));
@@ -75,7 +76,17 @@ const openAnswerAgent = {
     return { status: "completed", answer: mode === "motorcycle_general" ? "ABS 是制动安全辅助配置。" : "可以简单聊聊，我也擅长帮你选车。", redirect_suggestions: ["开始新手选车"], model: "deepseek-v4-flash", usage: { total_tokens: 70 }, error_code: null };
   },
 };
-const { server, state } = createAlphaApi({ databasePath, memoryDatabasePath, needExtractor, explanationGenerator, conversationAgent, openAnswerAgent });
+let turnIntentAgentCalls = 0;
+const turnIntentAgent = {
+  async decide(context) {
+    turnIntentAgentCalls += 1;
+    if (/门店.*坑|销售.*套路/.test(context.raw_text)) {
+      return { status: "completed", intent: "dealer_advice", orchestrator_intent: "motorcycle_general", card_action: "none", card_authorized: false, confidence: 0.98, gate_reason: "cards_not_authorized_by_current_turn", model: "deepseek-v4-flash", usage: { total_tokens: 60 }, error_code: null };
+    }
+    return { ...fallbackTurnIntentDecision(context, context.deterministic_intent), status: "completed" };
+  },
+};
+const { server, state } = createAlphaApi({ databasePath, memoryDatabasePath, needExtractor, explanationGenerator, conversationAgent, openAnswerAgent, turnIntentAgent });
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
@@ -95,6 +106,7 @@ try {
   assert.equal(healthBody.explanation_generator_enabled, true);
   assert.equal(healthBody.conversation_agent_enabled, true);
   assert.equal(healthBody.open_answer_agent_enabled, true);
+  assert.equal(healthBody.turn_intent_agent_enabled, true);
   assert.equal(healthBody.memory_enabled, true);
 
   const deviceId = "device_1234567890abcdef";
@@ -155,6 +167,18 @@ try {
   assert.equal(modelExtractionCalls, 1);
 
   state.accumulated_model_cost_cny = 50;
+  const chineseBudgetFallback = await fetch(`${baseUrl}/api/alpha/run`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ session_id: "alpha_chinese_budget_fallback", input: { raw_text: "预算两万元，主要上下班通勤" } }),
+  });
+  assert.equal(chineseBudgetFallback.status, 200);
+  const chineseBudgetFallbackBody = await chineseBudgetFallback.json();
+  assert.equal(chineseBudgetFallbackBody.result.need_extraction.status, "skipped");
+  assert.equal(chineseBudgetFallbackBody.result.needs.budget_cny, 20000);
+  assert.equal(chineseBudgetFallbackBody.result.needs.usage, "commute");
+  assert.equal(chineseBudgetFallbackBody.result.sufficiency.next_question_field, "budget_type");
+
   const modelSkipped = await fetch(`${baseUrl}/api/alpha/run`, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -212,6 +236,17 @@ try {
   assert.match(openFollowUpBody.result.open_answer.answer, /ABS|选车/);
   assert.equal(openFollowUpBody.recommendation_version, null);
 
+  const dealerFollowUp = await fetch(`${baseUrl}/api/alpha/run`, {
+    method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ session_id: "alpha_test_session", input: { raw_text: "去门店会不会坑我？" } }),
+  });
+  const dealerFollowUpBody = await dealerFollowUp.json();
+  assert.equal(dealerFollowUpBody.result.next_action, "show_open_answer");
+  assert.equal(dealerFollowUpBody.result.turn_intent.intent, "dealer_advice");
+  assert.equal(dealerFollowUpBody.result.turn_intent.card_authorized, false);
+  assert.equal(dealerFollowUpBody.recommendation_version, null);
+  assert.ok(turnIntentAgentCalls > 0);
+
   const expansion = await fetch(`${baseUrl}/api/alpha/run`, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -265,7 +300,7 @@ try {
   const audit = await fetch(`${baseUrl}/api/sessions/alpha_test_session/audit`);
   assert.equal(audit.status, 200);
   const auditBody = await audit.json();
-  assert.equal(auditBody.events.length, 4);
+  assert.equal(auditBody.events.length, 5);
   assert.equal("raw_text" in auditBody.events[0], false);
   assert.equal(auditBody.events[1].event_type, "alpha_orchestrator_run");
 
@@ -300,7 +335,7 @@ try {
 
   const persistedAudit = await fetch(`${restartedBaseUrl}/api/sessions/alpha_test_session/audit`);
   assert.equal(persistedAudit.status, 200);
-  assert.equal((await persistedAudit.json()).events.length, 4);
+  assert.equal((await persistedAudit.json()).events.length, 5);
 
   const feedbackSummary = await fetch(`${restartedBaseUrl}/api/internal/feedback-summary`);
   assert.equal(feedbackSummary.status, 200);

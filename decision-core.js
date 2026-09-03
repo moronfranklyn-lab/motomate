@@ -20,11 +20,51 @@
     return Number.isFinite(value) && value > 0 ? Math.round(value) : null;
   }
 
+  const CHINESE_DIGITS = Object.freeze({
+    一: 1,
+    二: 2,
+    两: 2,
+    三: 3,
+    四: 4,
+    五: 5,
+    六: 6,
+    七: 7,
+    八: 8,
+    九: 9,
+  });
+
+  function parseChineseWanUnit(value) {
+    if (value === "十") return 10;
+    if (value.length === 1) return CHINESE_DIGITS[value] || null;
+    const tens = value.match(/^([一二两三四五六七八九])?十([一二两三四五六七八九])?$/);
+    if (!tens) return null;
+    return (tens[1] ? CHINESE_DIGITS[tens[1]] : 1) * 10 + (tens[2] ? CHINESE_DIGITS[tens[2]] : 0);
+  }
+
+  function extractChineseWanBudget(rawText) {
+    const match = rawText.match(/([一二两三四五六七八九十]+)万(?:([一二两三四五六七八九])千|([一二两三四五六七八九]))?/);
+    if (!match) return null;
+    const matchedText = match[0];
+    const matchIndex = match.index || 0;
+    const trailingText = rawText.slice(matchIndex + matchedText.length);
+    if (/^(?:公里|km)/i.test(trailingText)) return null;
+    if (/^(?:几|多)/.test(trailingText) || /十几$/.test(match[1])) return null;
+    if (!match[1].includes("十") && match[1].length > 1) return null;
+    const wan = parseChineseWanUnit(match[1]);
+    if (!wan) return null;
+    const thousands = CHINESE_DIGITS[match[2] || match[3]] || 0;
+    return finitePositiveNumber(wan * 10000 + thousands * 1000);
+  }
+
   function extractBudgetFromText(rawText) {
     if (typeof rawText !== "string") return null;
     const tenThousand = rawText.match(/(\d+(?:\.\d+)?)\s*[万wW]/);
-    if (tenThousand) return finitePositiveNumber(Number(tenThousand[1]) * 10000);
-    const yuan = rawText.match(/(\d{4,6})\s*元?/);
+    if (tenThousand && !/^(?:公里|km)/i.test(rawText.slice((tenThousand.index || 0) + tenThousand[0].length))) {
+      return finitePositiveNumber(Number(tenThousand[1]) * 10000);
+    }
+    const chineseWan = extractChineseWanBudget(rawText);
+    if (chineseWan) return chineseWan;
+    const yuan = rawText.match(/(\d{4,6})\s*元/);
     return yuan ? finitePositiveNumber(Number(yuan[1])) : null;
   }
 
@@ -130,7 +170,21 @@
       };
     }
 
-    if (criticalQuestionCount >= 3) {
+    if (criticalQuestionCount >= 2 && budget.status === "ready") {
+      return {
+        status: "ready_with_uncertainty",
+        next_action: "recommend",
+        next_question: null,
+        next_question_field: null,
+        missing_fields: missingFields,
+        critical_question_count: criticalQuestionCount,
+        recommendation_scope: "preliminary_candidates",
+        uncertainty_disclosure_required: true,
+        budget,
+      };
+    }
+
+    if (criticalQuestionCount >= 2) {
       return {
         status: "partial_advice_only",
         next_action: "partial_advice_only",
@@ -139,6 +193,7 @@
         missing_fields: missingFields,
         critical_question_count: criticalQuestionCount,
         specific_recommendation_allowed: false,
+        recommendation_scope: "direction_only",
         budget,
       };
     }
@@ -169,7 +224,7 @@
     };
   }
 
-  const api = { normalizeBudget, assessSufficiency, advanceConversation };
+  const api = { extractBudgetFromText, normalizeBudget, assessSufficiency, advanceConversation };
   root.MotoMateDecisionCore = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);

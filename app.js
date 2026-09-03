@@ -13,7 +13,7 @@ const state = {
 const form = document.querySelector("#advisorForm");
 const input = document.querySelector("#advisorInput");
 const conversation = document.querySelector("#conversation");
-const grid = document.querySelector("#recommendationGrid");
+let grid = document.querySelector("#recommendationGrid");
 const resultMeta = document.querySelector("#resultMeta");
 const statusPill = document.querySelector("#statusPill");
 const budgetValue = document.querySelector("#budgetValue");
@@ -25,6 +25,8 @@ const resetButton = document.querySelector("#resetButton");
 const sendButton = document.querySelector(".send-button");
 const feedbackBand = document.querySelector("#feedbackBand");
 const feedbackForm = document.querySelector("#feedbackForm");
+const feedbackDetails = document.querySelector("#feedbackDetails");
+const helpTagsLegend = document.querySelector("#helpTagsLegend");
 const failureReasons = document.querySelector("#failureReasons");
 const feedbackStatus = document.querySelector("#feedbackStatus");
 const versionMeta = document.querySelector("#versionMeta");
@@ -45,6 +47,9 @@ const mobileMemoryButton = document.querySelector("#mobileMemoryButton");
 const mobileResetButton = document.querySelector("#mobileResetButton");
 const sidebarToast = document.querySelector("#sidebarToast");
 const homeComposerSlot = document.querySelector("#homeComposerSlot");
+const conversationContext = document.querySelector("#conversationContext");
+const conversationContextState = document.querySelector("#conversationContextState");
+const conversationContextText = document.querySelector("#conversationContextText");
 const memoryBand = document.querySelector("#memoryBand");
 const memoryEnabled = document.querySelector("#memoryEnabled");
 const memoryStatus = document.querySelector("#memoryStatus");
@@ -64,6 +69,9 @@ let hintTimer = null;
 let hintExampleIndex = 0;
 let hintCharacterIndex = 0;
 let hintDeleting = false;
+let processingTimer = null;
+let homeTransitionId = 0;
+let homeTransitionAnimations = [];
 
 document.querySelectorAll(".quick-prompts button").forEach((button) => {
   button.addEventListener("click", () => {
@@ -90,7 +98,9 @@ input.addEventListener("blur", () => {
 });
 window.addEventListener("resize", syncComposerInset);
 window.visualViewport?.addEventListener("resize", syncComposerInset);
-reducedMotionQuery.addEventListener?.("change", resetHintAnimation);
+reducedMotionQuery.addEventListener?.("change", () => {
+  resetHintAnimation();
+});
 
 document.querySelectorAll(".nav-item").forEach((button) => {
   button.addEventListener("click", () => {
@@ -114,8 +124,14 @@ resetButton.addEventListener("click", resetSession);
 
 feedbackForm.addEventListener("change", (event) => {
   if (event.target.name === "rating") {
-    failureReasons.hidden = Number(event.target.value) > 3;
+    const isLowRating = Number(event.target.value) <= 3;
+    failureReasons.hidden = !isLowRating;
+    helpTagsLegend.textContent = isLowRating ? "仍有帮助的部分（至少选一项）" : "具体帮到了什么？";
+    if (!isLowRating) {
+      failureReasons.querySelectorAll("input").forEach((inputElement) => { inputElement.checked = false; });
+    }
   }
+  updateFeedbackGuidance();
 });
 
 feedbackForm.addEventListener("submit", submitFeedback);
@@ -126,21 +142,100 @@ form.addEventListener("submit", async (event) => {
   if (!text || state.busy) return;
   stopHintAnimation();
   input.placeholder = "继续追问、比较或修改条件…";
-  document.body.classList.remove("is-home");
-  advisorView.appendChild(composerWrap);
-  welcomePanel.hidden = true;
+  const parsed = parseNeed(text);
+  const transition = enterConversation({ ...state.needs, ...parsed });
   addMessage(text, "user");
   input.value = "";
   resizeComposer();
-  await submitPrompt(text);
+  await Promise.all([submitPrompt(text, parsed), transition]);
 });
 
-async function submitPrompt(text) {
-  const parsed = parseNeed(text);
+async function submitPrompt(text, parsed = parseNeed(text)) {
   state.needs = { ...state.needs, ...parsed };
   if (parsed.new_used_preference) state.mode = preferenceMode(parsed.new_used_preference);
   updateSummary();
   await runPrompt(text, parsed);
+}
+
+function enterConversation(needs) {
+  if (!document.body.classList.contains("is-home")) return Promise.resolve();
+  cancelHomeTransition();
+  const transitionId = homeTransitionId;
+  const firstComposerRect = composerWrap.getBoundingClientRect();
+  const welcomeRect = welcomePanel.getBoundingClientRect();
+  const reducedMotion = reducedMotionQuery.matches;
+
+  renderConversationContext(needs);
+  document.querySelector("#starterMessage")?.remove();
+  Object.assign(welcomePanel.style, {
+    position: "fixed",
+    top: `${welcomeRect.top}px`,
+    left: `${welcomeRect.left}px`,
+    width: `${welcomeRect.width}px`,
+    height: `${welcomeRect.height}px`,
+    margin: "0",
+    zIndex: "4",
+    pointerEvents: "none",
+  });
+  document.body.classList.add("is-home-exiting");
+  advisorView.appendChild(composerWrap);
+  chatScroll.scrollTop = 0;
+
+  const lastComposerRect = composerWrap.getBoundingClientRect();
+  const deltaX = firstComposerRect.left - lastComposerRect.left;
+  const deltaY = firstComposerRect.top - lastComposerRect.top;
+  const duration = reducedMotion ? 120 : 600;
+  const easing = "cubic-bezier(.16, 1, .3, 1)";
+  const animations = [
+    welcomePanel.animate(
+      reducedMotion
+        ? [{ opacity: 1 }, { opacity: 0 }]
+        : [{ opacity: 1, transform: "translate3d(0,0,0)" }, { opacity: 0, transform: "translate3d(0,-16px,0)" }],
+      { duration: reducedMotion ? duration : 520, easing, fill: "forwards" },
+    ),
+  ];
+  if (!reducedMotion) {
+    animations.push(composerWrap.animate(
+      [
+        { transform: `translate3d(${deltaX}px, ${deltaY}px, 0)` },
+        { transform: "translate3d(0, 0, 0)" },
+      ],
+      { duration, easing, fill: "both" },
+    ));
+  }
+  homeTransitionAnimations = animations;
+
+  return Promise.allSettled(animations.map((animation) => animation.finished)).then(() => {
+    if (transitionId !== homeTransitionId) return;
+    homeTransitionAnimations.forEach((animation) => animation.cancel());
+    homeTransitionAnimations = [];
+    welcomePanel.hidden = true;
+    clearWelcomeTransitionStyles();
+    document.body.classList.remove("is-home");
+    document.body.classList.remove("is-home-exiting");
+    syncComposerInset();
+  });
+}
+
+function renderConversationContext(needs = {}) {
+  const fragments = knownNeedFragments(needs);
+  conversationContextText.textContent = fragments.length
+    ? `已理解：${fragments.join(" · ")}`
+    : "我先理解你刚刚说的，再确认最关键的一点";
+  conversationContext.hidden = false;
+}
+
+function clearWelcomeTransitionStyles() {
+  ["position", "top", "left", "width", "height", "margin", "z-index", "pointer-events", "opacity", "transform"]
+    .forEach((property) => welcomePanel.style.removeProperty(property));
+}
+
+function cancelHomeTransition() {
+  homeTransitionId += 1;
+  homeTransitionAnimations.forEach((animation) => animation.cancel());
+  homeTransitionAnimations = [];
+  clearWelcomeTransitionStyles();
+  document.body.classList.remove("is-home-exiting");
 }
 
 async function runPrompt(text, parsed = parseNeed(text)) {
@@ -163,8 +258,13 @@ async function runPrompt(text, parsed = parseNeed(text)) {
     renderResult(payload.result);
     setConnectionStatus("已连接", "ready");
   } catch {
-    renderStatePanel("连接失败", "当前需求仍保留在本页，但这次请求没有生成结果。请检查本地服务后重试。", "error", [
-      { label: "重试本次请求", action: () => runPrompt(state.lastPrompt) },
+    renderStatePanel("这次没有生成结果", "与服务的连接没有完成，但你刚才的问题和已补充的条件都还在。可以直接重试，或先修改原问题。", "error", [
+      { label: "重新尝试", action: () => runPrompt(state.lastPrompt), primary: true },
+      { label: "修改原问题", action: () => {
+        input.value = state.lastPrompt || "";
+        resizeComposer();
+        input.focus();
+      } },
     ]);
     setConnectionStatus("未连接", "error");
   } finally {
@@ -185,10 +285,8 @@ function buildApiInput(text, parsed) {
 
 function parseNeed(text) {
   const needs = {};
-  const tenThousand = text.match(/(\d+(?:\.\d+)?)\s*[万wW]/);
-  const yuan = text.match(/(\d{4,6})\s*元/);
-  if (tenThousand) needs.budget_cny = Math.round(Number(tenThousand[1]) * 10000);
-  else if (yuan && /预算/.test(text)) needs.budget_cny = Number(yuan[1]);
+  const budget = globalThis.MotoMateDecisionCore?.extractBudgetFromText(text);
+  if (budget) needs.budget_cny = budget;
   if (/裸车/.test(text)) needs.budget_type = "bare_vehicle_budget";
   if (/落地|总预算|包含保险|包含上牌/.test(text)) needs.budget_type = "total_purchase_budget";
   if (/新车和二手|新旧都|都可以|都能接受|都看/.test(text)) needs.new_used_preference = "either";
@@ -221,7 +319,7 @@ function parseUsedFields(text) {
 
 function renderResult(run) {
   if (run.cost_guard && !run.cost_guard.paid_model_calls_allowed) {
-    renderStatePanel("已进入基础模式", "付费模型调用已暂停，当前仅保留规则筛选和固定模板解释。候选边界与正式批准状态不变。", "warning");
+    renderStatePanel("当前使用基础模式", "付费模型调用已暂停，本轮继续使用规则筛选和固定模板解释。候选边界、开发预览与正式推荐未批准状态均保持不变。", "degraded");
   }
   if (run.next_action === "ask_one_question") {
     if (run.needs) syncNeedsFromRun(run.needs);
@@ -231,7 +329,7 @@ function renderResult(run) {
     return;
   }
   if (run.next_action === "partial_advice_only") {
-    addMessage("关键追问已达到上限。目前只能提供方向建议，补齐右侧缺失信息后再生成具体候选。", "assistant", true);
+    addMessage("我先不继续追问了。不过预算还不够明确，直接列车型容易误导；先给你方向，补充预算后再生成具体候选。", "assistant", true);
     setActions(run.sufficiency.missing_fields.map((field) => `补充${fieldLabel(field)}`));
     return;
   }
@@ -250,6 +348,11 @@ function renderResult(run) {
   }
   if (run.next_action === "show_development_preview") {
     if (run.needs) syncNeedsFromRun(run.needs);
+    if (run.sufficiency?.recommendation_scope === "preliminary_candidates") {
+      const missing = (run.sufficiency.missing_fields || []).map(fieldLabel).join("、");
+      addMessage(`先不继续追问。我按现有信息给一版初步候选；${missing || "部分偏好"}还没确认，所以当前排序不是最终结论。`, "assistant", true);
+      resultMeta.textContent = "初步候选 · 条件待补充";
+    }
     addMessage(conversationAssistantMessage(run, "recommend") || recommendationTransition(run.needs), "assistant");
     renderRecommendationRun(run.result);
     return;
@@ -312,6 +415,7 @@ function syncNeedsFromRun(needs = {}) {
   });
   if (state.needs.new_used_preference) state.mode = preferenceMode(state.needs.new_used_preference);
   updateSummary();
+  if (!conversationContext.hidden) renderConversationContext(state.needs);
 }
 
 function knownNeedFragments(needs = {}) {
@@ -353,8 +457,8 @@ function vehicleTypeLabel(value) {
 
 function renderRecommendationRun(result) {
   feedbackBand.hidden = true;
+  prepareResultSurface();
   setActions([]);
-  document.querySelectorAll(".state-panel.transient").forEach((panel) => panel.remove());
   const allCandidates = result.candidate_pool?.candidates || [];
   const candidates = result.display_candidates || allCandidates.slice(0, 3);
   if (candidates.length > 0) {
@@ -374,8 +478,9 @@ function renderRecommendationRun(result) {
   if (closest.length > 0) {
     renderClosest(closest);
     renderTemporaryCandidate(result.external_evidence_run);
-    renderStatePanel("没有完全匹配", "下方只展示最接近候选及未满足条件。系统没有自动放宽预算，也没有把它们当作正式推荐。", "warning", [
-      { label: "我来调整条件", prompt: "我愿意调整：" },
+    renderStatePanel("当前条件下没有完全匹配", "规则池没有同时满足全部条件的车型。下方仅展示最接近的候选和未满足项，不是推荐；系统也没有自动放宽你的预算。", "warning", [
+      { label: "调整一个条件", prompt: "我愿意调整：", primary: true },
+      { label: "重新描述需求", action: () => { input.value = ""; resizeComposer(); input.focus(); } },
     ]);
     if (result.candidate_coverage?.external_search_required) {
       addMessage(externalDiscoveryMessage(result), "assistant", true);
@@ -383,7 +488,7 @@ function renderRecommendationRun(result) {
     resultMeta.textContent = "无完全匹配";
     return;
   }
-  renderEmpty("当前规则池没有可展示候选", "当前覆盖不足不等于市场上没有合适车型；需要通过联网搜索补充并核验候选。");
+  renderEmpty("当前条件下没有可展示候选", "这是现有规则池的覆盖结果，不代表市场上没有合适车型。你可以先调整一个条件，再重新筛选；未经核验的车型不会被临时补入。");
   if (result.candidate_coverage?.external_search_required) {
     addMessage(externalDiscoveryMessage(result), "assistant", true);
   }
@@ -434,15 +539,15 @@ function renderRecommendations(items) {
   grid.innerHTML = `<section class="recommendation-stage" id="recommendationStage" aria-live="polite"></section>`;
   renderActiveRecommendation();
   requestAnimationFrame(() => {
-    const stage = document.querySelector("#recommendationStage");
+    const stage = grid.querySelector("#recommendationStage");
     if (!stage) return;
     stage.style.minHeight = `${Math.ceil(stage.getBoundingClientRect().height)}px`;
     stage.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
 
-function renderActiveRecommendation() {
-  const stage = document.querySelector("#recommendationStage");
+function renderActiveRecommendation(direction = 0) {
+  const stage = grid.querySelector("#recommendationStage");
   const items = state.recommendations;
   if (!stage || items.length === 0) return;
   const index = Math.min(Math.max(state.activeCandidateIndex, 0), items.length - 1);
@@ -451,41 +556,83 @@ function renderActiveRecommendation() {
   const tradeoffs = candidateTradeoffs(bike);
   const answer = directCandidateAnswer(bike, index);
   stage.innerHTML = `
-    <article class="direct-answer">
-      <div class="answer-kicker"><span>MotoMate 判断</span><span>${escapeHtml(cardRankLabel(index, bike.budget_tier))}</span></div>
-      <p class="answer-lead">${escapeHtml(answer)}</p>
-      <div class="answer-facts" aria-label="关键参数">
-        ${factItem("价格", formatCny(bike.budget_guard_price_cny), bike.evidence?.price?.official_label || "官方公开价格")}
-        ${factItem("座高", formatSpec(bike.seat_height_mm, " mm"), seatMeaning(bike.seat_height_mm))}
-        ${factItem("整备质量", formatSpec(bike.curb_weight_kg, " kg"), weightMeaning(bike.curb_weight_kg))}
-        ${factItem("安全辅助", safetyShortLabel(bike), safetyMeaning(bike))}
+    <section class="candidate-switcher" aria-label="候选车型，第 ${index + 1} 款，共 ${items.length} 款" aria-roledescription="轮播" tabindex="0">
+      <div class="candidate-toolbar">
+        <div class="candidate-count"><span>候选车型</span><strong>${index + 1} / ${items.length}</strong></div>
+        <div class="carousel-controls" aria-label="切换候选车型">
+          <button class="carousel-arrow previous" type="button" aria-label="查看上一款车型" ${index === 0 ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+          <div class="carousel-dots" aria-label="候选位置">${items.map((_, dotIndex) => `<button type="button" aria-label="查看第 ${dotIndex + 1} 款车型" aria-current="${dotIndex === index ? "true" : "false"}" class="${dotIndex === index ? "active" : ""}" data-index="${dotIndex}"></button>`).join("")}</div>
+          <button class="carousel-arrow next" type="button" aria-label="查看下一款车型" ${index === items.length - 1 ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+        </div>
       </div>
-    </article>
-    <section class="candidate-switcher" aria-label="候选车型切换">
-      <div class="candidate-title-row"><div><span class="candidate-sequence">MOTO ${String(index + 1).padStart(2, "0")}</span><h3>${escapeHtml(`${bike.brand} ${bike.model_name}`)}</h3><p>${escapeHtml(bike.trim_name || "当前配置")}</p></div><strong class="candidate-price">${formatCny(bike.budget_guard_price_cny)}</strong></div>
+      ${renderCandidateCategoryVisual(bike)}
+      <div class="candidate-title-row"><div><h3>${escapeHtml(`${bike.brand} ${bike.model_name}`)}</h3><p>${escapeHtml(bike.trim_name || "当前配置")}</p></div></div>
+      <article class="direct-answer">
+        <div class="answer-heading"><h4>为什么适合你</h4><span>${escapeHtml(cardRankLabel(index, bike.budget_tier))}</span></div>
+        <p class="answer-lead">${escapeHtml(answer)}</p>
+        <div class="answer-facts" aria-label="关键参数">
+          ${factItem("预算保护价", formatCny(bike.budget_guard_price_cny), "筛选时使用的保守价格")}
+          ${factItem("座高", formatSpec(bike.seat_height_mm, " mm"), seatMeaning(bike.seat_height_mm))}
+          ${factItem("整备质量", formatSpec(bike.curb_weight_kg, " kg"), weightMeaning(bike.curb_weight_kg))}
+          ${factItem("安全辅助", safetyShortLabel(bike), safetyMeaning(bike))}
+        </div>
+      </article>
       <div class="candidate-detail">
         <section><h4>你需要接受的取舍</h4><ul>${tradeoffs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
         <section><h4>下一步怎么验证</h4><p>${escapeHtml(candidateNextStep(bike))}</p></section>
       </div>
+      <p class="candidate-swipe-hint">在车型区域左右滑动，可切换候选</p>
       <div class="candidate-boundary"><strong>开发预览，尚未正式推荐批准</strong><span>价格以官网与门店同配置报价为准；适配以现场试坐和挪车为准。</span></div>
       ${renderEvidence(bike)}
-      <div class="carousel-controls">
-        <button class="carousel-arrow previous" type="button" aria-label="查看上一款车型" ${index === 0 ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-        <div class="carousel-position"><strong>${index + 1} / ${items.length}</strong><div class="carousel-dots" aria-label="候选位置">${items.map((_, dotIndex) => `<button type="button" aria-label="查看第 ${dotIndex + 1} 款车型" class="${dotIndex === index ? "active" : ""}" data-index="${dotIndex}"></button>`).join("")}</div></div>
-        <button class="carousel-arrow next" type="button" aria-label="查看下一款车型" ${index === items.length - 1 ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
-      </div>
     </section>`;
   stage.querySelector(".previous").addEventListener("click", () => changeCandidate(index - 1));
   stage.querySelector(".next").addEventListener("click", () => changeCandidate(index + 1));
   stage.querySelectorAll(".carousel-dots button").forEach((button) => button.addEventListener("click", () => changeCandidate(Number(button.dataset.index))));
-  bindCandidateSwipe(stage.querySelector(".candidate-switcher"));
+  const switcher = stage.querySelector(".candidate-switcher");
+  bindCandidateSwipe(switcher);
+  if (direction !== 0 && !reducedMotionQuery.matches) {
+    switcher.animate(
+      [
+        { opacity: 0.55, transform: `translate3d(${direction * 18}px, 0, 0)` },
+        { opacity: 1, transform: "translate3d(0, 0, 0)" },
+      ],
+      { duration: 220, easing: "cubic-bezier(.16, 1, .3, 1)" },
+    );
+  }
   chatScroll.scrollTop = before;
+}
+
+function renderCandidateCategoryVisual(bike) {
+  const type = String(bike.vehicle_type || state.needs.vehicle_type || "").trim();
+  const visual = candidateCategoryVisual(type);
+  const visibleType = type || "摩托车";
+  if (!visual) {
+    return `
+      <figure class="candidate-visual candidate-visual-fallback">
+        <div class="candidate-visual-type" aria-hidden="true">${escapeHtml(visibleType)}</div>
+        <figcaption><strong>${escapeHtml(visibleType)}</strong><span>当前暂无准确的车型类别示意图</span></figcaption>
+      </figure>`;
+  }
+  return `
+    <figure class="candidate-visual">
+      <img src="${visual.src}" alt="" width="1200" height="800" loading="lazy" decoding="async">
+      <figcaption><strong>${escapeHtml(visual.label)}</strong><span>车型类别示意 · 非具体推荐车型</span></figcaption>
+    </figure>`;
+}
+
+function candidateCategoryVisual(type) {
+  if (type === "踏板") return { src: "./assets/intro/scooter.jpg", label: "踏板" };
+  if (type === "街车") return { src: "./assets/intro/street.jpg", label: "街车" };
+  if (/巡航|太子/.test(type)) return { src: "./assets/intro/cruiser.jpg", label: "巡航" };
+  if (/拉力|ADV/i.test(type)) return { src: "./assets/intro/adv.jpg", label: "拉力 / ADV" };
+  return null;
 }
 
 function changeCandidate(nextIndex) {
   if (nextIndex < 0 || nextIndex >= state.recommendations.length || nextIndex === state.activeCandidateIndex) return;
+  const direction = nextIndex > state.activeCandidateIndex ? 1 : -1;
   state.activeCandidateIndex = nextIndex;
-  renderActiveRecommendation();
+  renderActiveRecommendation(direction);
 }
 
 function bindCandidateSwipe(target) {
@@ -499,6 +646,11 @@ function bindCandidateSwipe(target) {
     changeCandidate(state.activeCandidateIndex + (delta < 0 ? 1 : -1));
   });
   target.addEventListener("pointercancel", () => { startX = null; });
+  target.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    changeCandidate(state.activeCandidateIndex + (event.key === "ArrowRight" ? 1 : -1));
+  });
 }
 
 function factItem(label, value, note) {
@@ -516,9 +668,9 @@ function directCandidateAnswer(bike, index) {
 }
 
 function safetyShortLabel(bike) {
-  const abs = bike.abs || "ABS 待核验";
-  const tcs = bike.tcs ? ` / TCS ${bike.tcs}` : " / TCS 待核验";
-  return `${abs}${tcs}`;
+  const abs = bike.abs ? `ABS ${bike.abs}` : "ABS 待核验";
+  const tcs = bike.tcs ? `TCS ${bike.tcs}` : "TCS 待核验";
+  return `${abs} / ${tcs}`;
 }
 
 function candidateNextStep(bike) {
@@ -576,16 +728,16 @@ function candidateSummary(bike) {
 
 function weightMeaning(value) {
   if (!Number.isFinite(value)) return "车重还需要到店确认";
-  if (value <= 140) return "数据上相对轻，但仍要试试原地掉头和倒车";
-  if (value <= 180) return "不算很轻，新手应重点试原地挪车";
-  return "车重较高，低速和倒车时可能更费力";
+  if (value <= 140) return "先试原地掉头和倒车；纸面较轻不等于一定好挪";
+  if (value <= 180) return "重点试原地掉头和倒车，确认低速时能稳住";
+  return "车重较高，先确认低速和倒车时能稳住";
 }
 
 function seatMeaning(value) {
   if (!Number.isFinite(value)) return "座高数据不足，不做身高适配推断";
-  if (value <= 760) return "纸面座高偏低，通常更容易建立着地信心";
+  if (value <= 760) return "座高数字偏低，但坐垫宽度和腿长仍会影响着地";
   if (value <= 790) return "纸面座高居中，腿长和坐垫宽度会明显影响着地";
-  return "纸面座高偏高，新手需优先完成现场试坐";
+  return "座高数字偏高，优先试坐并确认单脚能稳定着地";
 }
 
 function safetyMeaning(bike) {
@@ -617,12 +769,13 @@ function renderEvidence(bike) {
   `).join("");
   return `
     <details class="evidence-panel">
-      <summary>查看价格与配置依据</summary>
+      <summary><span class="summary-closed">查看依据与核验状态</span><span class="summary-open">收起依据与核验状态</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary>
       <div class="evidence-content">
-        <section><h4>为什么入选</h4><p>${escapeHtml(reasons.length ? reasons.join("、") : "符合当前硬规则")}</p></section>
-        <section><h4>价格口径</h4><p>${escapeHtml(price.official_label || "官方公开价格")}：${formatCny(price.official_public_price_cny)}。预算保护价：${formatCny(price.display_cny)}。</p><p class="evidence-note">${escapeHtml(price.policy || "")}</p></section>
-        <section><h4>字段核验状态</h4><div class="verification-grid">${fields.map(([label, status]) => `<span><strong>${escapeHtml(label)}</strong>${escapeHtml(verificationLabel(status))}</span>`).join("")}</div></section>
-        <section><h4>来源</h4>${sources ? `<ul class="source-list">${sources}</ul>` : `<p>暂无可展示来源</p>`}</section>
+        <p class="evidence-intro">这里展示系统实际使用的入选规则、价格口径和公开来源。字段已核验不等于车型适合你，也不等于正式推荐批准。</p>
+        <section><h4>为什么进入候选</h4><p>${escapeHtml(reasons.length ? reasons.join("、") : "符合当前硬规则")}</p></section>
+        <section><h4>筛选价格怎么计算</h4><p>${escapeHtml(price.official_label || "官方公开价格")}：${formatCny(price.official_public_price_cny)}。本次预算保护价：${formatCny(price.display_cny)}。</p><p class="evidence-note">${escapeHtml(price.policy || "")}</p></section>
+        <section><h4>这些字段核验到什么程度</h4><div class="verification-grid">${fields.map(([label, status]) => `<span class="${verificationTone(status)}"><strong>${escapeHtml(label)}</strong><em>${escapeHtml(verificationLabel(status))}</em></span>`).join("")}</div></section>
+        <section><h4>公开来源</h4>${sources ? `<ul class="source-list">${sources}</ul>` : `<p>暂无可展示来源</p>`}</section>
         <p class="evidence-meta">规则评估：${escapeHtml(formatDate(evidence.rule_evaluated_at))}；Codex 运营复核：${escapeHtml(formatDate(evidence.operational_reviewed_at))}。尚未获得正式推荐批准。</p>
       </div>
     </details>
@@ -635,9 +788,15 @@ function reasonLabel(code) {
     within_budget: "未超出裸车预算",
     dual_channel_abs: "配置双通道 ABS",
     traction_control_present: "配置牵引力控制",
-    usage_high: "当前用途适配信号较高",
-    usage_medium: "当前用途适配信号中等",
+    usage_high: "适合你当前的主要用途",
+    usage_medium: "可以覆盖你当前的主要用途",
   })[code] || null;
+}
+
+function verificationTone(status) {
+  if (status === "official_verified" || status === "official_verified_detail_non_hard") return "verified";
+  if (status === "provisional_verified") return "provisional";
+  return "unknown";
 }
 
 function verificationLabel(status) {
@@ -669,6 +828,7 @@ function renderClosest(items) {
 function renderUsedResult(result) {
   const gaps = result.information_gaps.map((item) => item.label);
   addMessage(`已整理车源信息。当前还需确认：${gaps.length ? gaps.join("、") : "无明显字段缺口"}。本结果不能鉴定事故、泡水或调表。`, "assistant", true);
+  prepareResultSurface();
   grid.innerHTML = `<article class="guidance-panel"><h3>必问卖家</h3><ul>${result.seller_questions.slice(0, 5).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article><article class="guidance-panel"><h3>线下核查</h3><ul>${result.inspection_checklist.slice(0, 5).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>`;
   resultMeta.textContent = "二手文字核查清单";
   setActions(["向卖家补齐缺失信息", "预约独立第三方检测", "不要仅凭描述完成交易"]);
@@ -689,6 +849,22 @@ function addMessage(text, role, highlight = false) {
   article.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
+function prepareResultSurface() {
+  if (grid?.isConnected && grid.innerHTML.trim()) {
+    grid.removeAttribute("id");
+    grid.classList.add("archived-result");
+    grid.querySelectorAll("button").forEach((button) => {
+      button.disabled = true;
+      button.setAttribute("aria-disabled", "true");
+    });
+    grid.querySelector("#recommendationStage")?.removeAttribute("id");
+    grid = document.createElement("section");
+    grid.className = "recommendation-grid";
+    grid.id = "recommendationGrid";
+  }
+  conversation.appendChild(grid);
+}
+
 function updateSummary() {
   budgetValue.textContent = state.needs.budget_cny ? formatCny(state.needs.budget_cny) : "待确认";
   usageValue.textContent = ({ commute: "通勤/代步", weekend: "周末休闲", touring: "摩旅/长途" })[state.needs.usage] || "待确认";
@@ -701,20 +877,46 @@ function setBusy(busy) {
   sendButton.disabled = busy;
   input.disabled = busy;
   form.setAttribute("aria-busy", String(busy));
-  document.querySelectorAll(".quick-prompts button, .action-chip").forEach((button) => { button.disabled = busy; });
+  if (!conversationContext.hidden) conversationContextState.textContent = busy ? "正在理解" : "已理解";
+  document.querySelectorAll(".quick-prompts button, .action-chip, .state-actions button").forEach((button) => { button.disabled = busy; });
   document.querySelector("#processingMessage")?.remove();
+  clearInterval(processingTimer);
+  processingTimer = null;
   if (busy) {
     setConnectionStatus("正在分析", "busy");
     const article = document.createElement("article");
     article.id = "processingMessage";
     article.className = "message assistant-message processing-message";
-    article.innerHTML = `<div class="message-avatar">M</div><div class="bubble"><p class="processing-line">正在核对需求、筛选候选与准备解释…</p></div>`;
+    article.innerHTML = `<div class="message-avatar">M</div><div class="bubble"><div class="agent-working" role="status" aria-live="polite"><div class="working-head"><span class="working-indicator" aria-hidden="true"><i></i><i></i><i></i></span><p class="processing-line">正在理解你的需求</p></div><ol class="working-stages" aria-label="本轮处理步骤"><li aria-current="step"><span>理解需求</span><small>结合当前对话识别你要解决的问题</small></li><li><span>规则核对</span><small>检查候选与已有资料边界</small></li><li><span>整理依据</span><small>把参数和取舍组织成清楚的回答</small></li></ol></div></div>`;
     conversation.appendChild(article);
     article.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    const stages = [
+      "正在理解你的需求",
+      "正在按规则核对候选",
+      "正在整理参数与依据",
+    ];
+    let stageIndex = 0;
+    processingTimer = setInterval(() => {
+      if (!article.isConnected) {
+        clearInterval(processingTimer);
+        processingTimer = null;
+        return;
+      }
+      stageIndex = Math.min(stageIndex + 1, stages.length - 1);
+      const current = stages[stageIndex];
+      const line = article.querySelector(".processing-line");
+      if (!line) return;
+      line.textContent = current;
+      article.querySelectorAll(".working-stages li").forEach((item, itemIndex) => {
+        if (itemIndex === stageIndex) item.setAttribute("aria-current", "step");
+        else item.removeAttribute("aria-current");
+      });
+    }, 2400);
   }
 }
 
 function resetSession() {
+  cancelHomeTransition();
   document.querySelectorAll(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.view === "advisor"));
   reviewBand.hidden = true;
   memoryBand.hidden = true;
@@ -729,12 +931,15 @@ function resetSession() {
   document.body.classList.add("is-home");
   homeComposerSlot.appendChild(composerWrap);
   updateSummary();
-  conversation.innerHTML = `<article class="message assistant-message"><div class="message-avatar">M</div><div class="bubble"><p>想到什么就直接说。预算、用途，或者正在纠结哪两台都行。</p></div></article>`;
+  conversation.innerHTML = `<article class="message assistant-message" id="starterMessage"><div class="message-avatar">M</div><div class="bubble"><p>想到什么就直接说。预算、用途，或者正在纠结哪两台都行。</p></div></article>`;
   grid.innerHTML = "";
   welcomePanel.hidden = false;
+  conversationContext.hidden = true;
+  conversationContextText.textContent = "";
   nextActions.hidden = true;
   resultMeta.textContent = "等待你的需求";
   feedbackBand.hidden = true;
+  delete feedbackBand.dataset.state;
   feedbackForm.reset();
   feedbackStatus.removeAttribute("data-tone");
   input.disabled = false;
@@ -747,13 +952,44 @@ function resetSession() {
 
 function showFeedback() {
   if (!state.recommendationVersion) return;
+  delete feedbackBand.dataset.state;
   feedbackForm.reset();
+  feedbackForm.removeAttribute("aria-busy");
   feedbackForm.querySelectorAll("input, textarea, button").forEach((element) => { element.disabled = false; });
+  feedbackDetails.hidden = true;
   failureReasons.hidden = true;
-  feedbackStatus.textContent = "请选择评分和具体帮助";
+  helpTagsLegend.textContent = "具体帮到了什么？";
+  feedbackStatus.textContent = "先选择 1–5 分";
   feedbackStatus.removeAttribute("data-tone");
+  const submitButton = feedbackForm.querySelector("button[type=submit]");
+  submitButton.textContent = "提交反馈";
+  submitButton.disabled = true;
   versionMeta.textContent = `推荐版本 V${state.recommendationVersion.version_number}`;
   feedbackBand.hidden = false;
+  conversation.appendChild(feedbackBand);
+}
+
+function updateFeedbackGuidance() {
+  if (feedbackBand.dataset.state === "submitted") return;
+  const data = new FormData(feedbackForm);
+  const rating = Number(data.get("rating"));
+  const helpTags = data.getAll("help_tag");
+  const failureReasonsValue = data.getAll("failure_reason");
+  const submitButton = feedbackForm.querySelector("button[type=submit]");
+  const isComplete = Boolean(rating && helpTags.length > 0 && (rating > 3 || failureReasonsValue.length > 0));
+  submitButton.disabled = !isComplete;
+  feedbackDetails.hidden = !rating;
+  feedbackStatus.removeAttribute("data-tone");
+  if (!rating) {
+    feedbackStatus.textContent = "先选择 1–5 分";
+  } else if (helpTags.length === 0) {
+    feedbackStatus.textContent = "再选择至少一项具体感受";
+  } else if (rating <= 3 && failureReasonsValue.length === 0) {
+    feedbackStatus.textContent = "再告诉我哪里没帮到你";
+  } else {
+    feedbackStatus.textContent = "已填好，可以提交";
+    feedbackStatus.dataset.tone = "ready";
+  }
 }
 
 async function submitFeedback(event) {
@@ -764,18 +1000,23 @@ async function submitFeedback(event) {
   const helpTags = data.getAll("help_tag");
   const failureReasonsValue = data.getAll("failure_reason");
   if (!rating || helpTags.length === 0) {
-    feedbackStatus.textContent = "请选择评分和至少一项具体帮助";
+    feedbackDetails.hidden = !rating;
+    feedbackStatus.textContent = rating ? "请选择至少一项具体感受" : "请先选择帮助度";
     feedbackStatus.dataset.tone = "error";
+    feedbackForm.querySelector(rating ? 'input[name="help_tag"]' : 'input[name="rating"]')?.focus();
     return;
   }
   if (rating <= 3 && failureReasonsValue.length === 0) {
-    feedbackStatus.textContent = "低分反馈请选择至少一个原因";
+    feedbackStatus.textContent = "请告诉我至少一个没帮到你的地方";
     feedbackStatus.dataset.tone = "error";
+    feedbackForm.querySelector('input[name="failure_reason"]')?.focus();
     return;
   }
   const submitButton = feedbackForm.querySelector("button[type=submit]");
-  submitButton.disabled = true;
-  feedbackStatus.textContent = "正在提交，当前内容尚未保存";
+  feedbackForm.setAttribute("aria-busy", "true");
+  feedbackForm.querySelectorAll("input, textarea, button").forEach((element) => { element.disabled = true; });
+  submitButton.textContent = "正在提交…";
+  feedbackStatus.textContent = "正在保存这次反馈";
   feedbackStatus.removeAttribute("data-tone");
   try {
     const response = await fetch(`/api/recommendations/${state.recommendationVersion.recommendation_version_id}/feedback`, {
@@ -789,15 +1030,24 @@ async function submitFeedback(event) {
         comment: data.get("comment"),
       }),
     });
+    if (response.status === 409) {
+      feedbackBand.dataset.state = "submitted";
+      feedbackStatus.textContent = "这个推荐版本已经提交过反馈";
+      feedbackStatus.dataset.tone = "success";
+      return;
+    }
     if (!response.ok) throw new Error(`feedback_${response.status}`);
     const payload = await response.json();
-    feedbackForm.querySelectorAll("input, textarea, button").forEach((element) => { element.disabled = true; });
-    feedbackStatus.textContent = payload.feedback.success_sample ? "已提交，计入有效帮助样本" : "已提交，感谢指出问题";
+    feedbackBand.dataset.state = "submitted";
+    feedbackStatus.textContent = payload.feedback.success_sample ? "已提交，这条反馈会用于校准推荐" : "已提交，感谢你指出问题";
     feedbackStatus.dataset.tone = "success";
   } catch {
-    submitButton.disabled = false;
-    feedbackStatus.textContent = "提交失败，当前内容尚未保存";
+    feedbackForm.querySelectorAll("input, textarea, button").forEach((element) => { element.disabled = false; });
+    submitButton.textContent = "重新提交";
+    feedbackStatus.textContent = "这次没有保存成功，已保留你填写的内容";
     feedbackStatus.dataset.tone = "error";
+  } finally {
+    feedbackForm.removeAttribute("aria-busy");
   }
 }
 
@@ -856,8 +1106,8 @@ function switchView(view) {
   memoryBand.hidden = !isMemory;
   mobileReviewButton.classList.toggle("active", isReview);
   mobileMemoryButton.classList.toggle("active", isMemory);
-  mobileReviewButton.textContent = isReview ? "返回" : "复盘";
-  mobileMemoryButton.textContent = isMemory ? "返回" : "记忆";
+  mobileReviewButton.setAttribute("aria-label", isReview ? "返回当前咨询" : "打开反馈复盘");
+  mobileMemoryButton.setAttribute("aria-label", isMemory ? "返回当前咨询" : "查看我的记忆");
   if (isReview) {
     reviewBand.scrollTop = 0;
     loadFeedbackReview();
@@ -1017,7 +1267,7 @@ function resetHintAnimation() {
   hintCharacterIndex = 0;
   hintDeleting = false;
   input.placeholder = reducedMotionQuery.matches ? hintExamples[0] : "";
-  scheduleHintAnimation(reducedMotionQuery.matches ? 0 : 450);
+  scheduleHintAnimation(reducedMotionQuery.matches ? 0 : 900);
 }
 
 function resizeComposer() {
@@ -1046,11 +1296,13 @@ function renderStatePanel(title, copy, tone = "", actions = []) {
   const panel = document.createElement("section");
   panel.className = `state-panel transient ${tone}`.trim();
   panel.setAttribute("role", tone === "error" ? "alert" : "status");
-  panel.innerHTML = `<strong>${escapeHtml(title)}</strong><p>${escapeHtml(copy)}</p>${actions.length ? `<div class="state-actions"></div>` : ""}`;
+  panel.setAttribute("aria-live", tone === "error" ? "assertive" : "polite");
+  panel.innerHTML = `<div class="state-heading"><span class="state-icon" aria-hidden="true">${stateIcon(tone)}</span><strong>${escapeHtml(title)}</strong></div><p>${escapeHtml(copy)}</p>${actions.length ? `<div class="state-actions"></div>` : ""}`;
   const actionContainer = panel.querySelector(".state-actions");
   actions.forEach((item) => {
     const button = document.createElement("button");
     button.type = "button";
+    if (item.primary) button.classList.add("primary");
     button.textContent = item.label;
     button.addEventListener("click", () => {
       if (item.prompt !== undefined) {
@@ -1062,8 +1314,17 @@ function renderStatePanel(title, copy, tone = "", actions = []) {
     });
     actionContainer?.appendChild(button);
   });
-  grid.insertAdjacentElement("afterend", panel);
-  panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  conversation.appendChild(panel);
+  requestAnimationFrame(() => {
+    if (panel.isConnected) panel.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+}
+
+function stateIcon(tone) {
+  if (tone === "error") return '<svg viewBox="0 0 24 24"><path d="M12 8v5m0 3.5v.01"/><circle cx="12" cy="12" r="9"/></svg>';
+  if (tone === "warning") return '<svg viewBox="0 0 24 24"><path d="M12 9v4m0 4v.01M10.3 4.9 2.8 18a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.9a2 2 0 0 0-3.4 0Z"/></svg>';
+  if (tone === "degraded") return '<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/><circle cx="12" cy="12" r="9"/></svg>';
+  return '<svg viewBox="0 0 24 24"><path d="m7 12 3 3 7-7"/><circle cx="12" cy="12" r="9"/></svg>';
 }
 
 function helpTagLabel(value) {
@@ -1089,8 +1350,8 @@ function renderEmpty(title, copy) {
   setActions([]);
   resultMeta.textContent = "规则池无匹配候选";
   renderStatePanel(title, copy, "warning", [
-    { label: "调整一个条件", prompt: "我想调整一个条件：" },
-    { label: "重新描述需求", action: () => { input.value = ""; input.focus(); } },
+    { label: "调整一个条件", prompt: "我想调整一个条件：", primary: true },
+    { label: "重新描述需求", action: () => { input.value = ""; resizeComposer(); input.focus(); } },
   ]);
 }
 
@@ -1102,6 +1363,7 @@ function setActions(items, submitOnClick = false) {
     if (submitOnClick) form.requestSubmit();
     else input.focus();
   }));
+  if (items.length > 0) conversation.appendChild(nextActions);
 }
 
 function fieldLabel(field) {
@@ -1133,5 +1395,6 @@ async function checkHealth() {
 updateSummary();
 showMemoryDisclosure();
 resizeComposer();
+window.setTimeout(() => document.body.classList.remove("home-arriving"), reducedMotionQuery.matches ? 0 : 1100);
 resetHintAnimation();
 checkHealth();
